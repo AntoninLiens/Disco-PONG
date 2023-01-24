@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Press Start 2P', cursive;
 }
 
 body {
@@ -11,16 +12,17 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-	background: blueviolet;
+    background: url("images/arcades.gif") center/cover;
+
 }
 
 .box {
     margin-top: 30px;
     height: 400px;
 	width: 250px;
-    background: white;
-    box-shadow: 8px 8px 20px teal;
-    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.578);
+    box-shadow: 0px 0px 20px teal;
+    border-radius: 20px;
     position: relative;
     overflow: hidden;
 }
@@ -33,17 +35,18 @@ body {
     align-items: center;
     justify-content: space-around;
     font-size: 22px;
-    box-shadow: 10px 10px 30px blueviolet;
+    box-shadow: 0px 0px 30px blueviolet;
     border-radius: 50px;
 }
 
 .signin, .signup {
-    font-size: 22px;
+    font-size: 15px;
     border: none;
     outline: none;
     background: transparent;
     position: relative;
     cursor: pointer;
+    color: whitesmoke;
 }
 
 .slider {
@@ -86,7 +89,7 @@ body {
 }
 
 .loginBox {
-    gap: 50px;
+    gap: 40px;
 }
 
 .registerBox {
@@ -102,8 +105,8 @@ body {
     color: rgb(77, 77, 77);
     background-color: rgb(240, 240, 240);
     border-radius: 50px;
-	padding-left: 30px;
-	font-size: 18px;
+    text-align: center;
+	font-size: 13px;
 }
 
 .submitBtn {
@@ -111,7 +114,14 @@ body {
 	width: 150px;
 	border-radius: 50px;
 	background: linear-gradient(to right, blueviolet, teal);
-	font-size: 22px;
+	font-size: 15px;
 	border: none;
 	cursor: pointer;
+    color: whitesmoke;
+}
+
+@media screen and (min-width: 1024px) {
+    .box {
+        scale: 1.3;
+    }
 }

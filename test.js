@@ -5,6 +5,8 @@ let formSection = document.querySelector(".formBox");
 let bodysection = document.querySelector("body");
 let color = bodysection.querySelector(".box");
 
+console.log("coucou")
+
 signup.addEventListener("click", () => {
 	slider.classList.add("moveSlider");
 	formSection.classList.add("moveFormBox");
