@@ -1,0 +1,9 @@
+body > section {
+    margin:1em;
+    display:none;
+}
+
+body.home > section#home,
+body.page1 > section#page1,
+body.page2  > section#page2,
+body.page3  > section#page3 { display:block; }
