@@ -16,6 +16,15 @@ body {
 
 }
 
+section {
+    display: none;
+}
+
+body.connect > section.connect,
+body.homePage > section.homePage {
+    display: block;
+}
+
 .box {
     margin-top: 30px;
     height: 400px;
@@ -109,7 +118,7 @@ body {
 	font-size: 13px;
 }
 
-.submitBtn {
+.loginBtn, .registerBtn {
     height: 60px;
 	width: 150px;
 	border-radius: 50px;

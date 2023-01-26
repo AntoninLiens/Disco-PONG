@@ -2,10 +2,11 @@ let signup = document.querySelector(".signup");
 let login = document.querySelector(".signin");
 let slider = document.querySelector(".slider");
 let formSection = document.querySelector(".formBox");
-let bodysection = document.querySelector("body");
 let box = document.querySelector(".box");
-let submitBtn = document.querySelector(".submitBtn");
+let loginBtn = document.querySelector(".loginBtn");
+let registerBtn = document.querySelector(".registerBtn");
 let addBox = document.querySelector(".addBox");
+let body = document.querySelector("body");
 
 signup.addEventListener("click", () => {
 	slider.classList.add("moveSlider");
@@ -17,14 +18,10 @@ login.addEventListener("click", () => {
 	formSection.classList.remove("moveFormBox");
 });
 
-submitBtn.addEventListener("click", () => {
-	box.remove();
-	
-});
+function setHomePage() {
+	body.classList.remove(body.getAttribute("class"));
+	body.classList.add("homePage");
+}
 
-addBox.addEventListener("click", () => {
-
-	let customElem = document.createElement("p");
-	customElem.innerHTML = "coucou";
-	bodysection.appendChild(customElem);
-});
+loginBtn.addEventListener("click", () => { setHomePage(); });
+registerBtn.addEventListener("click", () => { setHomePage(); });
