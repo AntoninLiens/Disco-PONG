@@ -169,10 +169,11 @@ section.homePage > .page > .menu {
     text-align: center;
 }
 
-.menu ul li:hover{
+.menu ul li:hover {
     background: teal;
     border-radius: 50%;
     box-shadow: white 3px 5px 20px 0px;
+	cursor: pointer;
 }
 
 section.homePage > .page > .home {
