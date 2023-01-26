@@ -7,6 +7,7 @@ let loginBtn = document.querySelector(".loginBtn");
 let registerBtn = document.querySelector(".registerBtn");
 let addBox = document.querySelector(".addBox");
 let body = document.querySelector("body");
+let title = document.querySelector("title");
 
 signup.addEventListener("click", () => {
 	slider.classList.add("moveSlider");
@@ -21,6 +22,8 @@ login.addEventListener("click", () => {
 function setHomePage() {
 	body.classList.remove(body.getAttribute("class"));
 	body.classList.add("homePage");
+	title.innerHTML = "Home page"
+
 }
 
 loginBtn.addEventListener("click", () => { setHomePage(); });
