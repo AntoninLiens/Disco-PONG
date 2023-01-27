@@ -1,139 +1,139 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Press Start 2P', cursive;
-    text-decoration: none;
-    list-style: none;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Press Start 2P', cursive;
+	text-decoration: none;
+	list-style: none;
 }
 
 body {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background: url("images/arcades.gif") center/cover;
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	background: url("images/arcades.gif") center/cover;
 }
 
 section {
-    display: none;
+	display: none;
 }
 
 body.connect > section.connect,
 body.homePage > section.homePage {
-    display: block;
+	display: block;
 }
 
 .box {
-    margin-top: 30px;
-    height: 400px;
+	margin-top: 30px;
+	height: 400px;
 	width: 250px;
-    background: rgba(0, 0, 0, 0.578);
-    box-shadow: 0px 0px 20px teal;
-    border-radius: 20px;
-    position: relative;
-    overflow: hidden;
+	background: rgba(0, 0, 0, 0.578);
+	box-shadow: 0px 0px 20px teal;
+	border-radius: 20px;
+	position: relative;
+	overflow: hidden;
 }
 
 .btn {
-    height: 50px;
-    width: 200px;
-    margin: 20px auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    font-size: 22px;
-    box-shadow: 0px 0px 30px blueviolet;
-    border-radius: 50px;
+	height: 50px;
+	width: 200px;
+	margin: 20px auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	font-size: 22px;
+	box-shadow: 0px 0px 30px blueviolet;
+	border-radius: 50px;
 }
 
 .signin, .signup {
-    font-size: 15px;
-    border: none;
-    outline: none;
-    background: transparent;
-    position: relative;
-    cursor: pointer;
-    color: whitesmoke;
+	font-size: 15px;
+	border: none;
+	outline: none;
+	background: transparent;
+	position: relative;
+	cursor: pointer;
+	color: whitesmoke;
 }
 
 .slider {
-    height: 50px;
-    width: 100px;
-    left: 22px;
-    border-radius: 50px;
-    background: linear-gradient(to right, blueviolet, teal);
-    position: absolute;
-    top: 20px;
-    transition: all 0.5s ease-in-out;
+	height: 50px;
+	width: 100px;
+	left: 22px;
+	border-radius: 50px;
+	background: linear-gradient(to right, blueviolet, teal);
+	position: absolute;
+	top: 20px;
+	transition: all 0.5s ease-in-out;
 }
 
 .moveSlider {
-    left: 127px;
+	left: 127px;
 }
 
 .formBox {
-    height: 300px;
-    width: 500px;
-    padding: 20px 0;
-    display: flex;
-    position: relative;
-    transition: all 0.5s ease-in-out;
-    left: 0px;
+	height: 300px;
+	width: 500px;
+	padding: 20px 0;
+	display: flex;
+	position: relative;
+	transition: all 0.5s ease-in-out;
+	left: 0px;
 }
 
 .moveFormBox {
-    left: -250px;
+	left: -250px;
 }
 
 .loginBox, .registerBox {
-    height: 100%;
-    width: 250px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0 40px;
+	height: 100%;
+	width: 250px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 0 40px;
 }
 
 .loginBox {
-    gap: 40px;
+	gap: 40px;
 }
 
 .registerBox {
-    gap: 30px;
+	gap: 30px;
 }
 
 .ele {
-    height: 50px;
-    width: 220px;
-    font-size: 15px;
-    outline: none;
-    border: none;
-    color: rgb(77, 77, 77);
-    background-color: rgb(240, 240, 240);
-    border-radius: 50px;
-    text-align: center;
+	height: 50px;
+	width: 220px;
+	font-size: 15px;
+	outline: none;
+	border: none;
+	color: rgb(77, 77, 77);
+	background-color: rgb(240, 240, 240);
+	border-radius: 50px;
+	text-align: center;
 	font-size: 13px;
 }
 
 .loginBtn, .registerBtn {
-    height: 60px;
+	height: 60px;
 	width: 150px;
 	border-radius: 50px;
 	background: linear-gradient(to right, blueviolet, teal);
 	font-size: 15px;
 	border: none;
 	cursor: pointer;
-    color: whitesmoke;
+	color: whitesmoke;
 }
 
 @media screen and (min-width: 1024px) {
-    .box {
-        scale: 1.3;
-    }
+	.box {
+		scale: 1.3;
+	}
 }
 
 /* ============================================================= */
@@ -147,47 +147,73 @@ body.homePage > section.homePage {
   color: whitesmoke;
 }
 
+section.homePage > .page > label {
+	position: fixed;
+	left: 0;
+	top: 0;
+	padding: 18px;
+}
+
+#closeMenuBtn { display: none; }
+
+section.homePage > .page > a {
+	position: absolute;
+	padding: 18px;
+	z-index: 1;
+}
+
+/* #check:checked ~ h1 { color: white; } */
+
 section.homePage > .page {
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
-    width: 100vw;
+	display: flex;
+	flex-direction: row;
+	height: 100vh;
+	width: 100vw;
+	position: relative;
 }
 
 section.homePage > .page > .menu {
-    width: 60px;
-    padding: 55px 0;
-    background: rgba(62, 232, 232, 0.238);
+	width: 60px;
+	padding: 55px 0;
+	background: rgba(62, 232, 232, 0.238);
+	transition: 0.5s ease-in-out;
+	position: absolute;
+	height: 100vh;
+	left: -60px;
+}
+
+.showMenu {
+	left: 0;
 }
 
 .menu ul li {
-    margin: 33px 5px;
-    padding: 12px;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    text-align: center;
+	margin: 33px 5px;
+	padding: 12px;
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+	text-align: center;
 }
 
 .menu ul li:hover {
-    background: teal;
-    border-radius: 50%;
-    box-shadow: white 3px 5px 20px 0px;
+	background: teal;
+	border-radius: 50%;
+	box-shadow: white 3px 5px 20px 0px;
 	cursor: pointer;
 }
 
 .menu ul li#settings {
-    margin: 0 5px;
-    position: absolute;
-    bottom: 0;
+	margin: 5px;
+	position: absolute;
+	bottom: 0;
 }
 
 section.homePage > .page > .home {
-    flex: auto;
+	flex: auto;
 }
 
 section.homePage > .page > .chat {
-    width: 80px;
-    padding: 55px 0;
-    background: rgba(0, 128, 128, 0.238);    
+	width: 80px;
+	padding: 55px 0;
+	background: rgba(0, 128, 128, 0.238);    
 }

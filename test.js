@@ -22,7 +22,7 @@ login.addEventListener("click", () => {
 function setHomePage() {
 	body.classList.remove(body.getAttribute("class"));
 	body.classList.add("homePage");
-	title.innerHTML = "Home page"
+	title.innerHTML = "Home page";
 
 }
 
