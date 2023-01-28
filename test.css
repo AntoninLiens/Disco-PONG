@@ -5,7 +5,6 @@
 	font-family: 'Press Start 2P', cursive;
 	text-decoration: none;
 	list-style: none;
-	overflow: hidden;
 }
 
 body {
@@ -16,6 +15,7 @@ body {
 	align-items: center;
 	flex-direction: column;
 	background: url("images/arcades.gif") center/cover;
+	overflow: hidden;
 }
 
 section {
@@ -96,7 +96,6 @@ body.homePage > section.homePage {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding: 0 40px;
 }
 
 .loginBox {
@@ -162,7 +161,7 @@ section.homePage > .page > label {
 section.homePage > .page > a {
 	position: absolute;
 	padding: 18px;
-	z-index: 1;
+	z-index: 2;
 }
 
 section.homePage > .page {
@@ -172,6 +171,7 @@ section.homePage > .page {
 }
 
 section.homePage > .page > .menu {
+	z-index: 1;
 	width: 60px;
 	padding: 55px 0;
 	background: rgba(62, 232, 232, 0.238);
@@ -179,10 +179,6 @@ section.homePage > .page > .menu {
 	position: absolute;
 	height: 100vh;
 	left: -60px;
-}
-
-.showMenu {
-	left: 0;
 }
 
 .menu ul li {

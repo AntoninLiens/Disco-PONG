@@ -15,6 +15,8 @@ let chat = document.querySelector(".chat");
 let menuBtn = document.getElementById("menuBtn");
 let chatBtn = document.getElementById("chatBtn");
 
+let btnOfMenu = document.getElementsByClassName("btnOfMenu");
+
 signup.addEventListener("click", () => {
 	slider.classList.add("moveSlider");
 	formSection.classList.add("moveFormBox");
@@ -55,4 +57,22 @@ chatBtn.addEventListener("click", () => {
 		chatBtn.innerHTML = "chat";
 		chat.style.right = "-100%";
 	}
+});
+
+function setPageOfMenu(className) {
+	let titleName = className;
+	if (className === "leaderBoard")
+		titleName = "leader board";
+	titleName = titleName.charAt(0).toUpperCase() + titleName.slice(1);
+	body.classList.remove(body.getAttribute("class"));
+	body.classList.add(className);
+	title.innerHTML = titleName;
+}
+
+for (let i = 0; i < btnOfMenu.length; i++)
+	btnOfMenu[i].addEventListener("click", () => {
+		let classes = btnOfMenu[i].getAttribute("class");
+		classes = classes.split(' ');
+		setPageOfMenu(classes[0]);
+
 });
