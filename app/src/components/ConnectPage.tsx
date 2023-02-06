@@ -9,13 +9,6 @@ export default function ConnectPage() {
 	const [userName, setUserName] = useState("");
 
 	const navigate = useNavigate();
-
-	let signup = document.querySelector(".signup");
-	let login = document.querySelector(".signin");
-	let loginBtn = document.querySelector(".loginBtn");
-	let registerBtn = document.querySelector(".registerBtn");
-	let slider = document.querySelector(".slider");
-	let formSection = document.querySelector(".formBox");
 	
 	// Behavior
 	
@@ -27,27 +20,6 @@ export default function ConnectPage() {
 	const handleChange = (event: any) => {
 		setUserName(event.target.value);
 	};
-
-	// const handleSlider = (bool) => {
-	// 	if (bool) {
-	// 		slider.classList.add("moveSlider");
-	// 		formSection.classList.add("moveFormBox");
-	// 	}
-	// 	else {
-	// 		slider.classList.remove("moveSlider");
-	// 		formSection.classList.remove("moveFormBox");
-	// 	}
-	// };
-
-	// signup.addEventListener("click", () => {
-	// 	slider.classList.add("moveSlider");
-	// 	formSection.classList.add("moveFormBox");
-	// });
-	
-	// login.addEventListener("click", () => {
-	// 	slider.classList.remove("moveSlider");
-	// 	formSection.classList.remove("moveFormBox");
-	// });
 
 	// Render
 

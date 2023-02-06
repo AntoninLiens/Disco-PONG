@@ -10,7 +10,7 @@ function App() {
 			<Routes>
 				<Route path="/" element={<ConnectPage/>} />
 				<Route path="/homePage/:id" element={<HomePage/>} />
-				<Route path="/settings" element={<Settings/>} />
+				<Route path="/homePage/:id/settings" element={<Settings/>} />
 			</Routes>
 		</div>
 	);
