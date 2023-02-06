@@ -1,4 +1,4 @@
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import NavBar from "./NavBar";
 
@@ -6,12 +6,11 @@ export default function HomePage() {
 
     // States
 
-    const { id } = useParams(); 
-    console.log(id);
+    const { id } = useParams();
 
     return (
         <div className="HomePage">
-            <NavBar id={id}/>
+            <NavBar />
             <h1>This is home page</h1>
             <p>Welcome {id}</p>
             <p>what a awesome home page</p>

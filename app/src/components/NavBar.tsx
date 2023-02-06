@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-export default function NavBar(id: any) {
+export default function NavBar() {
     // States
+
+    const { id } = useParams();
 
     const customHomePage = `/homePage/${id}`
     const customSettingsPage = `/homePage/${id}/settings`
