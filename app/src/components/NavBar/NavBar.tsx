@@ -6,7 +6,7 @@ export default function NavBar({id}: any) {
     return (
         <div className="NavBar">
             <ul>
-                <li><Link to={`/homePage/${id}`}>Profile</Link></li>
+                <li><Link to={`/homePage/${id}/profile`}>Profile</Link></li>
                 <li><Link to="/shop">Shop</Link></li>
                 <li><Link to={`/homePage/${id}/leaderbords`}>Leaderboards</Link></li>
                 <li><Link to={`/homePage/${id}/stats`}>Stats</Link></li>

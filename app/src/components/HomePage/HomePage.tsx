@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import NavBar from "./NavBar";
+import NavBar from "../NavBar/NavBar";
 
 export default function HomePage() {
 
@@ -14,9 +15,13 @@ export default function HomePage() {
     return (
         <div className="HomePage">
             <NavBar id={id}/>
-            <h1>This is home page</h1>
-            <p>Welcome {id}</p>
-            <p>what a awesome home page</p>
+            <div className="title">
+				<h1>Disco</h1>
+				<h1>PONG</h1>
+			</div>
+			<div className="play">
+				<Link to={`/homepage/${id}/pong`}>PLAY</Link>
+			</div>
         </div>
     );
 }
