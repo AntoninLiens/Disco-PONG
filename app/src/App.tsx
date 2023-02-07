@@ -18,7 +18,7 @@ function App() {
 				<Route path="/homePage/:id/history" element={<History/>} />
 				<Route path="/homePage/:id" element={<HomePage/>} />
 				<Route path="/homePage/:id/leaderboard" element={<Leaderbord/>} />
-				<Route path="/homePage/:id/pong" element={<Pong/>} />
+				<Route path="/pong" element={<Pong/>} />
 				<Route path="/homePage/:id/profile" element={<Profile/>} />
 				<Route path="/homePage/:id/social" element={<Social/>} />
 				<Route path="/homePage/:id/stats" element={<Stats/>} />

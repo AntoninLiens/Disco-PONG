@@ -20,7 +20,7 @@ export default function HomePage() {
 				<h1>PONG</h1>
 			</div>
 			<div className="play">
-				<Link to={`/homepage/${id}/pong`}>PLAY</Link>
+				<Link to={`/pong`}>PLAY</Link>
 			</div>
         </div>
     );
