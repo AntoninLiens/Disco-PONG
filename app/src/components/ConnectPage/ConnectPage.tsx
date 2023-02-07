@@ -7,6 +7,8 @@ export default function ConnectPage() {
 	// States
 
 	const [userName, setUserName] = useState("");
+	const [sliderType, setSliderType] = useState("loginSlider");
+	const [formBoxType, setFormBoxType] = useState("loginFormBox");
 
 	const navigate = useNavigate();
 	
@@ -21,6 +23,11 @@ export default function ConnectPage() {
 		setUserName(event.target.value);
 	};
 
+	const handleSliderClick = (sliderType: string, formBoxType: string) => {
+		setSliderType(sliderType);
+		setFormBoxType(formBoxType);
+	}
+
 	// Render
 
 	return (
@@ -28,14 +35,14 @@ export default function ConnectPage() {
 		<div className="connect">
 			<div className="box">
 
-				<div className="slider"></div>
+				<div className={`slider ${sliderType}`}></div>
 
 				<div className="btn">
-					<button  className="signin">Sign in</button>
-					<button className="signup">Sign up</button>
+					<button className="signin" onClick={() => handleSliderClick("loginSlider", "loginFormBox")}>Sign in</button>
+					<button className="signup" onClick={() => handleSliderClick("registerSlider", "registerFormBox")}>Sign up</button>
 				</div>
 
-				<div className="formBox">
+				<div className={`formBox ${formBoxType}`}>
 					<form action="submit" onSubmit={handleSubmit} className="loginBox">
 						<input onChange={handleChange} value={userName} type="text" placeholder="Username"></input>
 						<input type="password" placeholder="Password"></input>
