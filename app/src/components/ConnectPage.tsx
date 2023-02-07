@@ -1,4 +1,4 @@
-import "./css/ConnectPage.css"
+import "./stylesheets/ConnectPage.css"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -7,47 +7,26 @@ export default function ConnectPage() {
 	// States
 
 	const [userName, setUserName] = useState("");
+	const [sliderType, setSliderType] = useState("loginSlider");
+	const [formBoxType, setFormBoxType] = useState("loginFormBox");
 
 	const navigate = useNavigate();
-
-	let signup = document.querySelector(".signup");
-	let login = document.querySelector(".signin");
-	let loginBtn = document.querySelector(".loginBtn");
-	let registerBtn = document.querySelector(".registerBtn");
-	let slider = document.querySelector(".slider");
-	let formSection = document.querySelector(".formBox");
 	
 	// Behavior
 	
-	const handleSubmit = (event) => {
+	const handleSubmit = (event: any) => {
 		event.preventDefault();
 		navigate(`/homePage/${userName}`);
 	};
 	
-	const handleChange = (event) => {
+	const handleChange = (event: any) => {
 		setUserName(event.target.value);
 	};
 
-	// const handleSlider = (bool) => {
-	// 	if (bool) {
-	// 		slider.classList.add("moveSlider");
-	// 		formSection.classList.add("moveFormBox");
-	// 	}
-	// 	else {
-	// 		slider.classList.remove("moveSlider");
-	// 		formSection.classList.remove("moveFormBox");
-	// 	}
-	// };
-
-	// signup.addEventListener("click", () => {
-	// 	slider.classList.add("moveSlider");
-	// 	formSection.classList.add("moveFormBox");
-	// });
-	
-	// login.addEventListener("click", () => {
-	// 	slider.classList.remove("moveSlider");
-	// 	formSection.classList.remove("moveFormBox");
-	// });
+	const handleSliderClick = (sliderType: string, formBoxType: string) => {
+		setSliderType(sliderType);
+		setFormBoxType(formBoxType);
+	}
 
 	// Render
 
@@ -56,14 +35,14 @@ export default function ConnectPage() {
 		<div className="connect">
 			<div className="box">
 
-				<div className="slider"></div>
+				<div className={`slider ${sliderType}`}></div>
 
 				<div className="btn">
-					<button  className="signin">Sign in</button>
-					<button className="signup">Sign up</button>
+					<button className="signin" onClick={() => handleSliderClick("loginSlider", "loginFormBox")}>Sign in</button>
+					<button className="signup" onClick={() => handleSliderClick("registerSlider", "registerFormBox")}>Sign up</button>
 				</div>
 
-				<div className="formBox">
+				<div className={`formBox ${formBoxType}`}>
 					<form action="submit" onSubmit={handleSubmit} className="loginBox">
 						<input onChange={handleChange} value={userName} type="text" placeholder="Username"></input>
 						<input type="password" placeholder="Password"></input>

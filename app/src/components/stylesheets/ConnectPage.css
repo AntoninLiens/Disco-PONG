@@ -1,3 +1,5 @@
+
+
 * {
 	margin: 0;
 	padding: 0;
@@ -56,12 +58,19 @@
 .slider {
 	height: 50px;
 	width: 100px;
-	left: 22px;
 	border-radius: 50px;
 	background: linear-gradient(to right, blueviolet, teal);
 	position: absolute;
 	top: 20px;
 	transition: all 0.5s ease-in-out;
+}
+
+.loginSlider {
+	left: 22px;
+}
+
+.registerSlider {
+	left: 127px;
 }
 
 .formBox {
@@ -71,7 +80,14 @@
 	display: flex;
 	position: relative;
 	transition: all 0.5s ease-in-out;
+}
+
+.loginFormBox {
 	left: 0px;
+}
+
+.registerFormBox {
+	left: -250px;
 }
 
 .loginBox, .registerBox {
@@ -113,14 +129,6 @@ input {
 	border: none;
 	cursor: pointer;
 	color: whitesmoke;
-}
-
-.moveSlider {
-	left: 127px;
-}
-
-.moveFormBox {
-	left: -250px;
 }
 
 @media screen and (min-width: 1024px) {

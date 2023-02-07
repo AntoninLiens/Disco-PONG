@@ -1,8 +1,8 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function NavBar({id}) {
+export default function NavBar({id}: any) {
     // States
+
 
     const customHomePage = `/homePage/${id}`
     const customSettingsPage = `/homePage/${id}/settings`

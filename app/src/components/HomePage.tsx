@@ -6,13 +6,16 @@ export default function HomePage() {
 
     // States
 
-    const id = useParams();
+    let { id } = useParams();
+
+    if (!id)
+        id = "error";
 
     return (
         <div className="HomePage">
-			<NavBar id={id.id}/>
+            <NavBar id={id}/>
             <h1>This is home page</h1>
-            <p>Welcome {id.id}</p>
+            <p>Welcome {id}</p>
             <p>what a awesome home page</p>
         </div>
     );
