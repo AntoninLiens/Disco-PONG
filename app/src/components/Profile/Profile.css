@@ -1,0 +1,77 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	text-decoration: none;
+	list-style: none;
+}
+
+.profile {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	background: black;
+	color: whitesmoke;
+}
+
+.profile_box {
+	position: relative;
+	width: 270px;
+	height: 480px;
+	top: 50%;
+	transform: translate(0, -50%);
+	border: 4px solid rgba(255, 255, 0, 0.8);
+	border-radius: 15px;
+}
+
+.profile_pfp {
+	position: absolute;
+	background: url("./images/bread.png") center/cover;
+	border: 3px solid yellow;
+	border-radius: 100px;
+	padding: 80px;
+	left: 50%;
+	top: 25%;
+	transform: translate(-50%, -50%);
+}
+
+.profile_name {
+	text-align: center;
+	margin-top: 10px;
+}
+
+.profile_wins {
+	position: absolute;
+	left: 15%;
+	top: 55%;
+}
+
+.profile_lvl {
+	position: absolute;
+	left: 115px;
+	top: 70%;
+}
+
+.profile_xpBar {
+	position: absolute;
+	height: 20px;
+	width: 300px;
+	border: 3px solid whitesmoke;
+	border-radius: 10px;
+	left: 5px;
+	top: 85%;
+}
+
+.profile_xp {
+	background-color: aqua;
+	border-radius: 10px;
+	height: 14px;
+	width: 0px;
+}
+
+@media screen and (min-width: 768px) {
+	.profile_box {
+		scale: 1.3;
+	}
+}
