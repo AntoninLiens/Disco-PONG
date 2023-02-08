@@ -1,0 +1,39 @@
+.NavBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+
+}
+
+.NavBar ul {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    width: 60px;
+    padding: 55px 0;
+    background: rgba(62, 232, 232, 0.238);
+}
+
+.NavBar ul li {
+    margin: 33px 5px;
+    padding: 12px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.NavBar ul li:hover {
+    background: teal;
+    border-radius: 50%;
+    box-shadow: white 3px 5px 20px 0px;
+	cursor: pointer;
+}
+
+#settings {
+    position: absolute;
+    bottom: 0;
+    margin: 0 5px;
+}

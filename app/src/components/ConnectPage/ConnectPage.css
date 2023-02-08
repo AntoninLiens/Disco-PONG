@@ -1,0 +1,136 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Press Start 2P', cursive;
+	text-decoration: none;
+	list-style: none;
+}
+
+.connect {
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	background: url("images/arcades.gif") center/cover;
+	overflow: hidden;
+	
+	
+}
+
+.box {
+	margin-top: 30px;
+	height: 400px;
+	width: 250px;
+	background: rgba(0, 0, 0, 0.578);
+	box-shadow: 0px 0px 20px teal;
+	border-radius: 20px;
+	position: relative;
+	overflow: hidden;
+}
+
+.btn {
+	height: 50px;
+	width: 200px;
+	margin: 20px auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	font-size: 22px;
+	box-shadow: 0px 0px 30px blueviolet;
+	border-radius: 50px;
+}
+
+.signin, .signup {
+	font-size: 15px;
+	border: none;
+	outline: none;
+	background: transparent;
+	position: relative;
+	cursor: pointer;
+	color: whitesmoke;
+}
+
+.slider {
+	height: 50px;
+	width: 100px;
+	border-radius: 50px;
+	background: linear-gradient(to right, blueviolet, teal);
+	position: absolute;
+	top: 20px;
+	transition: all 0.5s ease-in-out;
+}
+
+.loginSlider {
+	left: 25px;
+}
+
+.registerSlider {
+	left: 123px;
+}
+
+.formBox {
+	height: 300px;
+	width: 500px;
+	padding: 20px 0;
+	display: flex;
+	position: relative;
+	transition: all 0.5s ease-in-out;
+}
+
+.loginFormBox {
+	left: 0px;
+}
+
+.registerFormBox {
+	left: -250px;
+}
+
+.loginBox, .registerBox {
+	height: 100%;
+	width: 250px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.loginBox {
+	gap: 40px;
+}
+
+.registerBox {
+	gap: 30px;
+}
+
+input {
+	height: 50px;
+	width: 220px;
+	font-size: 15px;
+	outline: none;
+	border: none;
+	color: rgb(77, 77, 77);
+	background-color: rgb(240, 240, 240);
+	border-radius: 50px;
+	text-align: center;
+	font-size: 13px;
+}
+
+.connectBtn {
+	height: 60px;
+	width: 150px;
+	border-radius: 50px;
+	background: linear-gradient(to right, blueviolet, teal);
+	font-size: 15px;
+	border: none;
+	cursor: pointer;
+	color: whitesmoke;
+}
+
+@media screen and (min-width: 1024px) {
+	.box {
+		scale: 1.3;
+	}
+}
