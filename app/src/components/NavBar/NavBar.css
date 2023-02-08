@@ -3,7 +3,6 @@
     top: 0;
     left: 0;
     height: 100vh;
-
 }
 
 .NavBar ul {
@@ -17,12 +16,22 @@
 }
 
 .NavBar ul li {
-    margin: 33px 5px;
+    margin: 11px 5px;
     padding: 12px;
     height: 50px;
     width: 50px;
     border-radius: 50%;
     text-align: center;
+}
+
+a:-webkit-any-link {
+    text-decoration: none;
+    color: black;
+}
+
+a:-webkit-any-link:hover {
+    text-decoration: none;
+    color: white;
 }
 
 .NavBar ul li:hover {

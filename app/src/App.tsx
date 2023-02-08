@@ -9,6 +9,7 @@ import Profile from "./components/Profile/Profile";
 import Social from "./components/Social/Social";
 import Stats from "./components/Stats/Stats";
 import Settings from "./components/Settings/Settings";
+import Shop from "./components/Shop/Shop";
 
 function App() {
 	return (
@@ -23,6 +24,7 @@ function App() {
 				<Route path="/homePage/:id/social" element={<Social/>} />
 				<Route path="/homePage/:id/stats" element={<Stats/>} />
 				<Route path="/homePage/:id/settings" element={<Settings/>} />
+				<Route path="/shop" element={<Shop/>} />
 			</Routes>
 		</div>
 	);
