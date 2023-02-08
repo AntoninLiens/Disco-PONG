@@ -90,6 +90,11 @@
 	bottom: 3%;
 }
 
+.profile_return > a:-webkit-any-link {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
 @media screen and (min-width: 768px) {
 	.profile_box {
 		scale: 1.3;
