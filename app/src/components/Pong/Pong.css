@@ -19,6 +19,7 @@
 }
 
 #p1 {
+    transition: linear;
     background: white;
     position: absolute;
     top: 0;
@@ -26,6 +27,7 @@
 }
 
 #p2 {
+    transition: linear;
     background: white;
     position: absolute;
     top: 0;
