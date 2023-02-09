@@ -5,17 +5,32 @@ import { ImStatsBars } from "react-icons/im"
 import { BsClockHistory, BsPeopleFill } from "react-icons/bs"
 import { AiOutlineMenuFold, AiOutlineMenuUnfold } from "react-icons/ai"
 import "./NavBar.css";
+import { useState } from "react";
 
 export default function NavBar({id}: any) {
     // States
+    const [aff, setAff] = useState("unfold");
+    const [fold, setFold] = useState("hide");
+    const [unfold, setUnfold] = useState("");
+
 
     function affNavBar() {
-
+        if (aff === "unfold") {
+            setAff("fold");
+            setUnfold("hide");
+            setFold("");
+        }
+        else {
+            setAff("unfold");
+            setFold("hide");
+            setUnfold("");
+        }
     }
 
     return (
-        <div className="NavBar">
-            <button onClick={affNavBar}><AiOutlineMenuFold /></button>
+        <div className={`NavBar ${aff}`}>
+            <a className={`affNavBar ${fold}`} onClick={affNavBar}><AiOutlineMenuFold size={24} /></a>
+            <a className={`affNavBar ${unfold}`} onClick={affNavBar}><AiOutlineMenuUnfold size={24}/></a>
             <ul>
                 <li><Link to={`/homePage/${id}/profile`}><FaUser size={24}/></Link></li>
                 <li><Link to="/shop"><FaShoppingCart size={24}/></Link></li>

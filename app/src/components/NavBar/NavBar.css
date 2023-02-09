@@ -1,16 +1,41 @@
 .NavBar {
     position: fixed;
     top: 0;
-    left: 0;
     height: 100vh;
+    width: 60px;
+    position: relative;
+    transition: 0.5s ease-in-out;
+}
+
+.fold {
+    left: 0;
+}
+
+.unfold {
+    left: -60px;
+}
+
+.NavBar .affNavBar {
+    position: fixed;
+    margin: 11px 5px;
+    padding: 12px;
+    left: 0;
+}
+
+.NavBar .affNavBar:hover {
+    color: whitesmoke;
+    background: black;
+    border-radius: 15px;
+}
+
+.hide {
+    display: none;
 }
 
 .NavBar ul {
-    position: relative;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    width: 60px;
     padding: 55px 0;
     background: rgba(62, 232, 232, 0.238);
 }
