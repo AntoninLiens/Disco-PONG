@@ -1,15 +1,7 @@
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	text-decoration: none;
-	list-style: none;
-}
-
-.profile {
+.profilePage {
 	position: relative;
-	width: 100vw;
-	height: 100vh;
+	width: 100%;
+	height: 100%;
 	display: flex;
 	justify-content: center;
 	background: black;
@@ -18,8 +10,8 @@
 
 .profile_box {
 	position: relative;
-	width: 250px;
-	height: 460px;
+	width: 270px;
+	height: 480px;
 	top: 50%;
 	transform: translate(0, -50%);
 	border: 4px solid rgba(255, 255, 0, 0.8);
@@ -84,7 +76,6 @@
 	height: 14px;
 	width: 69px;
 }
-
 
 @media screen and (min-width: 768px) {
 	.profile_box {

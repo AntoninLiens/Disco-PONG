@@ -11,12 +11,12 @@ export default function Profile() {
 		id = "error";
 
 	return (
-		<div className="profile">
+		<div className="profilePage">
 			<div className="profile_box">
 				<div className="profile_pfp"></div>
 				<div className="profile_name">{id}</div>
-				<div className="profile_wins">Wins: 11</div>
-				<div className="profile_loose">Looses: 22</div>
+				<div className="profile_wins">Victories: 111</div>
+				<div className="profile_loose">Defeats: 22</div>
 				<div className="profile_score">Score: 1000</div>
 				<div className="profile_lvl">Level: 1</div>
 				<div className="profile_xpBar">
