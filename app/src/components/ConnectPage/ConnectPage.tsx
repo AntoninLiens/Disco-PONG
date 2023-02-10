@@ -7,6 +7,7 @@ export default function ConnectPage() {
 	// States
 
 	const [userName, setUserName] = useState("");
+
 	const [sliderType, setSliderType] = useState("loginSlider");
 	const [formBoxType, setFormBoxType] = useState("loginFormBox");
 
