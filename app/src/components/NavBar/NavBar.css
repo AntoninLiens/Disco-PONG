@@ -1,11 +1,12 @@
 .NavBar {
+	display: inline-block;
 	margin: 0;
-	position: fixed;
 	top: 0;
 	height: 100vh;
 	width: 60px;
 	position: relative;
 	transition: 0.5s ease-in-out;
+	z-index: 1;
 }
 
 .fold {
@@ -17,6 +18,7 @@
 }
 
 .NavBar .affNavBar {
+	color: black;
 	margin: 11px 5px;
 	padding: 12px;
 	left: 0;
@@ -25,7 +27,7 @@
 .NavBar .affNavBar:hover {
 	color: whitesmoke;
 	background: black;
-	border-radius: 15px;
+	border-radius: 50%;
 }
 
 #isHere {
@@ -45,7 +47,7 @@
 	display: flex;
 	flex-direction: column;
 	padding: 55px 0;
-	background: rgba(62, 232, 232, 0.238);
+	background: whitesmoke;
 }
 
 .NavBar ul li {
@@ -62,15 +64,14 @@ a:-webkit-any-link {
 	color: black;
 }
 
-a:-webkit-any-link:hover {
+.NavBar ul li:hover a:-webkit-any-link {
 	text-decoration: none;
 	color: white;
 }
 
 .NavBar ul li:hover {
-	background: teal;
+	background: black;
 	border-radius: 50%;
-	box-shadow: white 3px 5px 20px 0px;
 	cursor: pointer;
 }
 

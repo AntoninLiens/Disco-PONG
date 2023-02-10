@@ -1,5 +1,5 @@
 .historyPage {
-	position: absolute;
+	position: relative;
 	width: 100%;
 	height: 100%;
 	background: black;
@@ -7,11 +7,11 @@
 }
 
 .history_box {
-	position: relative;
+	position: absolute;
+	top: 0;
 	width: 100%;
 	height: 100%;
 	border: 4px solid blue;
-	border-radius: 10px;
 }
 
 .historyPage > .history_box > h1 {

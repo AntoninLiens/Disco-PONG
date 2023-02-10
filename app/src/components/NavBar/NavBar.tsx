@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaUser, FaShoppingCart } from "react-icons/fa"
-import { MdLeaderboard, MdSettingsSuggest, MdMenu } from "react-icons/md"
+import { MdLeaderboard, MdSettingsSuggest, MdMenu, MdClose } from "react-icons/md"
 import { ImStatsBars } from "react-icons/im"
 import { BsClockHistory, BsPeopleFill } from "react-icons/bs"
 import { GrClose } from "react-icons/gr"
@@ -29,7 +29,7 @@ export default function NavBar({id}: any) {
 
 	return (
 		<div className={`NavBar ${aff}`}>
-			<a id="isHere" className={`affNavBar ${fold}`} onClick={affNavBar}><GrClose size={24} /></a>
+			<a id="isHere" className={`affNavBar ${fold}`} onClick={affNavBar}><MdClose size={24} /></a>
 			<a id="isHide" className={`affNavBar ${unfold}`} onClick={affNavBar}><MdMenu size={24}/></a>
 			<ul>
 				<li><Link to={`/homePage/${id}/profile`}><FaUser size={24}/></Link></li>
