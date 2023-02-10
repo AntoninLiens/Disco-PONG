@@ -1,31 +1,31 @@
 import { Link } from "react-router-dom";
 import { FaUser, FaShoppingCart } from "react-icons/fa"
-import { MdLeaderboard, MdSettingsSuggest } from "react-icons/md"
+import { MdLeaderboard, MdSettingsSuggest, MdMenu } from "react-icons/md"
 import { ImStatsBars } from "react-icons/im"
 import { BsClockHistory, BsPeopleFill } from "react-icons/bs"
-import { AiOutlineMenuFold, AiOutlineMenuUnfold } from "react-icons/ai"
+import { GrClose } from "react-icons/gr"
 import "./NavBar.css";
 import { useState } from "react";
 
 export default function NavBar({id}: any) {
-    // States
-    const [aff, setAff] = useState("unfold");
-    const [fold, setFold] = useState("hide");
-    const [unfold, setUnfold] = useState("");
+	// States
+	const [aff, setAff] = useState("unfold");
+	const [fold, setFold] = useState("hide");
+	const [unfold, setUnfold] = useState("");
 
 
-    function affNavBar() {
-        if (aff === "unfold") {
-            setAff("fold");
-            setUnfold("hide");
-            setFold("");
-        }
-        else {
-            setAff("unfold");
-            setFold("hide");
-            setUnfold("");
-        }
-    }
+	function affNavBar() {
+		if (aff === "unfold") {
+			setAff("fold");
+			setUnfold("hide");
+			setFold("");
+		}
+		else {
+			setAff("unfold");
+			setFold("hide");
+			setUnfold("");
+		}
+	}
 
     return (
         <div className={`NavBar ${aff}`}>
