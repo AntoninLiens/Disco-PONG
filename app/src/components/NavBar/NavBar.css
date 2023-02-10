@@ -1,87 +1,87 @@
 .NavBar {
-    margin: 0;
-    position: fixed;
-    top: 0;
-    height: 100vh;
-    width: 60px;
-    position: relative;
-    transition: 0.5s ease-in-out;
+	margin: 0;
+	position: fixed;
+	top: 0;
+	height: 100vh;
+	width: 60px;
+	position: relative;
+	transition: 0.5s ease-in-out;
 }
 
 .fold {
-    left: 0;
+	left: 0;
 }
 
 .unfold {
-    left: -60px;
+	left: -60px;
 }
 
 .NavBar .affNavBar {
-    margin: 11px 5px;
-    padding: 12px;
-    left: 0;
+	margin: 11px 5px;
+	padding: 12px;
+	left: 0;
 }
 
 .NavBar .affNavBar:hover {
-    color: whitesmoke;
-    background: black;
-    border-radius: 15px;
+	color: whitesmoke;
+	background: black;
+	border-radius: 15px;
 }
 
 #isHere {
-    position: absolute;
+	position: absolute;
 }
 
 #isHide {
-    position: fixed;
+	position: fixed;
 }
 
 .hide {
-    display: none;
+	display: none;
 }
 
 .NavBar ul {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 55px 0;
-    background: rgba(62, 232, 232, 0.238);
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	padding: 55px 0;
+	background: rgba(62, 232, 232, 0.238);
 }
 
 .NavBar ul li {
-    margin: 11px 5px;
-    padding: 12px;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    text-align: center;
+	margin: 11px 5px;
+	padding: 12px;
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+	text-align: center;
 }
 
 a:-webkit-any-link {
-    text-decoration: none;
-    color: black;
+	text-decoration: none;
+	color: black;
 }
 
 a:-webkit-any-link:hover {
-    text-decoration: none;
-    color: white;
+	text-decoration: none;
+	color: white;
 }
 
 .NavBar ul li:hover {
-    background: teal;
-    border-radius: 50%;
-    box-shadow: white 3px 5px 20px 0px;
+	background: teal;
+	border-radius: 50%;
+	box-shadow: white 3px 5px 20px 0px;
 	cursor: pointer;
 }
 
 #settings {
-    position: absolute;
-    bottom: 0;
-    margin: 0 5px;
+	position: absolute;
+	bottom: 0;
+	margin: 0 5px;
 }
 
 @media screen and (max-height: 569px) {
-    .NavBar {
-        height: 569px;
-    }
+	.NavBar {
+		height: 569px;
+	}
 }
