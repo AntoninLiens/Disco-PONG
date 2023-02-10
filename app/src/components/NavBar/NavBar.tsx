@@ -26,7 +26,7 @@ export default function NavBar({id}: any) {
 			setUnfold("");
 		}
 	}
-
+  
 	return (
 		<div className={`NavBar ${aff}`}>
 			<a id="isHere" className={`affNavBar ${fold}`} onClick={affNavBar}><MdClose size={24} /></a>

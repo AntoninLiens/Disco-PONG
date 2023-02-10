@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+
 import "./Profile.css"
+import ReturnButton from "../ReturnButton/ReturnButton";
 
 export default function Profile() {
 
@@ -22,7 +23,7 @@ export default function Profile() {
 					<div className="profile_xp"></div>
 				</div>
 			</div>
-			<div className="profile_return"><Link to={`/homePage/${id}`}>return</Link></div>
+			<ReturnButton id={id}/>
 		</div>
 	);
 }
