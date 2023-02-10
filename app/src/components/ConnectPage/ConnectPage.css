@@ -16,8 +16,6 @@
 	flex-direction: column;
 	background: url("images/arcades.gif") center/cover;
 	overflow: hidden;
-	
-	
 }
 
 .box {
@@ -68,7 +66,7 @@
 }
 
 .registerSlider {
-	left: 123px;
+	left: 125px;
 }
 
 .formBox {
