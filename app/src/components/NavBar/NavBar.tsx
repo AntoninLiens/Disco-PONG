@@ -29,8 +29,8 @@ export default function NavBar({id}: any) {
 
     return (
         <div className={`NavBar ${aff}`}>
-            <a className={`affNavBar ${fold}`} onClick={affNavBar}><AiOutlineMenuFold size={24} /></a>
-            <a className={`affNavBar ${unfold}`} onClick={affNavBar}><AiOutlineMenuUnfold size={24}/></a>
+            <a id="isHere" className={`affNavBar ${fold}`} onClick={affNavBar}><AiOutlineMenuFold size={24} /></a>
+            <a id="isHide" className={`affNavBar ${unfold}`} onClick={affNavBar}><AiOutlineMenuUnfold size={24}/></a>
             <ul>
                 <li><Link to={`/homePage/${id}/profile`}><FaUser size={24}/></Link></li>
                 <li><Link to="/shop"><FaShoppingCart size={24}/></Link></li>

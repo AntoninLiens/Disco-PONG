@@ -1,4 +1,5 @@
 .NavBar {
+    margin: 0;
     position: fixed;
     top: 0;
     height: 100vh;
@@ -16,7 +17,6 @@
 }
 
 .NavBar .affNavBar {
-    position: fixed;
     margin: 11px 5px;
     padding: 12px;
     left: 0;
@@ -28,12 +28,20 @@
     border-radius: 15px;
 }
 
+#isHere {
+    position: absolute;
+}
+
+#isHide {
+    position: fixed;
+}
+
 .hide {
     display: none;
 }
 
 .NavBar ul {
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     padding: 55px 0;
@@ -70,4 +78,10 @@ a:-webkit-any-link:hover {
     position: absolute;
     bottom: 0;
     margin: 0 5px;
+}
+
+@media screen and (max-height: 569px) {
+    .NavBar {
+        height: 569px;
+    }
 }

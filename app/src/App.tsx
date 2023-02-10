@@ -1,5 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
+import "./App.css";
+
 import ConnectPage from "./components/ConnectPage/ConnectPage";
 import History from "./components/History/History";
 import HomePage from "./components/HomePage/HomePage";
