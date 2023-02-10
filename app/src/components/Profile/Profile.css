@@ -18,12 +18,13 @@
 
 .profile_box {
 	position: relative;
-	width: 270px;
-	height: 480px;
+	width: 250px;
+	height: 460px;
 	top: 50%;
 	transform: translate(0, -50%);
 	border: 4px solid rgba(255, 255, 0, 0.8);
 	border-radius: 15px;
+	margin-top: -10px;
 }
 
 .profile_pfp {
@@ -70,7 +71,7 @@
 .profile_xpBar {
 	position: absolute;
 	height: 20px;
-	width: 250px;
+	width: 230px;
 	border: 3px solid whitesmoke;
 	border-radius: 10px;
 	left: 5px;
@@ -86,8 +87,11 @@
 
 .profile_return {
 	position: absolute;
-	right: 5%;
+	right: 4%;
 	bottom: 3%;
+	border: 4px solid whitesmoke;
+	border-radius: 10px;
+	padding: 5px;
 }
 
 .profile_return > a:-webkit-any-link {
