@@ -13,7 +13,7 @@ export default function History() {
 		<div className="historyPage">
 			<NavBar id={id} />
 			<div className="history_box">
-				<h1>Your History:</h1>
+				<h1>History:</h1>
 				<div className="history_match">
 					<div className="history_playerOne">
 						<div className="history_playerOnePfp"></div>

@@ -3,7 +3,7 @@ import { FaUser, FaShoppingCart } from "react-icons/fa"
 import { MdLeaderboard, MdSettingsSuggest, MdMenu, MdClose } from "react-icons/md"
 import { ImStatsBars } from "react-icons/im"
 import { BsClockHistory, BsPeopleFill } from "react-icons/bs"
-import { GrClose } from "react-icons/gr"
+import { BiJoystickButton } from "react-icons/bi"
 import "./NavBar.css";
 import { useState } from "react";
 
@@ -32,6 +32,7 @@ export default function NavBar({id}: any) {
 			<a id="isHere" className={`affNavBar ${fold}`} onClick={affNavBar}><MdClose size={24} /></a>
 			<a id="isHide" className={`affNavBar ${unfold}`} onClick={affNavBar}><MdMenu size={24}/></a>
 			<ul>
+				<li><Link to={`/homePage/${id}`}><BiJoystickButton size={24}/></Link></li>
 				<li><Link to={`/homePage/${id}/profile`}><FaUser size={24}/></Link></li>
 				<li><Link to="/shop"><FaShoppingCart size={24}/></Link></li>
 				<li><Link to={`/homePage/${id}/leaderboard`}><MdLeaderboard size={24}/></Link></li>
