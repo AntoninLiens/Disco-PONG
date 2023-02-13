@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 
 import "./Profile.css"
-import ReturnButton from "../ReturnButton/ReturnButton";
 
 export default function Profile() {
 
