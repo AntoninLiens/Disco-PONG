@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import NavBar from "../NavBar/NavBar";
 
 import "./Profile.css"
 import ReturnButton from "../ReturnButton/ReturnButton";
@@ -12,6 +13,7 @@ export default function Profile() {
 
 	return (
 		<div className="profilePage">
+			<NavBar id={id} />
 			<div className="profile_box">
 				<div className="profile_pfp"></div>
 				<div className="profile_name">{id}</div>
@@ -23,7 +25,6 @@ export default function Profile() {
 					<div className="profile_xp"></div>
 				</div>
 			</div>
-			<ReturnButton id={id}/>
 		</div>
 	);
 }

@@ -6,25 +6,25 @@ import "./HomePage.css"
 
 export default function HomePage() {
 
-    // States
+	// States
 
-    let { id } = useParams();
+	let { id } = useParams();
 
-    if (!id)
-        id = "error";
+	if (!id)
+		id = "error";
 
-    return (
-        <div className="HomePage">
-            <NavBar id={id}/>
-            <div className="centerBox">
-                <div className="title">
-                    <h1>Disco</h1>
-                    <h1>PONG</h1>
-                </div>
-                <div className="play">
-                    <Link to={`/pong`}>PLAY</Link>
-                </div>
-            </div>
-        </div>
-    );
+	return (
+		<div className="HomePage">
+			<NavBar id={id}/>
+			<div className="centerBox">
+				<div className="title">
+					<h1>Disco</h1>
+					<h1>PONG</h1>
+				</div>
+				<div className="play">
+					<Link to={`/pong`}>PLAY</Link>
+				</div>
+			</div>
+		</div>
+	);
 }

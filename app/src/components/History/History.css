@@ -22,15 +22,16 @@
 }
 
 .history_match {
+	position: relative;
+	left: 1%;
+	width: 98%;
+	height: 120px;
+	margin-top: 10px;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	position: relative;
-	left: 1%;
 	border: 3px solid whitesmoke;
 	border-radius: 15px;
-	width: 98%;
-	height: 120px;
 }
 
 .history_playerOne {
@@ -85,4 +86,8 @@
 	top: 35%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+}
+
+.historyPage #isHide {
+	color: whitesmoke;
 }

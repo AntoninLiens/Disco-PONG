@@ -3,8 +3,8 @@
 	width: 100vw;
 }
 
-@media screen and (max-height: 569px) {
+@media screen and (max-height: 615px) {
 	.App {
-		height: 569px;
+		height: 615px;
 	}
 }

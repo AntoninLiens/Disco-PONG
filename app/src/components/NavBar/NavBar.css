@@ -81,8 +81,8 @@ a:-webkit-any-link {
 	margin: 0 5px;
 }
 
-@media screen and (max-height: 569px) {
+@media screen and (max-height: 615px) {
 	.NavBar {
-		height: 569px;
+		height: 615px;
 	}
 }
