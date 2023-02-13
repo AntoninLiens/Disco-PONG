@@ -1,0 +1,50 @@
+.ShopPage {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background: linear-gradient(to top, magenta, blueviolet);
+}
+
+.shopTitle {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+    text-align: center;
+    border: 3px solid black;
+    margin: 5px 0;
+    padding: 5px 2px;
+    border-radius: 10px;
+    /* background: rgba(0, 0, 0, 0.315); */
+	background: linear-gradient(to bottom, rgb(245, 245, 245, 2), rgba(137, 43, 226, 0.5));
+}
+
+.shopTitle h2 {
+    font-size: 15px;
+}
+
+
+.shopTitle h1 {
+    color: whitesmoke;
+}
+
+.shopList {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 80%;
+    width: 95%;
+}
+
+.shopItem {
+    height: 1fr;
+    width: 1fr;
+    background: rgba(0, 0, 0, 0.214);
+    border: 3px solid black;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 15px;
+}
