@@ -1,7 +1,6 @@
 import NavBar from "../NavBar/NavBar";
 import { useParams } from "react-router-dom";
 import "./Leaderboard.css"
-import ReturnButton from "../ReturnButton/ReturnButton";
 
 export default function Leaderboard() {
 
@@ -17,10 +16,15 @@ export default function Leaderboard() {
 					<div className="podiumItem third"></div>
 				</div>
 				<ul className="top10">
-				
+					<li className="top10Item">4</li>
+					<li className="top10Item">5</li>
+					<li className="top10Item">6</li>
+					<li className="top10Item">7</li>
+					<li className="top10Item">8</li>
+					<li className="top10Item">9</li>
+					<li className="top10Item">10</li>
 				</ul>
 			</div>
-			<ReturnButton id={id}/>
 		</div>
 	);
 }
