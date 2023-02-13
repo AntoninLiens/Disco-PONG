@@ -1,7 +1,6 @@
 import NavBar from "../NavBar/NavBar";
 import { useParams } from "react-router-dom";
 import "./Leaderboard.css"
-import ReturnButton from "../ReturnButton/ReturnButton";
 
 export default function Leaderboard() {
 
@@ -20,7 +19,6 @@ export default function Leaderboard() {
 				
 				</ul>
 			</div>
-			<ReturnButton id={id}/>
 		</div>
 	);
 }

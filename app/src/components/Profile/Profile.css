@@ -81,9 +81,3 @@
 .profilePage #isHide {
 	color: whitesmoke;
 }
-
-@media screen and (min-width: 768px) {
-	.profile_box {
-		scale: 1.3;
-	}
-}
