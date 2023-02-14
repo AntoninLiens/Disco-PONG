@@ -15,10 +15,9 @@ export default function History() {
 			<NavBar id={id} />
 			<div className="history_box">
 				<h1>History</h1>
-				<HistoryMatch id={id} p2={"JeeJ"}/>
-				<HistoryMatch id={id} p2={"jooj"}/>
-				<HistoryMatch id={id} p2={"jiij"}/>
-
+				<HistoryMatch id={id} p2={"JeeJ"} result={1}/>
+				<HistoryMatch id={id} p2={"jooj"} result={0}/>
+				<HistoryMatch id={id} p2={"jiij"} result={0}/>
 			</div>
 		</div>
 	);
