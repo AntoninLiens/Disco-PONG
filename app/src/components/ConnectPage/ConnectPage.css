@@ -15,9 +15,6 @@
 	align-items: center;
 	flex-direction: column;
 	background: url("images/arcades.gif") center/cover;
-	/* overflow: hidden; */
-	
-	
 }
 
 .box {
