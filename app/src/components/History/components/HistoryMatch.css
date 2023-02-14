@@ -8,8 +8,10 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	border: 3px solid whitesmoke;
+	border: 3px solid yellow;
+	box-shadow: 1px 1px black;
 	border-radius: 15px;
+	background: rgba(0, 0, 0, 0.5);
 }
 
 .history_playerOne {
@@ -46,18 +48,14 @@
 	display: flex;
 	text-align: center;
 	align-items: center;
+	color: yellow;
+	text-shadow: 1px 1px black;
 }
 
 .history_playerTwo {
 	position: relative;
 	width: 40%;
 	height: 100%;
-}
-
-.history_playerTwoName {
-	text-align: center;
-	margin-top: 80px;
-	color: red;
 }
 
 .history_playerTwoPfp {
@@ -70,6 +68,12 @@
 	top: 35%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+}
+
+.history_playerTwoName {
+	text-align: center;
+	margin-top: 80px;
+	color: red;
 }
 
 .win2 {
