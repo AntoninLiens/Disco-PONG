@@ -60,44 +60,24 @@ export default function Leaderboard() {
 			score: 18
 		},
 	]);
-	const [ firstProfile, setFirstProfile ] = useState("");
-	const [ secondProfile, setSecondProfile ] = useState("");
-	const [ thirdProfile, setThirdProfile ] = useState("");
-	const [ fourthProfile, setFourthProfile ] = useState("");
-	const [ fiveProfile, setFiveProfile ] = useState("");
-	const [ sixProfile, setSixProfile ] = useState("");
-	const [ sevenProfile, setSevenProfile ] = useState("");
-	const [ eightProfile, setEightProfile ] = useState("");
-	const [ nineProfile, setNineProfile ] = useState("");
-	const [ tenProfile, setTenProfile ] = useState("");
+	let profileListCopy = [];
 	const { id } = useParams();
 	
 	// Behavior
 	
 	const sortProfileList = () => {
-		const profileListCopy = profileList.sort((a, b) => {
+		profileListCopy = profileList.sort((a, b) => {
 			if (a.score < b.score)
-				return (1);
+			return (1);
 			else if (a.score > b.score)
-				return (-1);
+			return (-1);
 			return (0);
 		});
 		setProfileList(profileListCopy);
-		console.log(profileList);
 	};
-	
+
 	useEffect(() => {
 		sortProfileList();
-		setFirstProfile(profileList[0].name);
-		setSecondProfile(profileList[1].name);
-		setThirdProfile(profileList[2].name);
-		setFourthProfile(profileList[3].name);
-		setFiveProfile(profileList[4].name);
-		setSixProfile(profileList[5].name);
-		setSevenProfile(profileList[6].name);
-		setEightProfile(profileList[7].name);
-		setNineProfile(profileList[8].name);
-		setTenProfile(profileList[9].name);
 	}, []);
 
 	// Render
@@ -108,26 +88,27 @@ export default function Leaderboard() {
 			<div className="topPlayers">
 				<div className="top3">
 					<div className="top3Box">
-						<div className="name-2">{secondProfile}</div>
-						<div className="podiumItem podiumItem-2">2</div>
+						<div className="name-2">{profileList[1].name}</div>
+						<div className="podiumItem podiumItem-2">2<div>score : {profileList[1].score}</div></div>
+					</div>
+
+					<div className="top3Box">
+						<div className="name-1">{profileList[0].name}</div>
+						<div className="podiumItem podiumItem-1">1<div>score : {profileList[0].score}</div></div>
 					</div>
 					<div className="top3Box">
-						<div className="name-1">{firstProfile}</div>
-						<div className="podiumItem podiumItem-1">1</div>
-					</div>
-					<div className="top3Box">
-					<div className="name-3">{thirdProfile}</div>
-						<div className="podiumItem podiumItem-3">3</div>
+					<div className="name-3">{profileList[2].name}</div>
+						<div className="podiumItem podiumItem-3">3<div>score : {profileList[2].score}</div></div>
 					</div>
 				</div>
 				<ul className="top10">
-					<li className="top10Item">4 {fourthProfile}</li>
-					<li className="top10Item">5 {fiveProfile}</li>
-					<li className="top10Item">6 {sixProfile}</li>
-					<li className="top10Item">7 {sevenProfile}</li>
-					<li className="top10Item">8 {eightProfile}</li>
-					<li className="top10Item">9 {nineProfile}</li>
-					<li className="top10Item">10 {tenProfile}</li>
+					<li className="top10Item">4 {profileList[3].name}<div>score : {profileList[3].score}</div></li>
+					<li className="top10Item">5 {profileList[4].name}<div>score : {profileList[4].score}</div></li>
+					<li className="top10Item">6 {profileList[5].name}<div>score : {profileList[5].score}</div></li>
+					<li className="top10Item">7 {profileList[6].name}<div>score : {profileList[6].score}</div></li>
+					<li className="top10Item">8 {profileList[7].name}<div>score : {profileList[7].score}</div></li>
+					<li className="top10Item">9 {profileList[8].name}<div>score : {profileList[8].score}</div></li>
+					<li className="top10Item">10 {profileList[9].name}<div>score : {profileList[9].score}</div></li>
 				</ul>
 			</div>
 		</div>

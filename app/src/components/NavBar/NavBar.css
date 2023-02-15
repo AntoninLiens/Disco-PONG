@@ -26,6 +26,7 @@
 }
 
 .NavBar .affNavBar:hover {
+	cursor: pointer;
 	color: whitesmoke;
 	background: black;
 	border-radius: 50%;
