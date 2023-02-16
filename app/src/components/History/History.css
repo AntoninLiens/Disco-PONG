@@ -18,7 +18,7 @@
 	height: 100%;
 }
 
-.historyPage > .history_box > h1 {
+.historyTitle {
 	display: inline-block;
 	text-align: center;
 	font-size: 1.4em;
@@ -29,6 +29,18 @@
 	border: 2px solid yellow;
 	border-radius: 100px;
 	background: linear-gradient(0deg, rgba(0, 128, 128, 0.7), magenta)
+}
+
+ .historyTitle h2 {
+	color: whitesmoke;
+	font-size: 15px;
+	text-shadow: 1px 1px whitesmoke;
+}
+
+
+.historyTitle h1 {
+	margin-top: 3px;
+	text-shadow: 2px 2px black;
 }
 
 .historyPage #isHide {

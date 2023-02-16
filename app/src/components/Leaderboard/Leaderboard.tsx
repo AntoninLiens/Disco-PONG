@@ -85,19 +85,23 @@ export default function Leaderboard() {
 	return (
 		<div className="leaderboardPage">
 			<NavBar id={id}/>
+			<div className="leaderboardTitle">
+				<h2>Disco-PONG</h2>
+				<h1>Leaderboard</h1>
+			</div>
 			<div className="topPlayers">
 				<div className="top3">
 					<div className="top3Box">
-						<div className="name-2">{profileList[1].name}</div>
+						<div className="podiumName name-2">{profileList[1].name}</div>
 						<div className="podiumItem podiumItem-2">2<div>score : {profileList[1].score}</div></div>
 					</div>
 
 					<div className="top3Box">
-						<div className="name-1">{profileList[0].name}</div>
+						<div className="podiumName name-1">{profileList[0].name}</div>
 						<div className="podiumItem podiumItem-1">1<div>score : {profileList[0].score}</div></div>
 					</div>
 					<div className="top3Box">
-					<div className="name-3">{profileList[2].name}</div>
+						<div className="podiumName name-3">{profileList[2].name}</div>
 						<div className="podiumItem podiumItem-3">3<div>score : {profileList[2].score}</div></div>
 					</div>
 				</div>
