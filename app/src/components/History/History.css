@@ -2,11 +2,10 @@
 	position: relative;
 	width: 100%;
 	height: 100%;
-	background: linear-gradient(30deg, rgb(81, 0, 255), rgb(200, 0, 255) 80%);
+	background: black;
 	color: whitesmoke;
 }
 
-/* rgb(255, 0, 100) */
 
 .history_box {
 	display: flex;
@@ -18,17 +17,26 @@
 	height: 100%;
 }
 
-.historyPage > .history_box > h1 {
+.history_title {
 	display: inline-block;
 	text-align: center;
-	font-size: 1.4em;
-	padding: 15px;
 	margin: 1% 0;
-	color: yellow;
-	text-shadow: 3px 3px black;
-	border: 2px solid yellow;
-	border-radius: 100px;
-	background: linear-gradient(0deg, rgba(0, 128, 128, 0.7), magenta)
+	padding: 10px;
+	color: cyan;
+	text-shadow: 2px 2px magenta;
+	border: 2px solid magenta;
+	box-shadow: cyan 0px 1px 4px,
+	cyan 0px 0px 0px 3px;
+	border-radius: 25px;
+}
+
+.history_box h1 {
+	font-size: 1.4em;
+}
+
+.history_box h2 {
+	font-size: 0.9em;
+	margin-bottom: 3px;
 }
 
 .historyPage #isHide {

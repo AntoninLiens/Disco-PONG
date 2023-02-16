@@ -1,0 +1,48 @@
+.social_friend {
+	position: relative;
+	height: 70px;
+	width: 100%;
+
+	border: 2px solid black;
+}
+
+.social_friendPfp {
+	position: absolute;
+	height: 60px;
+	width: 60px;
+	top: 50%;
+	left: 10%;
+	transform: translate(-50%, -50%);
+	border: 2px solid black;
+	border-radius: 50%;
+	/* background: url("./images/among-us-sus.gif") center/cover; */
+}
+
+.social_friendStatus {
+	position: absolute;
+	height: 15px;
+	width: 15px;
+	bottom: 3%;
+	left: 15%;
+	transform: translate(-50%, -50%);
+	border: 2px solid black;
+	border-radius: 50%;
+	background: grey;
+}
+
+.online {
+	background: greenyellow;
+}
+
+.social_friendName {
+	position: absolute;
+	top: 35%;
+	left: 25%;
+}
+
+.social_friend > button {
+	position: absolute;
+	top: 50%;
+	right: 10%;
+	transform: translate(50%, -50%);
+}

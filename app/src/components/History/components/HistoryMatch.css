@@ -8,10 +8,11 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	border: 3px solid yellow;
-	box-shadow: 1px 1px black;
-	border-radius: 15px;
-	background: rgba(0, 0, 0, 0.5);
+	border: 3px solid magenta;
+	box-shadow: cyan 3px 3px 6px 0px inset,
+				cyan -3px -3px 6px 1px inset;
+	border-radius: 20px;
+	background: rgba(255, 255, 255, 0.1);
 }
 
 .history_playerOne {
@@ -48,8 +49,8 @@
 	display: flex;
 	text-align: center;
 	align-items: center;
-	color: yellow;
-	text-shadow: 1px 1px black;
+	color: cyan;
+	text-shadow: 1.5px 1.5px magenta;
 }
 
 .history_playerTwo {
