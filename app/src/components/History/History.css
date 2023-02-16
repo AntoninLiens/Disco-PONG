@@ -20,7 +20,8 @@
 .history_title {
 	display: inline-block;
 	text-align: center;
-	margin: 1% 0;
+	margin-top: 15px;
+	margin-bottom: 10px;
 	padding: 10px;
 	color: cyan;
 	text-shadow: 2px 2px magenta;

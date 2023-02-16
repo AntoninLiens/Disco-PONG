@@ -7,7 +7,7 @@
 }
 
 .social_friendPfp {
-	position: absolute;
+	position: relative;
 	height: 60px;
 	width: 60px;
 	top: 50%;
@@ -15,15 +15,14 @@
 	transform: translate(-50%, -50%);
 	border: 2px solid black;
 	border-radius: 50%;
-	/* background: url("./images/among-us-sus.gif") center/cover; */
 }
 
 .social_friendStatus {
 	position: absolute;
 	height: 15px;
 	width: 15px;
-	bottom: 3%;
-	left: 15%;
+	bottom: -7px;
+	right: -7px;
 	transform: translate(-50%, -50%);
 	border: 2px solid black;
 	border-radius: 50%;
@@ -45,4 +44,6 @@
 	top: 50%;
 	right: 10%;
 	transform: translate(50%, -50%);
+	border: none;
+	background: none;
 }

@@ -18,9 +18,9 @@ export default function History() {
 					<h2>Disco-PONG</h2>
 					<h1>History</h1>
 				</div>
-				<HistoryMatch id={id} p2={"JeeJ"} result={1}/>
-				<HistoryMatch id={id} p2={"jooj"} result={0}/>
-				<HistoryMatch id={id} p2={"jiij"} result={0}/>
+				<HistoryMatch p1={id} p2={"JeeJ"} image1={"bread.png"} image2={"among-us-sus.gif"} result={1}/>
+				<HistoryMatch p1={id} p2={"jooj"} image1={"bread.png"} image2={"amogus.jpg"} result={0}/>
+				<HistoryMatch p1={id} p2={"jiij"} image1={"bread.png"} image2={"among-us-sus.gif"} result={0}/>
 			</div>
 		</div>
 	);
