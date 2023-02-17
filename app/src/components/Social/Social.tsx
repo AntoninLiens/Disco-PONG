@@ -6,11 +6,17 @@ import "./Social.css"
 
 export default function Social() {
 
+	// state
 	let { id } = useParams();
-
 	if (!id)
 		id = "error";
 
+	// behavior
+	const handleAddFriend = () => {
+		console.log("salut");
+	}
+
+	// render
 	return (
 		<div className="SocialPage">
 			<NavBar id={id} />
@@ -24,9 +30,16 @@ export default function Social() {
 				<Friend name={"Marton"} status={0} image={"amogus.jpg"}/>
 				<div className="social_menu">
 					<div className="social_footer">
-						<button className="social_add"><AiOutlineUserAdd size={30}/></button>
+						<button onClick={handleAddFriend} className="social_add"><AiOutlineUserAdd size={30}/></button>
 						<button className="social_remove"><AiOutlineUserDelete size={30}/></button>
 					</div>
+				</div>
+			</div>
+			<div className="social_secondBox">
+				<div className="social_friendSearch">
+					<form action="submit">
+						<input className="social_searchBar" type="text" placeholder="Friend name"></input>
+					</form>
 				</div>
 			</div>
 		</div>
