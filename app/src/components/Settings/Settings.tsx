@@ -17,6 +17,8 @@ export default function Settings() {
 	const [upKeyValue, setUpKeyValue] = useState<string>(intToChar(87));
 	const [downKeyValue, setDownKeyValue] = useState<string>(intToChar(83));
 	const [passwordVal, setPasswordVal] = useState<string>("");
+	const [scoreChecked, setScoreChecked] = useState<boolean>(true);
+	const [profileChecked, setProfileChecked] = useState<boolean>(true);
 
 	const showHideSettingItems = (type: string) => {
 		if (type === "controls") {
@@ -44,28 +46,79 @@ export default function Settings() {
 	  }
 
 	const handleButtonClick = (type: string) => {
+		// a => 65 | z => 90 | <- => 37 | ^ => 38 | -> => 39 | V => 40
 		if (type === "moveUp")
 			document.addEventListener("keydown", handleMoveUpKeyPress);
 		else if (type === "moveDown")
 			document.addEventListener("keydown", handleMoveDownKeyPress);
 	};
+
 	const handleMoveUpKeyPress = (event: KeyboardEvent) => {
-		setUpKeyValue(intToChar(event.keyCode));
+		if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 37 || event.keyCode > 40))
+			alert("You must chose an alphabetic key or an arrow key");
+		else {
+			if (event.keyCode >= 37 && event.keyCode <= 40) {
+				if (event.keyCode == 37) 
+					setUpKeyValue("Left arrow");
+				else if (event.keyCode == 38) 
+					setUpKeyValue("Up arrow");
+				else if (event.keyCode == 39) 
+					setUpKeyValue("Rigth arrow");
+				else
+					setUpKeyValue("Down arrow");
+			}
+			else
+				setUpKeyValue(intToChar(event.keyCode));
+		}
 		document.removeEventListener("keydown", handleMoveUpKeyPress)
 	}
 
 	const handleMoveDownKeyPress = (event: KeyboardEvent) => {
-		setDownKeyValue(intToChar(event.keyCode));
+		if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 37 || event.keyCode > 40))
+			alert("You must chose an alphabetic key or an arrow key");
+		else {
+			if (event.keyCode >= 37 && event.keyCode <= 40) {
+				if (event.keyCode == 37) 
+					setDownKeyValue("Left arrow");
+				else if (event.keyCode == 38) 
+					setDownKeyValue("Up arrow");
+				else if (event.keyCode == 39) 
+					setDownKeyValue("Rigth arrow");
+				else
+					setDownKeyValue("Down arrow");
+			}
+			else
+				setDownKeyValue(intToChar(event.keyCode));
+		}
 		document.removeEventListener("keydown", handleMoveDownKeyPress)
 	}
 
 	const handleChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
-		if (event.target.value.length > 12)
-			alert("Password must be under 12 chars")
-		else if (event.target.value.length < 6)
-			alert("Password must be upper 6 chars")
+		setPasswordVal(event.target.value)
+	}
+
+	const handleSubmitSettings = () => {
+		if (passwordVal.length > 16)
+			alert("Password length must be under 17 chars!");
+		else if (passwordVal.length < 8)
+			alert("Password length must be upper 7 chars!");
 		else
-			setPasswordVal(event.target.value)
+			alert("Settings are well saved.")
+	}
+
+	const handleCheckBox = (type: string) => {
+		if (type === "score") {
+			if (scoreChecked)
+				setScoreChecked(false);
+			else
+				setScoreChecked(true);
+		}
+		else if (type === "profile") {
+			if (profileChecked)
+				setProfileChecked(false);
+				else
+					setProfileChecked(true);
+		}
 	}
 
 	return (
@@ -94,8 +147,14 @@ export default function Settings() {
 				<div className="HUD settingsItem">
 					<button onClick={() => showHideSettingItems("HUD")} className="HUDButton settingsButton">HUD</button>
 					<div className={`mainSettingsItems ${HUDToggle}`}>
-						<div className="moveUp">up = w</div>
-						<div className="moveDown">down = s</div>
+						<div className="showScore settingsPair">
+							<div className="settingsKey">Show score</div>
+							<input type="checkBox" checked={scoreChecked} onChange={() => handleCheckBox("score")} className="checkBox" />
+						</div>
+						<div className="showProfiles settingsPair">
+							<div className="settingsKey">Show profiles</div>
+							<input type="checkBox" checked={profileChecked} onChange={() => handleCheckBox("profile")} className="checkBox" />
+						</div>
 					</div>
 				</div>
 
@@ -108,6 +167,7 @@ export default function Settings() {
 						</div>
 					</div>
 				</div>
+				<button className="submitButton" onClick={handleSubmitSettings}>Save</button>
 			</div>
 		</div>
 	);

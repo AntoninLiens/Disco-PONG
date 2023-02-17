@@ -81,26 +81,62 @@
     margin: 0 7px;
 }
 
-.settingsVal {
+.settingsKey {
     display: flex;
+    align-items: center;
+}
+
+.settingsVal {
+    /* display: flex; */
     justify-content: center;
     align-items: center;
     text-align: center;
     border: none;
     background: none;
-    width: 40px;
-    height: 20px;
+    padding: 5px;
+    margin: 3px;
+    border: 1px solid;
+    /* width: 155px; */
+    /* height: 20px; */
 }
 .settingsVal:hover {
     background: grey;
     cursor: pointer;
+    border-radius: 2px;
+}
+
+input.settingsVal {
+    padding-left: 3px;
+    text-align: left;
+    width: 170px;
     border: 1px solid;
     border-radius: 2px;
 }
 
-.password > .settingsVal {
-    width: 170px;
-    border: 1px solid;
-    border-radius: 2px;
+.mySettings > .submitButton {
+    position: absolute;
+    margin: 10px;
+    height: 25px;
+    width: 70px;
+    bottom: 0;
+    right: 0;
+    border: 0 solid;
+    background: black;
+    color: whitesmoke;
+    box-shadow: white 2px 2px 10px;
+}
 
+.mySettings > .submitButton:hover, .checkBox:hover, .settingsButton:hover {
+    cursor: pointer;
+}
+
+.checkBox {
+    margin: 0;
+    padding: 0;
+}
+
+@media screen and (max-width: 340px) {
+    .password.settingsPair {
+        flex-direction: column;
+    }
 }
