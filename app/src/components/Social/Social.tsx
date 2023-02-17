@@ -2,7 +2,10 @@ import { useParams } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import Friend from "./components/Friend";
 import { AiOutlineUserAdd, AiOutlineUserDelete } from "react-icons/ai"
+import { GrClose } from "react-icons/gr"
+import { GoSearch } from "react-icons/go"
 import "./Social.css"
+import { useState } from "react";
 
 export default function Social() {
 
@@ -10,17 +13,25 @@ export default function Social() {
 	let { id } = useParams();
 	if (!id)
 		id = "error";
+	const [affMain, setAffMain] = useState("");
+	const [affSecond, setAffSecond] = useState("affOff");
 
 	// behavior
 	const handleAddFriend = () => {
-		console.log("salut");
+		setAffMain("affOff");
+		setAffSecond("");
+	}
+
+	const handleCancel = () => {
+		setAffMain("");
+		setAffSecond("affOff");
 	}
 
 	// render
 	return (
 		<div className="SocialPage">
 			<NavBar id={id} />
-			<div className="social_box">
+			<div className={`social_box ${affMain}`}>
 				<div className="social_title">
 					<h2>Disco-PONG</h2>
 					<h1>Chat</h1>
@@ -35,10 +46,13 @@ export default function Social() {
 					</div>
 				</div>
 			</div>
-			<div className="social_secondBox">
+			<div className={`social_secondBox ${affSecond}`}>
+				<button className="social_cancelButton" onClick={handleCancel}><GrClose size={24}/></button>
 				<div className="social_friendSearch">
-					<form action="submit">
+					<h2>Add a Friend</h2>
+					<form className="social_form" action="submit">
 						<input className="social_searchBar" type="text" placeholder="Friend name"></input>
+						<button className="social_SearchButton" ><GoSearch size={24}/></button>
 					</form>
 				</div>
 			</div>
