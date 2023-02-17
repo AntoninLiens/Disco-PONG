@@ -2,8 +2,12 @@
 	position: relative;
 	height: 70px;
 	width: 100%;
-
 	border: 2px solid black;
+}
+
+.social_friend button {
+	border: none;
+	background: none;
 }
 
 .social_friendPfp {
@@ -39,11 +43,20 @@
 	left: 25%;
 }
 
-.social_friend > button {
+.social_friend .social_msgButton {
 	position: absolute;
 	top: 50%;
 	right: 10%;
 	transform: translate(50%, -50%);
-	border: none;
-	background: none;
+}
+
+.social_friend .social_removeButton {
+	position: absolute;
+	top: 50%;
+	right: 10%;
+	transform: translate(50%, -50%);
+}
+
+.affOff {
+	display: none;
 }

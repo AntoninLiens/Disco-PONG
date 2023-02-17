@@ -60,6 +60,13 @@
 	transform: translate(-50%, -50%);
 }
 
+.social_footer .social_cancel {
+	position: absolute;
+	top: 50%;
+	left: 75%;
+	transform: translate(-50%, -50%);
+}
+
 .social_secondBox {
 	position: absolute;
 	top: 0;
@@ -83,12 +90,8 @@
 	align-items: center;
 }
 
-.social_friendSearch h2 {
-	font-size: 1.2em;
-	margin: 19px 0;
-}
-
 .social_form {
+	margin: 50px;
 	display: flex;
 	flex-direction: row;
 }
