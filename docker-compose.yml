@@ -1,8 +1,10 @@
 version: '3.9'
+
 services:
-  postgres:
+  
+  discoDB:
     image: postgres:latest
-    container_name: database
+    container_name: discoDB
     restart: always
     ports:
       - 5432:5432
@@ -10,6 +12,21 @@ services:
       - database.env
     volumes:
       - database:/var/lib/postgresql/data
+    networks:
+      - inside
+
+  backend:
+    container_name: backend
+    build: ./app-backend
+    depends_on:
+      - discoDB
+    ports:
+      - 1111:1111
+    networks:
+      - inside
 
 volumes:
   database:
+
+networks:
+  inside:
