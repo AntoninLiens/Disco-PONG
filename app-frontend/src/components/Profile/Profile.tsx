@@ -1,7 +1,6 @@
+import "./Profile.css"
 import { useParams } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
-
-import "./Profile.css"
 
 export default function Profile() {
 
