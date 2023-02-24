@@ -85,8 +85,8 @@ const navigate = useNavigate();
 		event.preventDefault();
 
 		if (registerPassword !== registerConfirmPassword) {
-			setRegisterConfirmPassword("");
-			alert("Passwords don't match");
+			// setRegisterConfirmPassword(""); ca fonctionne pas
+			return alert("Passwords don't match");
 		}
 
 		registerUser({ variables: {
