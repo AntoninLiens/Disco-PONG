@@ -34,97 +34,96 @@ const login = gql`
 /*Component*/
 
 export default function ConnectPage() {
-	
 /*States*/
 
-const [loginUser, { loading: loginLoading, error: loginError }] = useMutation(login);
-const [registerUser, { loading: registerLoading, error: registerError }] = useMutation(register);
+	const [loginUser, { data: loginData, loading: loginLoading, error: loginError }] = useMutation(login);
+	const [registerUser, { loading: registerLoading, error: registerError }] = useMutation(register);
 
-const [loginName, setLoginName] = useState("");
-const [registerName, setRegisterName] = useState("");
+	const [loginName, setLoginName] = useState("");
+	const [registerName, setRegisterName] = useState("");
 
-const [loginPassword, setLoginPassword] = useState("");
-const [registerPassword, setRegisterPassword] = useState("");
-const [registerConfirmPassword, setRegisterConfirmPassword] = useState("");
+	const [loginPassword, setLoginPassword] = useState("");
+	const [registerPassword, setRegisterPassword] = useState("");
+	const [registerConfirmPassword, setRegisterConfirmPassword] = useState("");
 
-const [sliderType, setSliderType] = useState("loginSlider");
-const [formBoxType, setFormBoxType] = useState("loginFormBox");
+	const [sliderType, setSliderType] = useState("loginSlider");
+	const [formBoxType, setFormBoxType] = useState("loginFormBox");
 
-const navigate = useNavigate();
+	const navigate = useNavigate();
 
 /*Login*/
 
 	const handleLogin = (event: any) => {
 		event.preventDefault();
-
+		
 		loginUser({ variables: {
 			name: loginName,
 			password: loginPassword
 		} });
 
+		console.log(loginData.authLogin.accessToken);
+		
 		navigate(`/homePage/${loginName}`);
 	};
 	
 	const updateLoginName = (event: any) => {
 		setLoginName(event.target.value);
 	};
-
+	
 	const updateLoginPassword = (event: any) => {
 		setLoginPassword(event.target.value);
 	};
-
-/*Register*/
-
-	if (loginLoading) return <p>Loading...</p>;
-	if (loginError) return <p>Error : {loginError.message}</p>;
-
-	if (registerLoading) return <p>Loading...</p>;
-	if (registerError) return <p>Error : {registerError.message}</p>;
+	
+	/*Register*/
 	
 	const handleRegister = (event: any) => {
 		event.preventDefault();
-
+		
 		if (registerPassword !== registerConfirmPassword) {
 			// setRegisterConfirmPassword(""); ca fonctionne pas
-			return alert("Passwords don't match");
-		}
-
-		registerUser({ variables: {
-			name: registerName,
-			password: registerPassword,
-			image: "ProfilePic.png",
-			score: 0,
-			level: 0,
-			coins: 0,
-			statut: true
-		}});
-		navigate(`/homePage/${registerName}`);
-	};
+		return alert("Passwords don't match");
+	}
 	
-	const updateRegisterName = (event: any) => {
-		setRegisterName(event.target.value);
-	};
+	registerUser({ variables: {
+		name: registerName,
+		password: registerPassword,
+		image: "ProfilePic.png",
+		score: 0,
+		level: 0,
+		coins: 0,
+		statut: true
+	}});
+	
+	navigate(`/homePage/${registerName}`);
+};
 
-	const updateRegisterPassword = (event: any) => {
-		setRegisterPassword(event.target.value);
-	};
+const updateRegisterName = (event: any) => {
+	setRegisterName(event.target.value);
+};
 
-	const updateRegisterConfirmPassword = (event: any) => {
-		setRegisterConfirmPassword(event.target.value);
-	};
+const updateRegisterPassword = (event: any) => {
+	setRegisterPassword(event.target.value);
+};
+
+const updateRegisterConfirmPassword = (event: any) => {
+	setRegisterConfirmPassword(event.target.value);
+};
 
 /*Style*/
 
-	const handleSliderClick = (sliderType: string, formBoxType: string) => {
-		setSliderType(sliderType);
-		setFormBoxType(formBoxType);
-	};
+const handleSliderClick = (sliderType: string, formBoxType: string) => {
+	setSliderType(sliderType);
+	setFormBoxType(formBoxType);
+};
 
 /*Render*/
 
-	return (
-
-		<div className="connect">
+// if (registerLoading) return <p>Loading...</p>;
+// if (loginLoading) return <p>Loading...</p>;
+// if (loginError) return <p>Error : {loginError.message}</p>;
+// if (registerError) return <p>Error : {registerError.message}</p>; je sais pas comment les afficher ni les utiliser
+return (
+	<div className="connect">
 			<div className="box">
 
 				<div className={`slider ${sliderType}`}></div>
@@ -151,4 +150,4 @@ const navigate = useNavigate();
 			</div>
 		</div>
 	);
-}
+};
