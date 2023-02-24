@@ -1,5 +1,7 @@
 FROM node:19-alpine
 
+RUN npm install -g npm@9.5.1
+
 WORKDIR /app-backend
 
 COPY .env .

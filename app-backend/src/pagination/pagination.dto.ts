@@ -19,10 +19,10 @@ export class PaginationSortBy {
 
 @ArgsType()
 export class PaginationArgs {
-    @Field(() => Int)
+    @Field(() => Int, { nullable: true })
     skip: number;
 
-    @Field(() => Int)
+    @Field(() => Int, { nullable: true })
     take: number;
 
     @Field(() => PaginationSortBy, { nullable: true })

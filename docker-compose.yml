@@ -5,7 +5,6 @@ services:
   discoDB:
     image: postgres:latest
     container_name: discoDB
-    restart: always
     ports:
       - 5432:5432
     env_file:
@@ -25,15 +24,15 @@ services:
     networks:
       - inside
 
-  frontend:
-    container_name: frontend
-    build: ./app-frontend
-    depends_on:
-      - backend
-    ports:
-      - 3000:3000
-    networks:
-      - inside
+  # frontend:
+  #   container_name: frontend
+  #   build: ./app-frontend
+  #   depends_on:
+  #     - backend
+  #   ports:
+  #     - 3000:3000
+  #   networks:
+  #     - inside
 
 volumes:
   database:

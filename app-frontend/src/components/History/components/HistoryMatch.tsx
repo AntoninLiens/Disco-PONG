@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./HistoryMatch.css"
+import "./HistoryMatch.css";
 
 export default function HistoryMatch({p1, p2, image1, image2, result}: any) {
 
@@ -17,7 +17,7 @@ export default function HistoryMatch({p1, p2, image1, image2, result}: any) {
 			setShortedP1(p1.substring(0, 6) + '.');
 		if (p2.length > 6)
 			setShortedP2(p2.substring(0, 6) + '.');
-		if (result == 1)
+		if (result === 1)
 			setWin1("win1");
 		else
 			setWin2("win2");
