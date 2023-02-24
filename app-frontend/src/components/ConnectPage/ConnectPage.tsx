@@ -4,10 +4,20 @@ import { useNavigate } from "react-router-dom";
 import { gql, useMutation } from "@apollo/client";
 
 const register = gql`
-	mutation register($username: String!, $password: String!, $image: String!, $score: Int!, $level: Int!, $coins: Int!, $statut: Boolean!) {
-		userCreate(data: {username: $username, password: $password, image: $image, score: $score, level: $level, coins: $coins, statut: $statut}) {
-			id
-		}
+	mutation register($name: String!, $password: String!, $image: String!, $score: Float!, $level: Float!, $coins: Float!, $statut: Boolean!) {
+	  userCreate(input: {
+	    name: $name
+	    password: $password
+	    image: $image
+	    score: $score
+	    level: $level
+	    coins: $coins
+	    statut: $statut
+	  }) {
+	    user {
+	      id
+	    }
+	  }
 	}
 `;
 
@@ -29,9 +39,8 @@ export default function ConnectPage() {
 	
 	const handleSubmit = (event: any) => {
 		event.preventDefault();
-		console.log(event);
 		user({ variables: {
-			username: "aliens",
+			name: userName,
 			password: "salut",
 			image: "photo de profil",
 			score: 0,

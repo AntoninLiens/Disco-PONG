@@ -5,7 +5,6 @@ services:
   discoDB:
     image: postgres:latest
     container_name: discoDB
-    restart: always
     ports:
       - 5432:5432
     env_file:

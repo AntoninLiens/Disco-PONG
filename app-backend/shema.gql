@@ -70,9 +70,9 @@ type GamePagination {
 
 type Query {
   sayHello: String!
-  userPagination(skip: Int!, take: Int!, sortBy: UserPaginationSortBy): UserPagination!
+  userPagination(skip: Int, take: Int, sortBy: UserPaginationSortBy): UserPagination!
   getUserByName(userName: String!): User!
-  gamePagination(skip: Int!, take: Int!, sortBy: PaginationSortBy): GamePagination!
+  gamePagination(skip: Int, take: Int, sortBy: PaginationSortBy): GamePagination!
 }
 
 input UserPaginationSortBy {
