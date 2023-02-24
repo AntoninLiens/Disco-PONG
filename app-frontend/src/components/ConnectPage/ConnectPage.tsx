@@ -2,6 +2,7 @@ import "./ConnectPage.css"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { gql, useMutation } from "@apollo/client";
+import Loading from "../Loading/Loading";
 
 /*GraphQL - Mutations*/
 
@@ -34,36 +35,37 @@ const login = gql`
 /*Component*/
 
 export default function ConnectPage() {
-/*States*/
+	/*States*/
 
-	const [loginUser, { data: loginData, loading: loginLoading, error: loginError }] = useMutation(login);
-	const [registerUser, { loading: registerLoading, error: registerError }] = useMutation(register);
-
+	const [loginUser, { data: loginData, loading: loginLoading, error: loginError, reset: loginReset }] = useMutation(login);
+	const [registerUser, { loading: registerLoading, error: registerError, reset: registerReset }] = useMutation(register);	
+	
 	const [loginName, setLoginName] = useState("");
 	const [registerName, setRegisterName] = useState("");
-
+	
 	const [loginPassword, setLoginPassword] = useState("");
 	const [registerPassword, setRegisterPassword] = useState("");
 	const [registerConfirmPassword, setRegisterConfirmPassword] = useState("");
-
+	
 	const [sliderType, setSliderType] = useState("loginSlider");
 	const [formBoxType, setFormBoxType] = useState("loginFormBox");
-
+	
 	const navigate = useNavigate();
-
-/*Login*/
-
+	
+	/*Login*/
+	
 	const handleLogin = (event: any) => {
 		event.preventDefault();
-		
+
 		loginUser({ variables: {
 			name: loginName,
 			password: loginPassword
 		} });
-
+		
 		console.log(loginData.authLogin.accessToken);
 		
-		navigate(`/homePage/${loginName}`);
+		if (!loginError)
+			navigate(`/homePage/${loginName}`);
 	};
 	
 	const updateLoginName = (event: any) => {
@@ -81,71 +83,78 @@ export default function ConnectPage() {
 		
 		if (registerPassword !== registerConfirmPassword) {
 			// setRegisterConfirmPassword(""); ca fonctionne pas
-		return alert("Passwords don't match");
+			return alert("Passwords don't match");
+		}
+		
+		registerUser({ variables: {
+			name: registerName,
+			password: registerPassword,
+			image: "ProfilePic.png",
+			score: 0,
+			level: 0,
+			coins: 0,
+			statut: true
+		}});
+		
+	};
+	
+	const updateRegisterName = (event: any) => {
+		setRegisterName(event.target.value);
+	};
+	
+	const updateRegisterPassword = (event: any) => {
+		setRegisterPassword(event.target.value);
+	};
+	
+	const updateRegisterConfirmPassword = (event: any) => {
+		setRegisterConfirmPassword(event.target.value);
+	};
+	
+	/*Style*/
+	
+	const handleSliderClick = (sliderType: string, formBoxType: string) => {
+		setSliderType(sliderType);
+		setFormBoxType(formBoxType);
+	};
+	
+	/*Render*/
+	
+	if (registerError) {
+		alert(registerError.message);
+		registerReset();
 	}
+	if (loginLoading) return (<Loading />);
+	if (loginError) {
+		alert(loginError.message);
+		loginReset();
+	}
+	if (registerLoading) return (<Loading />);
 	
-	registerUser({ variables: {
-		name: registerName,
-		password: registerPassword,
-		image: "ProfilePic.png",
-		score: 0,
-		level: 0,
-		coins: 0,
-		statut: true
-	}});
-	
-	navigate(`/homePage/${registerName}`);
-};
+	return (
+		<div>
+			<div className="connect">
+				<div className="box">
+					<div className={`slider ${sliderType}`}></div>
+					
+					<div className="btn">
+						<button className="signin" onClick={() => handleSliderClick("loginSlider", "loginFormBox")}>Sign in</button>
+						<button className="signup" onClick={() => handleSliderClick("registerSlider", "registerFormBox")}>Sign up</button>
+					</div>
 
-const updateRegisterName = (event: any) => {
-	setRegisterName(event.target.value);
-};
+					<div className={`formBox ${formBoxType}`}>
+						<form action="submit" onSubmit={handleLogin} className="loginBox">
+							<input onChange={updateLoginName} type="text" placeholder="Username"></input>
+							<input onChange={updateLoginPassword} type="password" placeholder="Password"></input>
+							<button className="connectBtn" type="submit">Login</button>
+						</form>
 
-const updateRegisterPassword = (event: any) => {
-	setRegisterPassword(event.target.value);
-};
-
-const updateRegisterConfirmPassword = (event: any) => {
-	setRegisterConfirmPassword(event.target.value);
-};
-
-/*Style*/
-
-const handleSliderClick = (sliderType: string, formBoxType: string) => {
-	setSliderType(sliderType);
-	setFormBoxType(formBoxType);
-};
-
-/*Render*/
-
-// if (registerLoading) return <p>Loading...</p>;
-// if (loginLoading) return <p>Loading...</p>;
-// if (loginError) return <p>Error : {loginError.message}</p>;
-// if (registerError) return <p>Error : {registerError.message}</p>; je sais pas comment les afficher ni les utiliser
-return (
-	<div className="connect">
-			<div className="box">
-
-				<div className={`slider ${sliderType}`}></div>
-
-				<div className="btn">
-					<button className="signin" onClick={() => handleSliderClick("loginSlider", "loginFormBox")}>Sign in</button>
-					<button className="signup" onClick={() => handleSliderClick("registerSlider", "registerFormBox")}>Sign up</button>
-				</div>
-
-				<div className={`formBox ${formBoxType}`}>
-					<form action="submit" onSubmit={handleLogin} className="loginBox">
-						<input onChange={updateLoginName} type="text" placeholder="Username"></input>
-						<input onChange={updateLoginPassword} type="password" placeholder="Password"></input>
-						<button className="connectBtn" type="submit">Login</button>
-					</form>
-
-					<form action="submit" onSubmit={handleRegister} className="registerBox">
-						<input onChange={updateRegisterName} type="text" placeholder="Username"></input>
-						<input onChange={updateRegisterPassword} type="password" placeholder="Password"></input>
-						<input onChange={updateRegisterConfirmPassword} type="password" placeholder="Confirm password"></input>
-						<button className="connectBtn" type="submit">Register</button>
-					</form>
+						<form action="submit" onSubmit={handleRegister} className="registerBox">
+							<input onChange={updateRegisterName} type="text" placeholder="Username"></input>
+							<input onChange={updateRegisterPassword} type="password" placeholder="Password"></input>
+							<input onChange={updateRegisterConfirmPassword} type="password" placeholder="Confirm password"></input>
+							<button className="connectBtn" type="submit">Register</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
