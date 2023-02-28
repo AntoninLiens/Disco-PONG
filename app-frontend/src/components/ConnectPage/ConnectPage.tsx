@@ -82,8 +82,12 @@ export default function ConnectPage() {
 		event.preventDefault();
 		
 		if (registerPassword !== registerConfirmPassword) {
-			// setRegisterConfirmPassword(""); ca fonctionne pas
-			return alert("Passwords don't match");
+			setRegisterConfirmPassword("");
+			setRegisterPassword("");
+			console.log(registerPassword);
+			console.log(registerConfirmPassword);
+			alert("Passwords don't match");
+			return;
 		}
 		
 		registerUser({ variables: {
@@ -95,6 +99,16 @@ export default function ConnectPage() {
 			coins: 0,
 			statut: true
 		}});
+
+		loginUser({ variables: {
+			name: loginName,
+			password: loginPassword
+		} });
+		
+		console.log(loginData.authLogin.accessToken);
+
+		if (!registerError)
+			navigate(`/homePage/${registerName}`);
 		
 	};
 	
