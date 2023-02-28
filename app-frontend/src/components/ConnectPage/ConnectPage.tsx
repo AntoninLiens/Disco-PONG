@@ -62,7 +62,7 @@ export default function ConnectPage() {
 			password: loginPassword
 		} });
 		
-		console.log(loginData.authLogin.accessToken);
+		// console.log(loginData.authLogin.accessToken);
 		
 		if (!loginError)
 			navigate(`/homePage/${loginName}`);
@@ -100,12 +100,12 @@ export default function ConnectPage() {
 			statut: true
 		}});
 
-		loginUser({ variables: {
-			name: loginName,
-			password: loginPassword
-		} });
+		// loginUser({ variables: {
+		// 	name: loginName,
+		// 	password: loginPassword
+		// } });
 		
-		console.log(loginData.authLogin.accessToken);
+		// console.log(loginData.authLogin.accessToken);
 
 		if (!registerError)
 			navigate(`/homePage/${registerName}`);

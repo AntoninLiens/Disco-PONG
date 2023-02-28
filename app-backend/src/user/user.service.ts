@@ -8,6 +8,7 @@ import { UserDeleteOutput } from "./dto/userDelete.dto";
 import { UserPagination, UserPaginationArgs } from "./dto/userPagination.dto";
 import { UserUpdateInput, UserUpdateOutput } from "./dto/userUpdate.dto";
 import { User } from "./model/user.model";
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -17,6 +18,7 @@ export class UserService {
     ) {}
 
     async userCreate(input: UserCreateInput): Promise<UserCreateOutput> {
+        input.password = await bcrypt.hash(input.password, 10);
         const user = this.userRepository.create(input);
         await user.save();
         return { user };
@@ -29,7 +31,7 @@ export class UserService {
     ): Promise<UserUpdateOutput> {
         const user = await this.userRepository.findOneBy({ id: userId });
         user.name = input.name;
-        user.password = input.password;
+        user.password = await bcrypt.hash(input.password, 10);
         user.image = input.image;
         user.score = input.score;
         user.coins = input.coins;
