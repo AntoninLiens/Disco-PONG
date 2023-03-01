@@ -4,6 +4,7 @@ import { User } from "src/user/model/user.model";
 import { UserService } from "src/user/user.service";
 import { AuthLoginOutput } from "./dto/authLogin.dto";
 import * as bcrypt from 'bcrypt';
+import { UserCreateInput, UserCreateOutput } from "src/user/dto/userCreate.dto";
 
 export interface JwtPayload {
     id: string;
@@ -23,6 +24,10 @@ export class AuthService {
             return result;
         }
         return null;
+    }
+
+    async register(user: UserCreateInput): Promise<UserCreateOutput> {
+        return this.userService.userCreate(user);
     }
 
     async login(user: User): Promise<AuthLoginOutput> {
