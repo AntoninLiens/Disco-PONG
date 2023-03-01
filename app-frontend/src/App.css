@@ -1,3 +1,12 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Press Start 2P', cursive;
+	text-decoration: none;
+	list-style: none;
+}
+
 .App {
 	min-height: 659px;
 	height: 100vh;
