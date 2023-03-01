@@ -1,17 +1,24 @@
-import { Body, Controller, Post } from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
-import { UserCreateInput } from "src/user/dto/userCreate.dto";
-import { AuthService } from "./auth.service";
+import { Body, Controller, HttpCode, Post, Req, UseGuards } from "@nestjs/common";
+import RegisterUserDto from "src/user/dto/registerUser.dto";
+import AuthService from "./auth.service";
+import { LocalAuthGuard } from "./localAuth.guard";
+import RequestWithUser from "./requestWithUser.interface";
 
 @Controller('auth')
 export class AuthController {
-    constructor(
-        private readonly configService: ConfigService,
-        private readonly authService: AuthService        
-    ) {}
+    constructor(private readonly authService: AuthService) {}
 
-    @Post('register')
-    async register( @Body() user: UserCreateInput ) {
-        return this.authService.register(user);
+    @Post('Register')
+    async register(@Body() props: RegisterUserDto) {
+        return this.authService.register(props);
+    }
+
+    @HttpCode(200)
+    @UseGuards(LocalAuthGuard)
+    @Post('Login')
+    async login(@Req() props: RequestWithUser) {
+        const user = props.user;
+        user.password = undefined;
+        return user;
     }
 }
