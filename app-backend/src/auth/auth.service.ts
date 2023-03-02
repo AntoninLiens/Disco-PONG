@@ -49,4 +49,8 @@ export default class AuthService {
         const token = this.jwtService.sign(payload);
         return `Authentication=${token}; HttpOnly; Path=/; Max-Age=${this.configService.get('JWT_EXPIRATION_TIME')}`;
     }
+
+    getCookieForLogOut() {
+        return `Authentication=; HttpOnly; Path=/; Max-Age=0`;
+    }
 }
