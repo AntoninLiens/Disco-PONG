@@ -14,15 +14,29 @@ services:
     networks:
       - inside
 
-  backend:
-    container_name: backend
-    build: ./app-backend
-    depends_on:
-      - discoDB
+  discoDBadmin:
+    links:
+      - discoDB:discoDB
+    container_name: discoDBadmin
+    image: dpage/pgadmin4
     ports:
-      - 1111:1111
+      - 8080:80
+    env_file:
+      - database.env
+    volumes:
+      - database-admin:/root/.pgadmin
     networks:
       - inside
+
+  # backend:
+  #   container_name: backend
+  #   build: ./app-backend
+  #   depends_on:
+  #     - discoDB
+  #   ports:
+  #     - 1111:1111
+  #   networks:
+  #     - inside
 
   # frontend:
   #   container_name: frontend
@@ -36,6 +50,7 @@ services:
 
 volumes:
   database:
+  database-admin:
 
 networks:
   inside:

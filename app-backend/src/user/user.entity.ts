@@ -1,11 +1,14 @@
-import { Node } from "src/base/node.entity";
-import { Column, Entity } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class User extends Node {
+class User {
+    @PrimaryGeneratedColumn()
+    public id: number;
+
     @Column({ unique: true })
-    name: string;
+    public name: string;
 
     @Column()
-    password: string;
+    public password: string;
 }
+export default User;

@@ -1,13 +1,19 @@
 import { UserService } from "src/user/user.service";
 import * as bcrypt from "bcrypt";
 import { HttpException, HttpStatus } from "@nestjs/common";
-import RegisterUserDto from "src/user/dto/registerUser.dto";
-import LoginUserDto from "src/user/dto/loginUser.dto";
+import RegisterDto from "src/auth/dto/register.dto";
+import LoginDto from "src/auth/dto/login.dto";
+import { JwtService } from "@nestjs/jwt/dist";
+import { ConfigService } from "@nestjs/config";
 
 export default class AuthService {
-    constructor(private readonly userService: UserService) {}
+    constructor(
+        private readonly userService: UserService,
+        private readonly jwtService: JwtService,
+        private readonly configService: ConfigService
+    ) {}
 
-    async register(props: RegisterUserDto) {
+    async register(props: RegisterDto) {
         const hashedPassword = await bcrypt.hash(props.password, 10);
         try {
             const user = await this.userService.createUser({
@@ -25,7 +31,7 @@ export default class AuthService {
         }
     }
 
-    async login(props: LoginUserDto) {
+    async login(props: LoginDto) {
         try {
             const user = await this.userService.getUserByName(props.name);
             if (!(await bcrypt.compare(props.password, user.password))) {
@@ -36,5 +42,11 @@ export default class AuthService {
         } catch (error) {
             throw new HttpException("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    getCookiesWithJwtToken(userId: number) {
+        const payload: TokenPayload = { userId };
+        const token = this.jwtService.sign(payload);
+        return `Authentication=${token}; HttpOnly; Path=/; Max-Age=${this.configService.get('JWT_EXPIRATION_TIME')}`;
     }
 }

@@ -1,4 +1,4 @@
-export default class RegisterUserDto {
+export default class RegisterDto {
     name: string;
     password: string;
 }

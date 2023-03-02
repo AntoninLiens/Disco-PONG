@@ -1,4 +1,4 @@
-export default class LoginUserDto {
+export default class LoginDto {
     name: string;
     password: string;
 }
