@@ -5,6 +5,7 @@ import RegisterDto from "src/auth/dto/register.dto";
 import LoginDto from "src/auth/dto/login.dto";
 import { JwtService } from "@nestjs/jwt/dist";
 import { ConfigService } from "@nestjs/config";
+import PostgresErrorCode from "src/database/postgresErrorCodes.enum";
 
 export default class AuthService {
     constructor(
@@ -13,7 +14,7 @@ export default class AuthService {
         private readonly configService: ConfigService
     ) {}
 
-    async register(props: RegisterDto) {
+    public async register(props: RegisterDto) {
         const hashedPassword = await bcrypt.hash(props.password, 10);
         try {
             const user = await this.userService.createUser({
@@ -31,7 +32,7 @@ export default class AuthService {
         }
     }
 
-    async login(props: LoginDto) {
+    public async login(props: LoginDto) {
         try {
             const user = await this.userService.getUserByName(props.name);
             if (!(await bcrypt.compare(props.password, user.password))) {
