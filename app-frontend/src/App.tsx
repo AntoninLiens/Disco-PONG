@@ -2,16 +2,16 @@ import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
 
-import ConnectPage from "./components/ConnectPage/ConnectPage";
-import History from "./components/History/History";
-import HomePage from "./components/HomePage/HomePage";
-import Leaderbord from "./components/Leaderboard/Leaderboard";
-import Pong from "./components/Pong/Pong";
-import Profile from "./components/Profile/Profile";
-import Social from "./components/Social/Social";
-import Stats from "./components/Stats/Stats";
-import Settings from "./components/Settings/Settings";
-import Shop from "./components/Shop/Shop";
+import ConnectPage from "./routes/ConnectPage/ConnectPage";
+import History from "./routes/History/History";
+import HomePage from "./routes/HomePage/HomePage";
+import Leaderbord from "./routes/Leaderboard/Leaderboard";
+import Pong from "./routes/Pong/Pong";
+import Profile from "./routes/Profile/Profile";
+import Social from "./routes/Social/Social";
+import Stats from "./routes/Stats/Stats";
+import Settings from "./routes/Settings/Settings";
+import Shop from "./routes/Shop/Shop";
 
 function App() {
 	return (

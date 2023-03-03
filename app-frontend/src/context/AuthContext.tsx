@@ -1,27 +1,67 @@
-import { createContext, Dispatch, SetStateAction, useState } from "react";
+import { createContext, Dispatch, PropsWithChildren, SetStateAction, useState, useEffect } from "react";
+import axios from "../utils/axios"
 
-const defaultUser = {
-    name: "Martin",
-    token: ""
-};
+export function createAuth() {
+    const defaultUser = {
+        name: "Martin",
+        token: ""
+    };
 
-type UpdateType = Dispatch<SetStateAction<typeof defaultUser>>;
-const defaultUpdate: UpdateType = () => defaultUser;
+    type UpdateType = Dispatch<SetStateAction<typeof defaultUser>>;
+    const defaultUpdate: UpdateType = () => defaultUser;
 
-export const AuthContext = createContext({
-    user: defaultUser,
-    setUser: defaultUpdate
-});
+    const signup = async (name: string, password: string) => "null";   
+    const signin = async (name: string, password: string) => "null";
+    const signout = async (name: string, password: string) => "null";
 
-const AuthContextProvider = (props: any) => {
+    const authCtx = createContext({
+        user: defaultUser,
+        setUser: defaultUpdate,
+        signup: signup,
+        signin: signin,
+        signout: signout
+    });
 
-    const [user, setUser] = useState(defaultUser);
+    function AuthProvider(props: PropsWithChildren<{}>) {
+        const [user, setUser] = useState(defaultUser);
 
-    return (
-        <AuthContext.Provider value={{ user, setUser }}>
-            {...props}
-        </AuthContext.Provider>
-    );
-};
+        const signup =  async (name: string, password: string) => {
+            const token = await axios.post("auth/register", { name, password })
+            .then(res => { return (res.data.token) })
+            .catch(err => { return null });
 
-export default AuthContextProvider;
+            if (!token) {
+                return "null";
+            }
+            return name;
+        };
+
+        const signin = async (name: string, password: string) => {
+            const token = await axios.post("auth/login", { name, password })
+            .then(res => { return (res.data.token) })
+            .catch(err => { return null });
+
+            if (!token) {
+                return "null";
+            }
+            return name;
+        };
+
+        const signout = async () => {
+            setUser(defaultUser);
+            return "null";
+        };
+
+        return (
+            <authCtx.Provider value={{
+                user,
+                setUser,
+                signup,
+                signin,
+                signout
+            }}
+            {...props} />
+        );
+    };
+    return { authCtx, AuthProvider } as const;
+}

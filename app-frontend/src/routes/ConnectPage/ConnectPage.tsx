@@ -1,6 +1,7 @@
 import "./ConnectPage.css"
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../..";
 
 
 export default function ConnectPage() {
@@ -12,6 +13,8 @@ export default function ConnectPage() {
 	const [loginPassword, setLoginPassword] = useState("");
 	const [registerPassword, setRegisterPassword] = useState("");
 	const [registerConfirmPassword, setRegisterConfirmPassword] = useState("");
+
+	const {user, signin, signup} = useContext(AuthContext);
 	
 	const [sliderType, setSliderType] = useState("loginSlider");
 	const [formBoxType, setFormBoxType] = useState("loginFormBox");
@@ -22,7 +25,7 @@ export default function ConnectPage() {
 	
 	/*Login*/
 	
-	const handleLogin = (event: any) => {
+	const handleLogin = async (event: any) => {
 		event.preventDefault();
 		navigate(`/homePage/${loginName}`);
 	};
@@ -36,9 +39,13 @@ export default function ConnectPage() {
 	
 	/*Register*/
 	
-	const handleRegister = (event: any) => {
+	const handleRegister = async (event: any) => {
 		event.preventDefault();
-		navigate(`/homePage/${registerName}`);
+		const res = await signup(registerName, registerPassword);
+		console.log(res);
+		if (res !== "null") {
+			navigate(`/homePage/${registerName}`);
+		}
 	};
 	
 	const updateRegisterName = (event: any) => {

@@ -1,5 +1,6 @@
 import { Body, Controller, HttpCode, Post, Get, Req, UseGuards, UseInterceptors, ClassSerializerInterceptor } from "@nestjs/common";
 import RegisterUserDto from "src/auth/dto/register.dto";
+import User from "src/user/user.entity";
 import AuthService from "./auth.service";
 import JwtAuthGuard from "./guards/jwtAuth.guard";
 import { LocalAuthGuard } from "./guards/localAuth.guard";
@@ -12,7 +13,8 @@ export class AuthController {
 
     @Post('register')
     async register(@Body() props: RegisterUserDto) {
-        return this.authService.register(props);
+        const user: User = await this.authService.register(props);
+        return await this.authService.getCookiesWithJwtToken(user.id);
     }
 
     @HttpCode(200)
