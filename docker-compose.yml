@@ -28,15 +28,15 @@ services:
     networks:
       - inside
 
-  backend:
-    container_name: backend
-    build: ./app-backend
-    depends_on:
-      - discoDB
-    ports:
-      - 1111:1111
-    networks:
-      - inside
+  # backend:
+  #   container_name: backend
+  #   build: ./app-backend
+  #   depends_on:
+  #     - discoDB
+  #   ports:
+  #     - 1111:1111
+  #   networks:
+  #     - inside
 
   # frontend:
   #   container_name: frontend

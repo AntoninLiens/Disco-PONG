@@ -1,3 +1,4 @@
 interface TokenPayload {
-	userId: number;
+	id: number;
+	name: string;
 }

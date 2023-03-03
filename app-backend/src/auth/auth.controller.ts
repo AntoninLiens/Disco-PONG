@@ -1,7 +1,8 @@
 import { Body, Controller, HttpCode, Post, Get, Req, UseGuards, UseInterceptors, ClassSerializerInterceptor } from "@nestjs/common";
-import RegisterUserDto from "src/auth/dto/register.dto";
+import RegisterDto from "src/auth/dto/register.dto";
 import User from "src/user/user.entity";
 import AuthService from "./auth.service";
+import LoginDto from "./dto/login.dto";
 import JwtAuthGuard from "./guards/jwtAuth.guard";
 import { LocalAuthGuard } from "./guards/localAuth.guard";
 import RequestWithUser from "./requestWithUser.interface";
@@ -12,34 +13,20 @@ export class AuthController {
     constructor(private readonly authService: AuthService) {}
 
     @Post('register')
-    async register(@Body() props: RegisterUserDto) {
+    async register(@Body() props: RegisterDto) {
         const user: User = await this.authService.register(props);
-        return await this.authService.getCookiesWithJwtToken(user.id);
+        return await this.authService.getCookiesWithJwtToken(user);
     }
 
-    @HttpCode(200)
-    @UseGuards(LocalAuthGuard)
     @Post('login')
-    async login(@Req() request: RequestWithUser) {
-        const { user } = request;
-        const cookie = this.authService.getCookiesWithJwtToken(user.id);
-        request.res.setHeader('Set-Cookie', cookie);
-        user.password = undefined;
-        return request.res.send(user);
+    async login(@Body() props: LoginDto) {
+        const user: User = await this.authService.login(props);
+        return await this.authService.getCookiesWithJwtToken(user);
     }
 
     @UseGuards(JwtAuthGuard)
     @Post('logout')
-    async logout(@Req() request: RequestWithUser) {
-        request.res.setHeader('Set-Cookie', this.authService.getCookieForLogOut());
-        return request.res.sendStatus(200);
-    }
-
-    @UseGuards(JwtAuthGuard)
-    @Get()
-    async authenticate(@Req() request: RequestWithUser) {
-        const { user } = request;
-        user.password = undefined;
-        return user;
+    async logout() {
+        return await this.authService.getCookieForLogOut();
     }
 }

@@ -27,7 +27,7 @@ export function createAuth() {
 
         const signup =  async (name: string, password: string) => {
             const token = await axios.post("auth/register", { name, password })
-            .then(res => { return (res.data.token) })
+            .then(res => { return (res.data) })
             .catch(err => { return null });
 
             if (!token) {
@@ -38,7 +38,7 @@ export function createAuth() {
 
         const signin = async (name: string, password: string) => {
             const token = await axios.post("auth/login", { name, password })
-            .then(res => { return (res.data.token) })
+            .then(res => { return (res.data) })
             .catch(err => { return null });
 
             if (!token) {
