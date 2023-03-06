@@ -1,47 +1,47 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import CreateUserDto from "./dto/createUser.dto";
-import User from "./user.entity";
+import CreateUsersDto from "./dto/createUser.dto";
+import Users from "./user.entity";
 import * as bcrypt from "bcrypt";
 
 @Injectable()
-export class UserService {
+export class UsersService {
     constructor(
-        @InjectRepository(User)
-        private readonly userRepository: Repository<User>
+        @InjectRepository(Users)
+        private readonly UsersRepository: Repository<Users>
     ) {}
 
-    async createUser(props: CreateUserDto) {
-        const user = await this.userRepository.create(props);
-        await this.userRepository.save(user);
-        return user;
+    async createUsers(props: CreateUsersDto) {
+        const Users = await this.UsersRepository.create(props);
+        await this.UsersRepository.save(Users);
+        return Users;
     }
 
-    async getUserByName(name: string) {
-        const user = this.userRepository.findOneBy({ name });
-        if (user)
-            return user;
-        throw new HttpException("User not found", HttpStatus.NOT_FOUND);
+    async getUsersByName(name: string) {
+        const Users = this.UsersRepository.findOneBy({ name });
+        if (Users)
+            return Users;
+        throw new HttpException("Users not found", HttpStatus.NOT_FOUND);
     }
 
-    async getUserById(id: number) {
-        const user = this.userRepository.findOneBy({ id });
-        if (user)
-            return user;
-        throw new HttpException("User not found", HttpStatus.NOT_FOUND);
+    async getUsersById(id: number) {
+        const Users = this.UsersRepository.findOneBy({ id });
+        if (Users)
+            return Users;
+        throw new HttpException("Users not found", HttpStatus.NOT_FOUND);
     }
 
     async setJwtRefreshToken(refreshToken: string, id: number) {
         const token = await bcrypt.hash(refreshToken, 10);
-        await this.userRepository.update(id, { refreshToken: token });
+        await this.UsersRepository.update(id, { refreshToken: token });
     }
 
-    async getUserIfRefreshTokenMatch(id: number, refreshToken: string) {
-        const user = await this.getUserById(id);
-        const isRefreshTokenMatching = await bcrypt.compare(refreshToken, user.refreshToken);
+    async getUsersIfRefreshTokenMatch(id: number, refreshToken: string) {
+        const Users = await this.getUsersById(id);
+        const isRefreshTokenMatching = await bcrypt.compare(refreshToken, Users.refreshToken);
         if (isRefreshTokenMatching)
-            return user;
+            return Users;
         throw new HttpException("Invalid refresh token", HttpStatus.UNAUTHORIZED);
     }
 }

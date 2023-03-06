@@ -2,13 +2,13 @@ import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { PassportStrategy } from "@nestjs/passport";
 import { ExtractJwt, Strategy } from "passport-jwt";
-import { UserService } from "src/user/user.service";
+import { UsersService } from "src/user/user.service";
 
 @Injectable()
 export class JwtRefreshStrategy extends PassportStrategy(Strategy, 'jwtRefresh') {
     constructor(
         private readonly configService: ConfigService,
-        private readonly userService: UserService
+        private readonly UsersService: UsersService
     ) {
         super({
             jwtFromRequest: ExtractJwt.fromHeader("refreshToken"),
@@ -19,6 +19,6 @@ export class JwtRefreshStrategy extends PassportStrategy(Strategy, 'jwtRefresh')
 
     async validate(request: Request, payload: TokenPayload) {
         const refreshToken = request.headers["refreshToken"];
-        return (this.userService.getUserIfRefreshTokenMatch(payload.id, refreshToken));
+        return (this.UsersService.getUsersIfRefreshTokenMatch(payload.id, refreshToken));
     }
 }

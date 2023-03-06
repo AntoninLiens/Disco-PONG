@@ -1,7 +1,7 @@
-import { Body, Controller, HttpCode, Post, Get, Req, UseGuards, UseInterceptors, ClassSerializerInterceptor } from "@nestjs/common";
+import { Body, Controller, HttpCode, Post, Get, UseGuards, UseInterceptors, ClassSerializerInterceptor } from "@nestjs/common";
 import RegisterDto from "src/auth/dto/register.dto";
-import User from "src/user/user.entity";
-import { UserService } from "src/user/user.service";
+import Users from "src/user/user.entity";
+import { UsersService } from "src/user/user.service";
 import AuthService from "./auth.service";
 import LoginDto from "./dto/login.dto";
 import JwtAuthGuard from "./guards/jwtAuth.guard";
@@ -12,7 +12,7 @@ import RefreshAuthGuard from "./guards/refreshAuth.guard";
 export class AuthController {
     constructor(
         private readonly authService: AuthService,
-        private readonly userService: UserService
+        private readonly UsersService: UsersService
     ) {}
 
     @Post('register')
@@ -23,18 +23,18 @@ export class AuthController {
     @HttpCode(200)
     @Post('login')
     async login(@Body() props: LoginDto) {
-        const user: User = await this.authService.login(props);
-        const accessToken =  await this.authService.getJwtAccessToken(user);
-        const refreshToken = await this.authService.getJwtRefreshToken(user);
+        const Users: Users = await this.authService.login(props);
+        const accessToken =  await this.authService.getJwtAccessToken(Users);
+        const refreshToken = await this.authService.getJwtRefreshToken(Users);
 
-        await this.userService.setJwtRefreshToken(refreshToken, user.id);
+        await this.UsersService.setJwtRefreshToken(refreshToken, Users.id);
 
         return { accessToken, refreshToken };
     }
 
     @UseGuards(RefreshAuthGuard)
     @Get('refresh')
-    async refresh(@Body() props: User) {
+    async refresh(@Body() props: Users) {
         return await this.authService.getJwtAccessToken(props);
     }
 

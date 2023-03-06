@@ -7,4 +7,17 @@ const instance = axios.create({
 	}
 });
 
+export const setAuthToken = (token: string) => {
+	instance.defaults.headers.common["accessToken"] = `${token}`;
+}
+
+export const setRefreshToken = (token: string) => {
+	instance.defaults.headers.common["refreshToken"] = `${token}`;
+}
+
+export const removeAuthToken = () => {
+	instance.defaults.headers.common["Authorization"] = "";
+	instance.defaults.headers.common["refreshToken"] = "";
+}
+
 export default instance;

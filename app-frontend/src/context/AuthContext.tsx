@@ -1,5 +1,5 @@
 import { createContext, Dispatch, PropsWithChildren, SetStateAction, useState, useEffect } from "react";
-import axios from "../utils/axios"
+import axios, { setAuthToken } from "../utils/axios"
 
 export function createAuth() {
     const defaultUser = {
@@ -40,7 +40,7 @@ export function createAuth() {
             if (!token) {
                 return "null";
             }
-            return await profile(name);
+            return await profile(token);
         };
 
         const signin = async (name: string, password: string) => {
@@ -51,11 +51,12 @@ export function createAuth() {
             if (!token) {
                 return "null";
             }
-            return await profile(name);
+            return await profile(token);
         };
 
-        const profile = async (name: string) => {
-            const user = await axios.get("user/profile", { name })
+        const profile = async (token: string) => {
+            setAuthToken(token);
+            const user = await axios.get("user/profile")
             .then(res => { return (res.data) })
             .catch(err => { return null })
 
