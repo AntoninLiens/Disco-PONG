@@ -16,5 +16,14 @@ class User {
     @Column({ type: 'varchar' })
     @Exclude()
     password: string;
+
+    @Column({ type: 'varchar', nullable: 'true' })
+    pfp: string;
+
+    @Column({ type: 'int', nullable: 'true' })
+    score: number;
+
+    @Column({ type: 'int', nullable: 'true' })    
+    level: number;
 }
 export default User;

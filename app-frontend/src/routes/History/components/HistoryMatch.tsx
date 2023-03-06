@@ -27,17 +27,21 @@ export default function HistoryMatch({p1, p2, image1, image2, result}: any) {
 	return (
 		<div className="history_match">
 			<div className="history_playerOne">
-				<div className={`history_playerOnePfp ${win1}`} style={{backgroundImage: `url(${player_one_pic})`,
-																backgroundRepeat: "no-repeat",
-																backgroundSize: "cover"}}></div>
+				<div className={`history_playerOnePfp ${win1}`} style={{
+					backgroundImage: `url(${player_one_pic})`,
+					backgroundRepeat: "no-repeat",
+					backgroundSize: "cover"}}>
+				</div>
 				<div className={`history_playerOneName ${win1}`}>{shortedP1}</div>
 			</div>
 			<div className="history_vs">VS</div>
 			<div className="history_playerTwo">
 				<div className={`history_playerTwoName ${win2}`}>{shortedP2}</div>
-				<div className={`history_playerTwoPfp ${win2}`} style={{backgroundImage: `url(${player_two_pic})`,
-																backgroundRepeat: "no-repeat",
-																backgroundSize: "cover"}}></div>
+				<div className={`history_playerTwoPfp ${win2}`} style={{
+					backgroundImage: `url(${player_two_pic})`,
+					backgroundRepeat: "no-repeat",
+					backgroundSize: "cover"}}>
+				</div>
 			</div>
 		</div>
 	);

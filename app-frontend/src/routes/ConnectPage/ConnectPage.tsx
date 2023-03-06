@@ -14,7 +14,7 @@ export default function ConnectPage() {
 	const [registerPassword, setRegisterPassword] = useState("");
 	const [registerConfirmPassword, setRegisterConfirmPassword] = useState("");
 
-	const {user, signin, signup} = useContext(AuthContext);
+	const { signin, signup } = useContext(AuthContext);
 	
 	const [sliderType, setSliderType] = useState("loginSlider");
 	const [formBoxType, setFormBoxType] = useState("loginFormBox");

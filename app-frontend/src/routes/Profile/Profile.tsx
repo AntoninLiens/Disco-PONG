@@ -1,24 +1,27 @@
 import "./Profile.css"
 import { useParams } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
+import { useContext } from "react";
+import { AuthContext } from "../..";
+
+const { user } = useContext(AuthContext)
 
 export default function Profile() {
 
-	let { id } = useParams();
-
-	if (!id)
-		id = "error";
-
 	return (
 		<div className="profilePage">
-			<NavBar id={id} />
+			<NavBar id={user.name} />
 			<div className="profile_box">
-				<div className="profile_pfp"></div>
-				<div className="profile_name">{id}</div>
-				<div className="profile_wins">Victories: 111</div>
-				<div className="profile_loose">Defeats: 22</div>
-				<div className="profile_score">Score: 1000</div>
-				<div className="profile_lvl">Level: 1</div>
+				<div className="profile_pfp" style={{
+					backgroundImage: `url(${user.pfp})`,
+					backgroundRepeat: "no-repeat",
+					backgroundSize: "cover"}}>
+				</div>
+				<div className="profile_name">{user.name}</div>
+				<div className="profile_wins">Victories: {user.victories}</div>
+				<div className="profile_loose">Defeats: {user.deafeats}</div>
+				<div className="profile_score">Score: {user.score}</div>
+				<div className="profile_lvl">Level: {user.level}</div>
 				<div className="profile_xpBar">
 					<div className="profile_xp"></div>
 				</div>

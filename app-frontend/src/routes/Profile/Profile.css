@@ -22,7 +22,7 @@
 
 .profile_pfp {
 	position: absolute;
-	background: url("./images/bread.png") center/cover;
+	/* background: url("./images/bread.png") center/cover; */
 	border: 3px solid yellow;
 	border-radius: 100px;
 	padding: 80px;
