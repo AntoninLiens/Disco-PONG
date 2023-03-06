@@ -11,4 +11,10 @@ export class UserController {
     async profile(@Body() name: string) {
         return this.userService.getUserByName(name);
     }
+
+    @UseGuards(JwtAuthGuard)
+    @Get('leaderbord')
+    async leaderboard(@Body() name: string) {
+        
+    }
 }
