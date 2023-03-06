@@ -28,9 +28,8 @@ export default function ConnectPage() {
 	const handleLogin = async (event: any) => {
 		event.preventDefault();
 		const res = await signin(loginName, loginPassword);
-		if (res !== "null") {
+		if (res !== "null")
 			navigate(`/homePage/${loginName}`);
-		}
 	};
 	
 	const updateLoginName = (event: any) => {
@@ -45,9 +44,8 @@ export default function ConnectPage() {
 	const handleRegister = async (event: any) => {
 		event.preventDefault();
 		const res = await signup(registerName, registerPassword);
-		if (res !== "null") {
-			navigate(`/homePage/${registerName}`);
-		}
+		if (res !== "null")
+			return ;
 	};
 	
 	const updateRegisterName = (event: any) => {

@@ -10,12 +10,12 @@ import User from "src/user/user.entity";
 @Injectable()
 export default class AuthService {
     constructor(
-        private readonly configService: ConfigService,
         private readonly userService: UserService,
+        private readonly configService: ConfigService,
         private readonly jwtService: JwtService
     ) {}
 
-    public async register(props: RegisterDto) {
+    async register(props: RegisterDto) {
         const user = await this.userService.getUserByName(props.name);
         if (user)
             throw new HttpException("User already exists", HttpStatus.BAD_REQUEST);
@@ -28,7 +28,7 @@ export default class AuthService {
         return newUser;
     }
 
-    public async login(props: LoginDto) {
+    async login(props: LoginDto) {
         const user = await this.userService.getUserByName(props.name);
         if (!user) {
             throw new HttpException("User not found", HttpStatus.NOT_FOUND);
@@ -41,12 +41,20 @@ export default class AuthService {
         return user;
     }
 
-    getCookiesWithJwtToken(user: User) {
+    getJwtRefreshToken(user: User) {
+        const payload: TokenPayload = { id: user.id, name: user.name };
+        return this.jwtService.sign(payload, {
+            secret: this.configService.get("JWT_REFRESH_TOKEN_SECRET"),
+            expiresIn: this.configService.get("JWT_REFRESH_TOKEN_EXPIRATION_TIME")
+        });
+    }
+    
+    getJwtAccessToken(user: User) {
         const payload: TokenPayload = { id: user.id, name: user.name };
         return this.jwtService.sign(payload);
     }
 
-    getCookieForLogOut() {
+    getLogOut() {
         const payload: TokenPayload = { id: 0, name: "" };
         return this.jwtService.sign(payload);
     }

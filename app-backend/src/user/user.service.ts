@@ -3,6 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import CreateUserDto from "./dto/createUser.dto";
 import User from "./user.entity";
+import * as bcrypt from "bcrypt";
 
 @Injectable()
 export class UserService {
@@ -29,5 +30,18 @@ export class UserService {
         if (user)
             return user;
         throw new HttpException("User not found", HttpStatus.NOT_FOUND);
+    }
+
+    async setJwtRefreshToken(refreshToken: string, id: number) {
+        const token = await bcrypt.hash(refreshToken, 10);
+        await this.userRepository.update(id, { refreshToken: token });
+    }
+
+    async getUserIfRefreshTokenMatch(id: number, refreshToken: string) {
+        const user = await this.getUserById(id);
+        const isRefreshTokenMatching = await bcrypt.compare(refreshToken, user.refreshToken);
+        if (isRefreshTokenMatching)
+            return user;
+        throw new HttpException("Invalid refresh token", HttpStatus.UNAUTHORIZED);
     }
 }

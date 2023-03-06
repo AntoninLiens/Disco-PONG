@@ -1,32 +1,46 @@
 import { Body, Controller, HttpCode, Post, Get, Req, UseGuards, UseInterceptors, ClassSerializerInterceptor } from "@nestjs/common";
 import RegisterDto from "src/auth/dto/register.dto";
 import User from "src/user/user.entity";
+import { UserService } from "src/user/user.service";
 import AuthService from "./auth.service";
 import LoginDto from "./dto/login.dto";
 import JwtAuthGuard from "./guards/jwtAuth.guard";
-import { LocalAuthGuard } from "./guards/localAuth.guard";
-import RequestWithUser from "./requestWithUser.interface";
+import RefreshAuthGuard from "./guards/refreshAuth.guard";
 
 @Controller('auth')
 @UseInterceptors(ClassSerializerInterceptor)
 export class AuthController {
-    constructor(private readonly authService: AuthService) {}
+    constructor(
+        private readonly authService: AuthService,
+        private readonly userService: UserService
+    ) {}
 
     @Post('register')
     async register(@Body() props: RegisterDto) {
-        const user: User = await this.authService.register(props);
-        return await this.authService.getCookiesWithJwtToken(user);
+        return await this.authService.register(props);
     }
 
+    @HttpCode(200)
     @Post('login')
     async login(@Body() props: LoginDto) {
         const user: User = await this.authService.login(props);
-        return await this.authService.getCookiesWithJwtToken(user);
+        const accessToken =  await this.authService.getJwtAccessToken(user);
+        const refreshToken = await this.authService.getJwtRefreshToken(user);
+
+        await this.userService.setJwtRefreshToken(refreshToken, user.id);
+
+        return { accessToken, refreshToken };
+    }
+
+    @UseGuards(RefreshAuthGuard)
+    @Get('refresh')
+    async refresh(@Body() props: User) {
+        return await this.authService.getJwtAccessToken(props);
     }
 
     @UseGuards(JwtAuthGuard)
     @Post('logout')
     async logout() {
-        return await this.authService.getCookieForLogOut();
+        return await this.authService.getLogOut();
     }
 }

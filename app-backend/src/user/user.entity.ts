@@ -3,14 +3,18 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 class User {
-    @PrimaryGeneratedColumn()
-    public id: number;
+    @PrimaryGeneratedColumn({ type: 'int' })
+    id: number;
 
-    @Column({ unique: true })
-    public name: string;
-
-    @Column()
+    @Column({ type: 'varchar', nullable: true })
     @Exclude()
-    public password: string;
+    refreshToken: string;
+
+    @Column({ type: 'varchar', unique: true })
+    name: string;
+
+    @Column({ type: 'varchar' })
+    @Exclude()
+    password: string;
 }
 export default User;
