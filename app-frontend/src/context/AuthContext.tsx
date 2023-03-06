@@ -4,7 +4,12 @@ import axios from "../utils/axios"
 export function createAuth() {
     const defaultUser = {
         name: "Martin",
-        token: ""
+        token: "",
+        pfp: "",
+        victories: "",
+        deafeats: "",
+        score: 0,
+        level: 0
     };
 
     type UpdateType = Dispatch<SetStateAction<typeof defaultUser>>;
@@ -13,13 +18,15 @@ export function createAuth() {
     const signup = async (name: string, password: string) => "null";   
     const signin = async (name: string, password: string) => "null";
     const signout = async (name: string, password: string) => "null";
+    const profile = async (name: string) => "null";
 
     const authCtx = createContext({
         user: defaultUser,
         setUser: defaultUpdate,
         signup: signup,
         signin: signin,
-        signout: signout
+        signout: signout,
+        profile: profile
     });
 
     function AuthProvider(props: PropsWithChildren<{}>) {
@@ -33,7 +40,7 @@ export function createAuth() {
             if (!token) {
                 return "null";
             }
-            return name;
+            return await profile(name);
         };
 
         const signin = async (name: string, password: string) => {
@@ -44,7 +51,20 @@ export function createAuth() {
             if (!token) {
                 return "null";
             }
-            return name;
+            return await profile(name);
+        };
+
+        const profile = async (name: string) => {
+            const user = await axios.get("user/profile", { name })
+            .then(res => { return (res.data) })
+            .catch(err => { return null })
+
+            if (!user)
+                setUser(defaultUser);
+            else
+                setUser(user);
+
+            return user.name;
         };
 
         const signout = async () => {
@@ -58,7 +78,8 @@ export function createAuth() {
                 setUser,
                 signup,
                 signin,
-                signout
+                signout,
+                profile
             }}
             {...props} />
         );
