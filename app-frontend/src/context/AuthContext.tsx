@@ -6,10 +6,12 @@ export function createAuth() {
 		name: "",
 		token: "",
 		pfp: "",
-		victories: "",
-		deafeats: "",
+		victories: [],
+		deafeats: [],
 		score: 0,
-		level: 0
+		level: 0,
+		xp: 0,
+		coins: 0
 	};
 
 	type UpdateType = Dispatch<SetStateAction<typeof defaultUser>>;
@@ -18,8 +20,8 @@ export function createAuth() {
 	const signup = async (name: string, password: string) => "null";   
 	const signin = async (name: string, password: string) => "null";
 	const signout = async (name: string, password: string) => "null";
-	const profile = async (token: string) => "null";
-	const leaderboard = async () => 0;
+	const profile = async () => "null";
+	const leaderboard = async () => "null";
 
 	const authCtx = createContext({
 		user: defaultUser,
@@ -41,7 +43,6 @@ export function createAuth() {
 
 			if (!accessToken || !refreshToken)
 				return "null";
-
 			return await profile(accessToken);
 		};
 
@@ -52,7 +53,6 @@ export function createAuth() {
 
 			if (!accessToken || !refreshToken)
 				return "null";
-
 			return await profile(accessToken);
 		};
 
@@ -76,13 +76,14 @@ export function createAuth() {
 		};
 
 		const leaderboard = async () => {
-			const userList = await axios.get("user/leaderboard")
+			const userListTmp: never[] = await axios.get("user/leaderboard")
 			.then(res => { return (res.data) })
 			.catch(err => { return null })
-
-			if (!userList)
-				return 0;
-			return (userList);
+			
+			if (!userListTmp)
+				return 'null';
+			console.log("userList: ", userListTmp);
+			return ("success");
 		}
 
 		return (

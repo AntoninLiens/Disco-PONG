@@ -4,7 +4,9 @@ import RequestWithUsers from "src/auth/utils/requestWithUser.interface";
 
 @Controller('user')
 export class UsersController {
-    constructor() {}
+    constructor(
+        private readonly userService: UsersService
+    ) {}
 
     @Get('profile')
     @UseGuards(JwtAuthGuard)
@@ -14,9 +16,9 @@ export class UsersController {
         throw new HttpException("no user", HttpStatus.UNAUTHORIZED);
     }
 
+    @Get('leaderboard')
     // @UseGuards(JwtAuthGuard)
-    // @Get('leaderbord')
-    // async leaderboard(@Body() name: string) {
-        
-    // }
+    async leaderboard() {
+        return this.userService.getUserListLeaderboard();
+    }
 }
