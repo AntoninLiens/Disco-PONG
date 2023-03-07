@@ -7,16 +7,16 @@ import { UsersService } from "src/user/user.service";
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy){
 	constructor(
-		private readonly UsersService: UsersService,
+		private readonly userService: UsersService,
 		private readonly configService: ConfigService
 	) {
 		super({
-			jwtFromRequest: ExtractJwt.fromHeader("accessToken"),
+			jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
 			secretOrKey: configService.get("JWT_SECRET")
 		});
 	}
 
 	async validate(payload: TokenPayload) {
-		return (this.UsersService.getUserById(payload.id));
+		return this.userService.getUserById(payload.id);
 	}
 }

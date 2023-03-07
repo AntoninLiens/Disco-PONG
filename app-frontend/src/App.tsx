@@ -19,7 +19,7 @@ function App() {
 
 	const {user} = useContext(AuthContext);
 
-	if (user.name !== "" && user.token && user.token.length >= 10 ) {
+	if (user.name !== "") {
 
 		return (
 			<div className="App">
