@@ -64,14 +64,23 @@ export class UsersService {
 
 	async getUserListLeaderboard() {
 
-		const queryBuilder = this.userRepository.createQueryBuilder("user")
-		.select("user.score")
-		.orderBy("user.score", "DESC")
-		.limit(10);
+		// const queryBuilder = this.userRepository.createQueryBuilder("users")
+		// .select("users.score")
+		// .orderBy("users.score", "DESC")
+		// .limit(10);
 
-		const result = await queryBuilder.execute();
+		// const result = await queryBuilder.execute();
 
-		console.log(result);
+		// // console.log(result);
+
+		// const userList = await this.userRepository.find();
+
+		// userList.splice(0, Math.min(10, userList.length), ...result.map((row: any) => this.userRepository.create({ id: row.id })));
+
+		// await this.userRepository.save(userList);
+
+		// console.log(userList);
+
 
 		const userList: Users[] = [
 			this.defaultUser,

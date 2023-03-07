@@ -1,5 +1,4 @@
 import { createContext, Dispatch, PropsWithChildren, SetStateAction, useState, useEffect } from "react";
-import Leaderboard from "../routes/Leaderboard/Leaderboard";
 import axios from "../utils/axios"
 
 export function createAuth() {
@@ -7,10 +6,12 @@ export function createAuth() {
 		name: "",
 		token: "",
 		pfp: "",
-		victories: "",
-		deafeats: "",
+		victories: [],
+		deafeats: [],
 		score: 0,
-		level: 0
+		level: 0,
+		xp: 0,
+		coins: 0
 	};
 
 	type UpdateType = Dispatch<SetStateAction<typeof defaultUser>>;
@@ -20,7 +21,7 @@ export function createAuth() {
 	const signin = async (name: string, password: string) => "null";
 	const signout = async (name: string, password: string) => "null";
 	const profile = async () => "null";
-	const leaderboard = async () => 0;
+	const leaderboard = async () => "null";
 
 	const authCtx = createContext({
 		user: defaultUser,
@@ -43,7 +44,8 @@ export function createAuth() {
 			if (!token) {
 				return "null";
 			}
-			return await profile();
+			// return await profile();
+			return name;
 		};
 
 		const signin = async (name: string, password: string) => {
@@ -54,7 +56,8 @@ export function createAuth() {
 			if (!token) {
 				return "null";
 			}
-			return await profile();
+			// return await profile();
+			return name;
 		};
 
 		const profile = async () => {
@@ -76,13 +79,14 @@ export function createAuth() {
 		};
 
 		const leaderboard = async () => {
-			const userList = await axios.get("user/leaderboard")
+			const userListTmp: never[] = await axios.get("user/leaderboard")
 			.then(res => { return (res.data) })
 			.catch(err => { return null })
-
-			if (!userList)
-				return 0;
-			return (userList);
+			
+			if (!userListTmp)
+				return 'null';
+			console.log("userList: ", userListTmp);
+			return ("success");
 		}
 
 		return (
