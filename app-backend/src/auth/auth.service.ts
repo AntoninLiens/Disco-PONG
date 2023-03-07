@@ -18,7 +18,7 @@ export default class AuthService {
     async register(props: RegisterDto) {
         const user = await this.userService.getUserByName(props.name);
         if (user)
-            throw new HttpException("Users already exists", HttpStatus.BAD_REQUEST);
+            throw new HttpException("User already exists", HttpStatus.BAD_REQUEST);
         const hashedPassword = await bcrypt.hash(props.password, 10);
         const newUser = await this.userService.createUser({
             ...props,
@@ -30,13 +30,12 @@ export default class AuthService {
 
     async login(props: LoginDto) {
         const user = await this.userService.getUserByName(props.name);
-        if (!user) {
-            throw new HttpException("Users not found", HttpStatus.NOT_FOUND);
-        }
+        if (!user)
+            throw new HttpException("User not found", HttpStatus.NOT_FOUND);
 
-        if (!await bcrypt.compare(props.password, user.password)) {
+        if (!await bcrypt.compare(props.password, user.password))
             throw new HttpException("Invalid credentials", HttpStatus.UNAUTHORIZED);
-        }
+
         user.password = undefined;
         return user;
     }

@@ -45,7 +45,7 @@ export default function ConnectPage() {
 		event.preventDefault();
 		const res = await signup(registerName, registerPassword);
 		if (res !== "null")
-			return ;
+			navigate(`/homePage/${registerName}`);
 	};
 	
 	const updateRegisterName = (event: any) => {

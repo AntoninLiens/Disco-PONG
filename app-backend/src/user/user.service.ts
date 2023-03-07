@@ -22,15 +22,11 @@ export class UsersService {
 
 	async getUserByName(name: string) {
 		const user = await this.userRepository.findOneBy({ name });
-		if (!user)
-			throw new HttpException("Users not found", HttpStatus.NOT_FOUND);
 		return user;
 	}
 	
 	async getUserById(id: number) {
 		const user = await this.userRepository.findOneBy({ id });
-		if (!user)
-			throw new HttpException("Users not found", HttpStatus.NOT_FOUND);
 		return user;
 	}
 	
