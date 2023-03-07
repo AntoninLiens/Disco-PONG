@@ -16,11 +16,11 @@ export default class AuthService {
     ) {}
 
     async register(props: RegisterDto) {
-        const Users = await this.UsersService.getUsersByName(props.name);
+        const Users = await this.UsersService.getUserByName(props.name);
         if (Users)
             throw new HttpException("Users already exists", HttpStatus.BAD_REQUEST);
         const hashedPassword = await bcrypt.hash(props.password, 10);
-        const newUsers = await this.UsersService.createUsers({
+        const newUsers = await this.UsersService.createUser({
             ...props,
             password: hashedPassword
         });
@@ -29,7 +29,7 @@ export default class AuthService {
     }
 
     async login(props: LoginDto) {
-        const Users = await this.UsersService.getUsersByName(props.name);
+        const Users = await this.UsersService.getUserByName(props.name);
         if (!Users) {
             throw new HttpException("Users not found", HttpStatus.NOT_FOUND);
         }

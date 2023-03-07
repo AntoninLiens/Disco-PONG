@@ -7,13 +7,13 @@ import * as bcrypt from "bcrypt";
 import { Client } from "pg";
 
 @Injectable()
-export class UserService {
+export class UsersService {
 	constructor(
-		@InjectRepository(User)
-		private readonly userRepository: Repository<User>
+		@InjectRepository(Users)
+		private readonly userRepository: Repository<Users>
 	) {}
 
-	async createUser(props: CreateUserDto) {
+	async createUser(props: CreateUsersDto) {
 		const user = await this.userRepository.create(props);
 		await this.userRepository.save(user);
 		return user;
@@ -23,14 +23,14 @@ export class UserService {
 		const user = this.userRepository.findOneBy({ name });
 		if (user)
 			return user;
-		throw new HttpException("User not found", HttpStatus.NOT_FOUND);
+		throw new HttpException("Users not found", HttpStatus.NOT_FOUND);
 	}
 
 	async getUserById(id: number) {
 		const user = this.userRepository.findOneBy({ id });
 		if (user)
 			return user;
-		throw new HttpException("User not found", HttpStatus.NOT_FOUND);
+		throw new HttpException("Users not found", HttpStatus.NOT_FOUND);
 	}
 
 	async setJwtRefreshToken(refreshToken: string, id: number) {
@@ -48,14 +48,18 @@ export class UserService {
 
 	// Tests de ctirions
 
-	defaultUser: User = {
+	defaultUser: Users = {
 		id: 0,
 		refreshToken: "",
 		name: "undefined",
 		password: "",
 		pfp: "",
 		score: 0,
-		level: 0
+		level: 0,
+		xp: 0,
+		coins: 0,
+		victories: [],
+		defeats: []
 	}
 
 	async getUserListLeaderboard() {
@@ -69,7 +73,7 @@ export class UserService {
 
 		console.log(result);
 
-		const userList: User[] = [
+		const userList: Users[] = [
 			this.defaultUser,
 			this.defaultUser,
 			this.defaultUser,

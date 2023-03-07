@@ -14,9 +14,9 @@ export class UsersController {
         return Users;
     }
 
-    @UseGuards(JwtAuthGuard)
-    @Get('leaderbord')
-    async leaderboard(@Body() name: string) {
+    // @UseGuards(JwtAuthGuard)
+    // @Get('leaderbord')
+    // async leaderboard(@Body() name: string) {
         
-    }
+    // }
 }
