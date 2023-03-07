@@ -20,7 +20,7 @@ export function createAuth() {
 	const signup = async (name: string, password: string) => "null";   
 	const signin = async (name: string, password: string) => "null";
 	const signout = async (name: string, password: string) => "null";
-	const profile = async () => "null";
+	const profile = async (token: string) => "null";
 	const leaderboard = async () => "null";
 
 	const authCtx = createContext({
