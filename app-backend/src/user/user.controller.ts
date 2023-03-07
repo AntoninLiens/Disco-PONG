@@ -1,15 +1,17 @@
-import { Body, Controller, Get, UseGuards } from "@nestjs/common";
+import { Req, Controller, Get, UseGuards } from "@nestjs/common";
+import { Request } from "express";
 import JwtAuthGuard from "src/auth/guards/jwtAuth.guard";
-import { UserService } from "./user.service";
+import RequestWithUsers from "src/auth/utils/requestWithUser.interface";
+import { UsersService } from "./user.service";
 
-@Controller('user')
-export class UserController {
-    constructor(private readonly userService: UserService) {}
+@Controller('Users')
+export class UsersController {
+    constructor() {}
 
-    @UseGuards(JwtAuthGuard)
     @Get('profile')
-    async profile(@Body() name: string) {
-        return this.userService.getUserByName(name);
+    @UseGuards(JwtAuthGuard)
+    async profile(@Req() { Users }: RequestWithUsers) {
+        return Users;
     }
 
     @UseGuards(JwtAuthGuard)

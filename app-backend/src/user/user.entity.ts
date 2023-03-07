@@ -1,10 +1,11 @@
 import { Exclude } from "class-transformer";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Game } from "src/game/game.entity";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-class User {
-	@PrimaryGeneratedColumn({ type: 'int' })
-	id: number;
+class Users {
+    @PrimaryGeneratedColumn({ type: 'int' })
+    id: number;
 
 	@Column({ type: 'varchar', nullable: true })
 	@Exclude()
@@ -17,13 +18,27 @@ class User {
 	@Exclude()
 	password: string;
 
-	@Column({ type: 'varchar', nullable: 'true' })
-	pfp: string;
+    @Column({ type: 'varchar', nullable: true })
+    pfp: string;
 
-	@Column({ type: 'int', nullable: 'true' })
-	score: number;
+    @Column({ type: 'int', default: 0 })
+    score: number;
 
-	@Column({ type: 'int', nullable: 'true' })    
-	level: number
+    @Column({ type: 'int', default: 0 })    
+    level: number;
+
+    @Column({ type: 'int', default: 0 })
+    xp: number;
+
+    @Column({ type: 'int', default: 0 })
+    coins: number;
+
+    @JoinColumn()
+    @ManyToOne(() => Game, game => game.winner)
+    victories: Game[];
+
+    @JoinColumn()
+    @ManyToOne(() => Game, game => game.looser)
+    defeats: Game[];
 }
-export default User;
+export default Users;

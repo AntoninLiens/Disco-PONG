@@ -1,56 +1,56 @@
-import { UserService } from "src/user/user.service";
+import { UsersService } from "src/user/user.service";
 import * as bcrypt from "bcrypt";
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import RegisterDto from "src/auth/dto/register.dto";
 import LoginDto from "src/auth/dto/login.dto";
 import { JwtService } from "@nestjs/jwt/dist";
 import { ConfigService } from "@nestjs/config";
-import User from "src/user/user.entity";
+import Users from "src/user/user.entity";
 
 @Injectable()
 export default class AuthService {
     constructor(
-        private readonly userService: UserService,
+        private readonly UsersService: UsersService,
         private readonly configService: ConfigService,
         private readonly jwtService: JwtService
     ) {}
 
     async register(props: RegisterDto) {
-        const user = await this.userService.getUserByName(props.name);
-        if (user)
-            throw new HttpException("User already exists", HttpStatus.BAD_REQUEST);
+        const Users = await this.UsersService.getUsersByName(props.name);
+        if (Users)
+            throw new HttpException("Users already exists", HttpStatus.BAD_REQUEST);
         const hashedPassword = await bcrypt.hash(props.password, 10);
-        const newUser = await this.userService.createUser({
+        const newUsers = await this.UsersService.createUsers({
             ...props,
             password: hashedPassword
         });
-        newUser.password = undefined;
-        return newUser;
+        newUsers.password = undefined;
+        return newUsers;
     }
 
     async login(props: LoginDto) {
-        const user = await this.userService.getUserByName(props.name);
-        if (!user) {
-            throw new HttpException("User not found", HttpStatus.NOT_FOUND);
+        const Users = await this.UsersService.getUsersByName(props.name);
+        if (!Users) {
+            throw new HttpException("Users not found", HttpStatus.NOT_FOUND);
         }
 
-        if (!await bcrypt.compare(props.password, user.password)) {
+        if (!await bcrypt.compare(props.password, Users.password)) {
             throw new HttpException("Invalid credentials", HttpStatus.UNAUTHORIZED);
         }
-        user.password = undefined;
-        return user;
+        Users.password = undefined;
+        return Users;
     }
 
-    getJwtRefreshToken(user: User) {
-        const payload: TokenPayload = { id: user.id, name: user.name };
+    getJwtRefreshToken(Users: Users) {
+        const payload: TokenPayload = { id: Users.id, name: Users.name };
         return this.jwtService.sign(payload, {
             secret: this.configService.get("JWT_REFRESH_TOKEN_SECRET"),
             expiresIn: this.configService.get("JWT_REFRESH_TOKEN_EXPIRATION_TIME")
         });
     }
     
-    getJwtAccessToken(user: User) {
-        const payload: TokenPayload = { id: user.id, name: user.name };
+    getJwtAccessToken(Users: Users) {
+        const payload: TokenPayload = { id: Users.id, name: Users.name };
         return this.jwtService.sign(payload);
     }
 
