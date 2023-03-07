@@ -1,13 +1,12 @@
 import "./Profile.css"
-import { useParams } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import { useContext } from "react";
 import { AuthContext } from "../..";
 
 
 export default function Profile() {
-	
-	const { user } = useContext(AuthContext)
+
+	const { user } = useContext(AuthContext);
 	
 	return (
 		<div className="profilePage">

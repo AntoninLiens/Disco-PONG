@@ -13,4 +13,10 @@ export class UsersController {
     async profile(@Req() { Users }: RequestWithUsers) {
         return Users;
     }
+
+    @UseGuards(JwtAuthGuard)
+    @Get('leaderbord')
+    async leaderboard(@Body() name: string) {
+        
+    }
 }

@@ -12,24 +12,42 @@ import Social from "./routes/Social/Social";
 import Stats from "./routes/Stats/Stats";
 import Settings from "./routes/Settings/Settings";
 import Shop from "./routes/Shop/Shop";
+import { useContext } from "react";
+import { AuthContext } from ".";
 
 function App() {
-	return (
-		<div className="App">
-			<Routes>
-				<Route path="/" element={<ConnectPage/>} />
-				<Route path="/homePage/:id/history" element={<History/>} />
-				<Route path="/homePage/:id" element={<HomePage/>} />
-				<Route path="/homePage/:id/leaderboard" element={<Leaderbord/>} />
-				<Route path="/pong" element={<Pong/>} />
-				<Route path="/homePage/:id/profile" element={<Profile/>} />
-				<Route path="/homePage/:id/social" element={<Social/>} />
-				<Route path="/homePage/:id/stats" element={<Stats/>} />
-				<Route path="/homePage/:id/settings" element={<Settings/>} />
-				<Route path="/shop" element={<Shop/>} />
-			</Routes>
-		</div>
-	);
+
+	const {user} = useContext(AuthContext);
+
+	if (user.name !== "" && user.token && user.token.length >= 10 ) {
+
+		return (
+			<div className="App">
+				<Routes>
+					{/* <Route path="/" element={<ConnectPage/>} /> */}
+					<Route path="/homePage/:id/history" element={<History/>} />
+					<Route path="/homePage/:id" element={<HomePage/>} />
+					<Route path="/homePage/:id/leaderboard" element={<Leaderbord/>} />
+					<Route path="/pong" element={<Pong/>} />
+					<Route path="/homePage/:id/profile" element={<Profile/>} />
+					<Route path="/homePage/:id/social" element={<Social/>} />
+					<Route path="/homePage/:id/stats" element={<Stats/>} />
+					<Route path="/homePage/:id/settings" element={<Settings/>} />
+					<Route path="/shop" element={<Shop/>} />
+				</Routes>
+			</div>
+		);
+	}
+	else {
+
+		return (
+			<div className="App">
+				<Routes>
+					<Route path="/" element={<ConnectPage/>} />
+				</Routes>
+			</div>
+		);
+	}
 }
 
 export default App;

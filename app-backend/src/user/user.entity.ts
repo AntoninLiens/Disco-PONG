@@ -7,16 +7,16 @@ class Users {
     @PrimaryGeneratedColumn({ type: 'int' })
     id: number;
 
-    @Column({ type: 'varchar', nullable: true })
-    @Exclude()
-    refreshToken: string;
+	@Column({ type: 'varchar', nullable: true })
+	@Exclude()
+	refreshToken: string;
 
-    @Column({ type: 'varchar', unique: true })
-    name: string;
+	@Column({ type: 'varchar', unique: true })
+	name: string;
 
-    @Column({ type: 'varchar' })
-    @Exclude()
-    password: string;
+	@Column({ type: 'varchar' })
+	@Exclude()
+	password: string;
 
     @Column({ type: 'varchar', nullable: true })
     pfp: string;
