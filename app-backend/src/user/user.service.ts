@@ -4,6 +4,7 @@ import { Repository } from "typeorm";
 import CreateUserDto from "./dto/createUser.dto";
 import User from "./user.entity";
 import * as bcrypt from "bcrypt";
+import { Client } from "pg";
 
 @Injectable()
 export class UserService {
@@ -58,6 +59,16 @@ export class UserService {
 	}
 
 	async getUserListLeaderboard() {
+
+		const queryBuilder = this.userRepository.createQueryBuilder("user")
+		.select("user.score")
+		.orderBy("user.score", "DESC")
+		.limit(10);
+
+		const result = await queryBuilder.execute();
+
+		console.log(result);
+
 		const userList: User[] = [
 			this.defaultUser,
 			this.defaultUser,
