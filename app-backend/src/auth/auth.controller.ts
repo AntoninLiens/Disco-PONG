@@ -12,22 +12,28 @@ import RefreshAuthGuard from "./guards/refreshAuth.guard";
 export class AuthController {
     constructor(
         private readonly authService: AuthService,
-        private readonly UsersService: UsersService
+        private readonly userService: UsersService
     ) {}
 
     @Post('register')
     async register(@Body() props: RegisterDto) {
-        return await this.authService.register(props);
+        const user: Users = await this.authService.register(props);
+        const accessToken =  await this.authService.getJwtAccessToken(user);
+        const refreshToken = await this.authService.getJwtRefreshToken(user);
+
+        await this.userService.setJwtRefreshToken(refreshToken, user.id);
+        
+        return { accessToken, refreshToken };
     }
 
     @HttpCode(200)
     @Post('login')
     async login(@Body() props: LoginDto) {
-        const Users: Users = await this.authService.login(props);
-        const accessToken =  await this.authService.getJwtAccessToken(Users);
-        const refreshToken = await this.authService.getJwtRefreshToken(Users);
+        const user: Users = await this.authService.login(props);
+        const accessToken =  await this.authService.getJwtAccessToken(user);
+        const refreshToken = await this.authService.getJwtRefreshToken(user);
 
-        await this.UsersService.setJwtRefreshToken(refreshToken, Users.id);
+        await this.userService.setJwtRefreshToken(refreshToken, user.id);
 
         return { accessToken, refreshToken };
     }

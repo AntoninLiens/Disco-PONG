@@ -1,5 +1,5 @@
 import { createContext, Dispatch, PropsWithChildren, SetStateAction, useState, useEffect } from "react";
-import axios from "../utils/axios"
+import axios, { setAuthToken } from "../utils/axios"
 
 export function createAuth() {
 	const defaultUser = {
@@ -37,38 +37,35 @@ export function createAuth() {
 		const [user, setUser] = useState(defaultUser);
 
 		const signup =  async (name: string, password: string) => {
-			const token = await axios.post("auth/register", { name, password })
+			const { accessToken, refreshToken } = await axios.post("auth/register", { name, password })
 			.then(res => { return (res.data) })
 			.catch(err => { return null });
 
-			if (!token) {
+			if (!accessToken || !refreshToken)
 				return "null";
-			}
-			// return await profile();
-			return name;
+			return await profile(accessToken);
 		};
 
 		const signin = async (name: string, password: string) => {
-			const token = await axios.post("auth/login", { name, password })
+			const { accessToken, refreshToken } = await axios.post("auth/login", { name, password })
 			.then(res => { return (res.data) })
 			.catch(err => { return null });
 
-			if (!token) {
+			if (!accessToken || !refreshToken)
 				return "null";
-			}
-			// return await profile();
-			return name;
+			return await profile(accessToken);
 		};
 
-		const profile = async () => {
-			const user = await axios.get("user/profile")
+		const profile = async (token: string) => {
+			setAuthToken(token);
+			const userTmp = await axios.get("user/profile")
 			.then(res => { return (res.data) })
 			.catch(err => { return null })
 
-			if (!user)
+			if (!userTmp)
 				setUser(defaultUser);
 			else
-				setUser(user);
+				setUser(userTmp);
 
 			return user.name;
 		};

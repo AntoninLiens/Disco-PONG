@@ -10,52 +10,52 @@ import Users from "src/user/user.entity";
 @Injectable()
 export default class AuthService {
     constructor(
-        private readonly UsersService: UsersService,
+        private readonly userService: UsersService,
         private readonly configService: ConfigService,
         private readonly jwtService: JwtService
     ) {}
 
     async register(props: RegisterDto) {
-        const Users = await this.UsersService.getUserByName(props.name);
-        if (Users)
+        const user = await this.userService.getUserByName(props.name);
+        if (user)
             throw new HttpException("Users already exists", HttpStatus.BAD_REQUEST);
         const hashedPassword = await bcrypt.hash(props.password, 10);
-        const newUsers = await this.UsersService.createUser({
+        const newUser = await this.userService.createUser({
             ...props,
             password: hashedPassword
         });
-        newUsers.password = undefined;
-        return newUsers;
+        newUser.password = undefined;
+        return newUser;
     }
 
     async login(props: LoginDto) {
-        const Users = await this.UsersService.getUserByName(props.name);
-        if (!Users) {
+        const user = await this.userService.getUserByName(props.name);
+        if (!user) {
             throw new HttpException("Users not found", HttpStatus.NOT_FOUND);
         }
 
-        if (!await bcrypt.compare(props.password, Users.password)) {
+        if (!await bcrypt.compare(props.password, user.password)) {
             throw new HttpException("Invalid credentials", HttpStatus.UNAUTHORIZED);
         }
-        Users.password = undefined;
-        return Users;
+        user.password = undefined;
+        return user;
     }
 
-    getJwtRefreshToken(Users: Users) {
-        const payload: TokenPayload = { id: Users.id, name: Users.name };
+    getJwtRefreshToken(user: Users) {
+        const payload: TokenPayload = { id: user.id };
         return this.jwtService.sign(payload, {
             secret: this.configService.get("JWT_REFRESH_TOKEN_SECRET"),
             expiresIn: this.configService.get("JWT_REFRESH_TOKEN_EXPIRATION_TIME")
         });
     }
     
-    getJwtAccessToken(Users: Users) {
-        const payload: TokenPayload = { id: Users.id, name: Users.name };
+    getJwtAccessToken(user: Users) {
+        const payload: TokenPayload = { id: user.id };
         return this.jwtService.sign(payload);
     }
 
     getLogOut() {
-        const payload: TokenPayload = { id: 0, name: "" };
+        const payload: TokenPayload = { id: 0 };
         return this.jwtService.sign(payload);
     }
 }

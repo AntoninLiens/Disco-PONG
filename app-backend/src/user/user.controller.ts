@@ -1,8 +1,6 @@
-import { Req, Controller, Get, UseGuards, Body } from "@nestjs/common";
-import { Request } from "express";
+import { Req, Controller, Get, UseGuards, HttpException, HttpStatus } from "@nestjs/common";
 import JwtAuthGuard from "src/auth/guards/jwtAuth.guard";
 import RequestWithUsers from "src/auth/utils/requestWithUser.interface";
-import { UsersService } from "./user.service";
 
 @Controller('user')
 export class UsersController {
@@ -13,7 +11,9 @@ export class UsersController {
     @Get('profile')
     @UseGuards(JwtAuthGuard)
     async profile(@Req() { user }: RequestWithUsers) {
-        return user;
+        if (user)
+            return user;
+        throw new HttpException("no user", HttpStatus.UNAUTHORIZED);
     }
 
     @Get('leaderboard')

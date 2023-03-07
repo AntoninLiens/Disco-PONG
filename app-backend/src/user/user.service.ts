@@ -4,13 +4,14 @@ import { Repository } from "typeorm";
 import CreateUsersDto from "./dto/createUser.dto";
 import Users from "./user.entity";
 import * as bcrypt from "bcrypt";
-import { Client } from "pg";
+import { JwtService } from "@nestjs/jwt";
 
 @Injectable()
 export class UsersService {
 	constructor(
 		@InjectRepository(Users)
-		private readonly userRepository: Repository<Users>
+		private readonly userRepository: Repository<Users>,
+		private readonly jwtService: JwtService
 	) {}
 
 	async createUser(props: CreateUsersDto) {
@@ -20,19 +21,19 @@ export class UsersService {
 	}
 
 	async getUserByName(name: string) {
-		const user = this.userRepository.findOneBy({ name });
-		if (user)
-			return user;
-		throw new HttpException("Users not found", HttpStatus.NOT_FOUND);
+		const user = await this.userRepository.findOneBy({ name });
+		if (!user)
+			throw new HttpException("Users not found", HttpStatus.NOT_FOUND);
+		return user;
 	}
-
+	
 	async getUserById(id: number) {
-		const user = this.userRepository.findOneBy({ id });
-		if (user)
-			return user;
-		throw new HttpException("Users not found", HttpStatus.NOT_FOUND);
+		const user = await this.userRepository.findOneBy({ id });
+		if (!user)
+			throw new HttpException("Users not found", HttpStatus.NOT_FOUND);
+		return user;
 	}
-
+	
 	async setJwtRefreshToken(refreshToken: string, id: number) {
 		const token = await bcrypt.hash(refreshToken, 10);
 		await this.userRepository.update(id, { refreshToken: token });
@@ -42,7 +43,7 @@ export class UsersService {
 		const user = await this.getUserById(id);
 		const isRefreshTokenMatching = await bcrypt.compare(refreshToken, user.refreshToken);
 		if (isRefreshTokenMatching)
-			return user;
+		return user;
 		throw new HttpException("Invalid refresh token", HttpStatus.UNAUTHORIZED);
 	}
 
