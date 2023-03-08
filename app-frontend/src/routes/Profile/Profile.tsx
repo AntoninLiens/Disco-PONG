@@ -23,7 +23,7 @@ export default function Profile() {
 				<div className="profile_score">Score: {user.score}</div>
 				<div className="profile_lvl">Level: {user.level}</div>
 				<div className="profile_xpBar">
-					<div className="profile_xp"></div>
+					<div className="profile_xp" style={{ width: `${user.xp}%` }}></div>
 				</div>
 			</div>
 		</div>

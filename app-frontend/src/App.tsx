@@ -44,8 +44,6 @@ function App() {
 			<div className="App">
 				<Routes>
 					<Route path="/" element={<ConnectPage/>} />
-					<Route path="/homePage/:id" element={<HomePage/>} />
-					<Route path="/homePage/:id/leaderboard" element={<Leaderbord/>} />
 				</Routes>
 			</div>
 		);

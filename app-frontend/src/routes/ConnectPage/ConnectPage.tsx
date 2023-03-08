@@ -43,9 +43,13 @@ export default function ConnectPage() {
 	
 	const handleRegister = async (event: any) => {
 		event.preventDefault();
-		const res = await signup(registerName, registerPassword);
-		if (res !== "null")
-			navigate(`/homePage/${registerName}`);
+		if (registerPassword === registerConfirmPassword) {
+			const res = await signup(registerName, registerPassword);
+			if (res !== "null")
+				navigate(`/homePage/${registerName}`);
+		}
+		else
+			alert("Passwords don't match");
 	};
 	
 	const updateRegisterName = (event: any) => {
