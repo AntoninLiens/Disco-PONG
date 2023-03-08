@@ -121,6 +121,36 @@ input {
 	text-shadow: 2px -2px 0 black;
 }
 
+.registerError {
+	margin: 0;
+	padding: 0;
+	color: gray;
+	text-align: center;
+	font-size: 10px;
+}
+
+.registerError .display {
+	display: block;
+}
+
+.registerError .hide {
+	display: none;
+}
+
+.loginError {
+	color: gray;
+	text-align: center;
+	font-size: 10px;
+}
+
+.loginError .display {
+	display: block;
+}
+
+.loginError .hide {
+	display: none;
+}
+
 @media screen and (min-width: 1024px) {
 	.box {
 		scale: 1.3;

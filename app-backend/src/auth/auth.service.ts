@@ -34,7 +34,7 @@ export default class AuthService {
             throw new HttpException("User not found", HttpStatus.NOT_FOUND);
 
         if (!await bcrypt.compare(props.password, user.password))
-            throw new HttpException("Invalid credentials", HttpStatus.UNAUTHORIZED);
+            throw new HttpException("Invalid password", HttpStatus.UNAUTHORIZED);
 
         user.password = undefined;
         return user;

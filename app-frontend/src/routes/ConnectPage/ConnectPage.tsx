@@ -14,8 +14,9 @@ export default function ConnectPage() {
 	const [registerPassword, setRegisterPassword] = useState("");
 	const [registerConfirmPassword, setRegisterConfirmPassword] = useState("");
 
-	const { signin, signup } = useContext(AuthContext);
+	const { error, signin, signup } = useContext(AuthContext);
 	
+	const hideOrDisplay = error ? "display" : "hide";
 	const [sliderType, setSliderType] = useState("loginSlider");
 	const [formBoxType, setFormBoxType] = useState("loginFormBox");
 	
@@ -48,8 +49,6 @@ export default function ConnectPage() {
 			if (res !== "null")
 				navigate(`/homePage/${registerName}`);
 		}
-		else
-			alert("Passwords don't match");
 	};
 	
 	const updateRegisterName = (event: any) => {
@@ -86,6 +85,7 @@ export default function ConnectPage() {
 						<form action="submit" onSubmit={handleLogin} className="loginBox">
 							<input onChange={updateLoginName} type="text" placeholder="Username"></input>
 							<input onChange={updateLoginPassword} type="password" placeholder="Password"></input>
+							<div className={`loginError ${hideOrDisplay}`}>{ error }</div>
 							<button className="connectBtn" type="submit">Login</button>
 						</form>
 
@@ -93,7 +93,8 @@ export default function ConnectPage() {
 							<input onChange={updateRegisterName} type="text" placeholder="Username"></input>
 							<input onChange={updateRegisterPassword} type="password" placeholder="Password"></input>
 							<input onChange={updateRegisterConfirmPassword} type="password" placeholder="Confirm password"></input>
-							<button className="connectBtn" type="submit">Register</button>
+							<div className={`registerError ${hideOrDisplay}`}>{ error }</div>
+			 				<button className="connectBtn" type="submit">Register</button>
 						</form>
 					</div>
 				</div>

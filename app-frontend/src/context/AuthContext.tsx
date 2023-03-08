@@ -25,6 +25,7 @@ export function createAuth() {
 
 	const authCtx = createContext({
 		user: defaultUser,
+		error: "",
 		setUser: defaultUpdate,
 		signup: signup,
 		signin: signin,
@@ -35,12 +36,17 @@ export function createAuth() {
 
 	function AuthProvider(props: PropsWithChildren<{}>) {
 		const [user, setUser] = useState(defaultUser);
+		const [error, setError] = useState("");
 
 		const signup =  async (name: string, password: string) => {
 			const { accessToken, refreshToken } = await axios.post("auth/register", { name, password })
 			.then(res => { return (res.data) })
-			.catch(err => { return null });
+			.catch(err => {
+				setError(err.response.data.message);
+				return null
+			});
 
+			console.log("accessToken: ", accessToken);
 			if (!accessToken || !refreshToken)
 				return "null";
 			return await profile(accessToken);
@@ -49,7 +55,10 @@ export function createAuth() {
 		const signin = async (name: string, password: string) => {
 			const { accessToken, refreshToken } = await axios.post("auth/login", { name, password })
 			.then(res => { return (res.data) })
-			.catch(err => { return null });
+			.catch(err => {
+				setError(err.response.data.message);
+				return null
+			});
 
 			if (!accessToken || !refreshToken)
 				return "null";
@@ -62,8 +71,10 @@ export function createAuth() {
 			.then(res => { return (res.data) })
 			.catch(err => { return null })
 
-			if (!userTmp)
+			if (!userTmp) {
 				setUser(defaultUser);
+				return "null";
+			}
 			else
 				setUser(userTmp);
 
@@ -89,6 +100,7 @@ export function createAuth() {
 		return (
 			<authCtx.Provider value={{
 				user,
+				error,
 				setUser,
 				signup,
 				signin,
