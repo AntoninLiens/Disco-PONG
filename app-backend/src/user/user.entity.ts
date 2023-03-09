@@ -33,11 +33,9 @@ class Users {
     @Column({ type: 'int', default: 0 })
     coins: number;
 
-    @JoinColumn()
     @ManyToOne(() => Game, game => game.winner)
     victories: Game[];
 
-    @JoinColumn()
     @ManyToOne(() => Game, game => game.looser)
     defeats: Game[];
 }

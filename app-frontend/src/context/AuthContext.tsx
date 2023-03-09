@@ -3,11 +3,11 @@ import axios, { setAuthToken } from "../utils/axios"
 
 export function createAuth() {
 	const defaultUser = {
+		id: 0,
 		name: "",
-		token: "",
+		password: "",
+		refreshToken: "",
 		pfp: "",
-		victories: [],
-		deafeats: [],
 		score: 0,
 		level: 0,
 		xp: 0,
@@ -24,18 +24,18 @@ export function createAuth() {
 	const leaderboard = async () => "null";
 
 	const authCtx = createContext({
-		user: defaultUser,
-		error: "",
-		setUser: defaultUpdate,
+		users: defaultUser,
+		setUsers: defaultUpdate,
 		signup: signup,
 		signin: signin,
 		signout: signout,
 		profile: profile,
-		leaderboard: leaderboard
+		leaderboard: leaderboard,
+		error: ""
 	});
 
 	function AuthProvider(props: PropsWithChildren<{}>) {
-		const [user, setUser] = useState(defaultUser);
+		const [users, setUsers] = useState(defaultUser); // USERSSSSSSS PARANO
 		const [error, setError] = useState("");
 
 		const signup =  async (name: string, password: string) => {
@@ -45,13 +45,13 @@ export function createAuth() {
 				setError(err.response.data.message);
 				return null
 			});
-
-			console.log("accessToken: ", accessToken);
+			
 			if (!accessToken || !refreshToken)
 				return "null";
+			
 			return await profile(accessToken);
 		};
-
+		
 		const signin = async (name: string, password: string) => {
 			const { accessToken, refreshToken } = await axios.post("auth/login", { name, password })
 			.then(res => { return (res.data) })
@@ -59,30 +59,43 @@ export function createAuth() {
 				setError(err.response.data.message);
 				return null
 			});
-
+			
 			if (!accessToken || !refreshToken)
 				return "null";
+
 			return await profile(accessToken);
 		};
 
 		const profile = async (token: string) => {
 			setAuthToken(token);
-			const userTmp = await axios.get("user/profile")
+			localStorage.setItem("token", token);
+			const user = await axios.get("user/profile")
 			.then(res => { return (res.data) })
 			.catch(err => { return null })
-
-			if (!userTmp) {
-				setUser(defaultUser);
+			
+			if (!user) {
+				setUsers(defaultUser);
 				return "null";
 			}
-			else
-				setUser(userTmp);
-
-			return user.name;
+			else {
+				setUsers({
+					id: user.id,
+					name: user.name,
+					password: user.password,
+					refreshToken: user.refreshToken,
+					pfp: user.pfp,
+					score: user.score,
+					level: user.level,
+					xp: user.xp,
+					coins: user.coins
+				});
+			}
+			
+			return users.name;
 		};
 
 		const signout = async () => {
-			setUser(defaultUser);
+			setUsers(defaultUser);
 			return "null";
 		};
 
@@ -97,16 +110,29 @@ export function createAuth() {
 			return ("success");
 		}
 
+		useEffect(() => {
+			const token = localStorage.getItem("token");
+			if (token)
+				profile(token);
+		}, []);
+
+		const setup = async () => {}
+
+		useEffect(() => {
+			setup();
+		}, [])
+		
+
 		return (
 			<authCtx.Provider value={{
-				user,
-				error,
-				setUser,
+				users,
+				setUsers,
 				signup,
 				signin,
 				signout,
 				profile,
-				leaderboard
+				leaderboard,
+				error
 			}}
 			{...props} />
 		);

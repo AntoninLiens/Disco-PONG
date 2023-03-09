@@ -3,7 +3,6 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../..";
 
-
 export default function ConnectPage() {
 	
 	// STATES
@@ -14,7 +13,7 @@ export default function ConnectPage() {
 	const [registerPassword, setRegisterPassword] = useState("");
 	const [registerConfirmPassword, setRegisterConfirmPassword] = useState("");
 
-	const { error, signin, signup } = useContext(AuthContext);
+	const { users, error, signin, signup } = useContext(AuthContext);
 	
 	const hideOrDisplay = error ? "display" : "hide";
 	const [sliderType, setSliderType] = useState("loginSlider");
@@ -26,11 +25,11 @@ export default function ConnectPage() {
 	
 	/*Login*/
 	
-	const handleLogin = async (event: any) => {
-		event.preventDefault();
+	const handleLogin = async () => {
 		const res = await signin(loginName, loginPassword);
+		console.log("res: ", users.name);
 		if (res !== "null")
-			navigate(`/homePage/${loginName}`);
+			navigate(`/homePage/${users.name}`);
 	};
 	
 	const updateLoginName = (event: any) => {
@@ -42,12 +41,11 @@ export default function ConnectPage() {
 	
 	/*Register*/
 	
-	const handleRegister = async (event: any) => {
-		event.preventDefault();
+	const handleRegister = async () => {
 		if (registerPassword === registerConfirmPassword) {
 			const res = await signup(registerName, registerPassword);
 			if (res !== "null")
-				navigate(`/homePage/${registerName}`);
+				navigate(`/homePage/${users.name}`);
 		}
 	};
 	
@@ -82,20 +80,20 @@ export default function ConnectPage() {
 					</div>
 
 					<div className={`formBox ${formBoxType}`}>
-						<form action="submit" onSubmit={handleLogin} className="loginBox">
+						<div className="loginBox">
 							<input onChange={updateLoginName} type="text" placeholder="Username"></input>
 							<input onChange={updateLoginPassword} type="password" placeholder="Password"></input>
 							<div className={`loginError ${hideOrDisplay}`}>{ error }</div>
-							<button className="connectBtn" type="submit">Login</button>
-						</form>
+							<button className="connectBtn" onClick={handleLogin} type="submit">Login</button>
+						</div>
 
-						<form action="submit" onSubmit={handleRegister} className="registerBox">
+						<div className="registerBox">
 							<input onChange={updateRegisterName} type="text" placeholder="Username"></input>
 							<input onChange={updateRegisterPassword} type="password" placeholder="Password"></input>
 							<input onChange={updateRegisterConfirmPassword} type="password" placeholder="Confirm password"></input>
 							<div className={`registerError ${hideOrDisplay}`}>{ error }</div>
-			 				<button className="connectBtn" type="submit">Register</button>
-						</form>
+			 				<button className="connectBtn" onClick={handleRegister} type="submit">Register</button>
+						</div>
 					</div>
 				</div>
 			</div>
