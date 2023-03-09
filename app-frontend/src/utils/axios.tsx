@@ -17,7 +17,7 @@ export const setRefreshToken = (token: string) => {
 
 export const removeAuthToken = () => {
 	instance.defaults.headers.common["Authorization"] = "";
-	instance.defaults.headers.common["refreshToken"] = "";
+	// instance.defaults.headers.common["refreshToken"] = "";
 }
 
 export default instance;
