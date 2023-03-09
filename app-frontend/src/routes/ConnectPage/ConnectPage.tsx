@@ -13,6 +13,7 @@ export default function ConnectPage() {
 	const [loginPassword, setLoginPassword] = useState("");
 	const [registerPassword, setRegisterPassword] = useState("");
 	const [registerConfirmPassword, setRegisterConfirmPassword] = useState("");
+	const [tabulation, setTabulation] = useState(false);
 
 	const { error, signin, signup } = useContext(AuthContext);
 	
@@ -64,6 +65,10 @@ export default function ConnectPage() {
 	/*Style*/
 	
 	const handleSliderClick = (sliderType: string, formBoxType: string) => {
+		if (tabulation)
+			setTabulation(false);
+		else
+			setTabulation(true);
 		setSliderType(sliderType);
 		setFormBoxType(formBoxType);
 	};
@@ -83,18 +88,18 @@ export default function ConnectPage() {
 
 					<div className={`formBox ${formBoxType}`}>
 						<form action="submit" onSubmit={handleLogin} className="loginBox">
-							<input onChange={updateLoginName} type="text" placeholder="Username"></input>
-							<input onChange={updateLoginPassword} type="password" placeholder="Password"></input>
-							<div className={`loginError ${hideOrDisplay}`}>{ error }</div>
-							<button className="connectBtn" type="submit">Login</button>
+							<input onChange={updateLoginName} type="text" placeholder="Username" tabIndex={tabulation ? -1 : 0}></input>
+							<input onChange={updateLoginPassword} type="password" placeholder="Password" tabIndex={tabulation ? -1 : 0}></input>
+							<div className={`loginError ${hideOrDisplay}`} tabIndex={tabulation ? -1 : 0}>{ error }</div>
+							<button className="connectBtn" type="submit" tabIndex={tabulation ? -1 : 0}>Login</button>
 						</form>
 
 						<form action="submit" onSubmit={handleRegister} className="registerBox">
-							<input onChange={updateRegisterName} type="text" placeholder="Username"></input>
-							<input onChange={updateRegisterPassword} type="password" placeholder="Password"></input>
-							<input onChange={updateRegisterConfirmPassword} type="password" placeholder="Confirm password"></input>
-							<div className={`registerError ${hideOrDisplay}`}>{ error }</div>
-			 				<button className="connectBtn" type="submit">Register</button>
+							<input onChange={updateRegisterName} type="text" placeholder="Username" tabIndex={tabulation ? 0 : -1}></input>
+							<input onChange={updateRegisterPassword} type="password" placeholder="Password" tabIndex={tabulation ? 0 : -1}></input>
+							<input onChange={updateRegisterConfirmPassword} type="password" placeholder="Confirm password" tabIndex={tabulation ? 0 : -1}></input>
+							<div className={`registerError ${hideOrDisplay}`} tabIndex={tabulation ? 0 : -1}>{ error }</div>
+			 				<button className="connectBtn" type="submit" tabIndex={tabulation ? 0 : -1}>Register</button>
 						</form>
 					</div>
 				</div>
