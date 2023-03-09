@@ -6,14 +6,12 @@ export class Game {
     @PrimaryGeneratedColumn({ type: 'int' })
     id: number;
 
-    @Column({ type: 'timestamp' })
+    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     date: Date;
 
-    @JoinColumn()
     @OneToMany(() => Users, Users => Users.victories)
     winner: Users;
 
-    @JoinColumn()
     @OneToMany(() => Users, Users => Users.victories)
-    looser: Users;    
+    looser: Users;
 }

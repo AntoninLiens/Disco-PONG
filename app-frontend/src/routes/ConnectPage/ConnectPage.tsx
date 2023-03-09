@@ -3,7 +3,6 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../..";
 
-
 export default function ConnectPage() {
 	
 	// STATES
@@ -15,7 +14,7 @@ export default function ConnectPage() {
 	const [registerConfirmPassword, setRegisterConfirmPassword] = useState("");
 	const [tabulation, setTabulation] = useState(false);
 
-	const { error, signin, signup } = useContext(AuthContext);
+	const { users, error, signin, signup } = useContext(AuthContext);
 	
 	const hideOrDisplay = error ? "display" : "hide";
 	const [sliderType, setSliderType] = useState("loginSlider");
@@ -27,11 +26,11 @@ export default function ConnectPage() {
 	
 	/*Login*/
 	
-	const handleLogin = async (event: any) => {
-		event.preventDefault();
+	const handleLogin = async () => {
 		const res = await signin(loginName, loginPassword);
+		console.log("res: ", users.name);
 		if (res !== "null")
-			navigate(`/homePage/${loginName}`);
+			navigate(`/homePage/${users.name}`);
 	};
 	
 	const updateLoginName = (event: any) => {
@@ -43,12 +42,11 @@ export default function ConnectPage() {
 	
 	/*Register*/
 	
-	const handleRegister = async (event: any) => {
-		event.preventDefault();
+	const handleRegister = async () => {
 		if (registerPassword === registerConfirmPassword) {
 			const res = await signup(registerName, registerPassword);
 			if (res !== "null")
-				navigate(`/homePage/${registerName}`);
+				navigate(`/homePage/${users.name}`);
 		}
 	};
 	
@@ -87,6 +85,7 @@ export default function ConnectPage() {
 					</div>
 
 					<div className={`formBox ${formBoxType}`}>
+<<<<<<< HEAD
 						<form action="submit" onSubmit={handleLogin} className="loginBox">
 							<input onChange={updateLoginName} type="text" placeholder="Username" tabIndex={tabulation ? -1 : 0}></input>
 							<input onChange={updateLoginPassword} type="password" placeholder="Password" tabIndex={tabulation ? -1 : 0}></input>
@@ -101,6 +100,22 @@ export default function ConnectPage() {
 							<div className={`registerError ${hideOrDisplay}`} tabIndex={tabulation ? 0 : -1}>{ error }</div>
 			 				<button className="connectBtn" type="submit" tabIndex={tabulation ? 0 : -1}>Register</button>
 						</form>
+=======
+						<div className="loginBox">
+							<input onChange={updateLoginName} type="text" placeholder="Username"></input>
+							<input onChange={updateLoginPassword} type="password" placeholder="Password"></input>
+							<div className={`loginError ${hideOrDisplay}`}>{ error }</div>
+							<button className="connectBtn" onClick={handleLogin} type="submit">Login</button>
+						</div>
+
+						<div className="registerBox">
+							<input onChange={updateRegisterName} type="text" placeholder="Username"></input>
+							<input onChange={updateRegisterPassword} type="password" placeholder="Password"></input>
+							<input onChange={updateRegisterConfirmPassword} type="password" placeholder="Confirm password"></input>
+							<div className={`registerError ${hideOrDisplay}`}>{ error }</div>
+			 				<button className="connectBtn" onClick={handleRegister} type="submit">Register</button>
+						</div>
+>>>>>>> b3066500343ace00be5cf0efc279558820e89645
 					</div>
 				</div>
 			</div>

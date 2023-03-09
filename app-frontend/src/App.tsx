@@ -17,14 +17,14 @@ import { AuthContext } from ".";
 
 function App() {
 
-	const {user} = useContext(AuthContext);
+	const {users} = useContext(AuthContext);
 
-	if (user.name !== "") {
+	if (users.name !== "") {
 
 		return (
 			<div className="App">
 				<Routes>
-					{/* <Route path="/" element={<ConnectPage/>} /> */}
+					<Route path="/" element={<ConnectPage/>} />
 					<Route path="/homePage/:id/history" element={<History/>} />
 					<Route path="/homePage/:id" element={<HomePage/>} />
 					<Route path="/homePage/:id/leaderboard" element={<Leaderbord/>} />
