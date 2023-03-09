@@ -85,7 +85,6 @@ export default function ConnectPage() {
 					</div>
 
 					<div className={`formBox ${formBoxType}`}>
-<<<<<<< HEAD
 						<form action="submit" onSubmit={handleLogin} className="loginBox">
 							<input onChange={updateLoginName} type="text" placeholder="Username" tabIndex={tabulation ? -1 : 0}></input>
 							<input onChange={updateLoginPassword} type="password" placeholder="Password" tabIndex={tabulation ? -1 : 0}></input>
@@ -100,22 +99,6 @@ export default function ConnectPage() {
 							<div className={`registerError ${hideOrDisplay}`} tabIndex={tabulation ? 0 : -1}>{ error }</div>
 			 				<button className="connectBtn" type="submit" tabIndex={tabulation ? 0 : -1}>Register</button>
 						</form>
-=======
-						<div className="loginBox">
-							<input onChange={updateLoginName} type="text" placeholder="Username"></input>
-							<input onChange={updateLoginPassword} type="password" placeholder="Password"></input>
-							<div className={`loginError ${hideOrDisplay}`}>{ error }</div>
-							<button className="connectBtn" onClick={handleLogin} type="submit">Login</button>
-						</div>
-
-						<div className="registerBox">
-							<input onChange={updateRegisterName} type="text" placeholder="Username"></input>
-							<input onChange={updateRegisterPassword} type="password" placeholder="Password"></input>
-							<input onChange={updateRegisterConfirmPassword} type="password" placeholder="Confirm password"></input>
-							<div className={`registerError ${hideOrDisplay}`}>{ error }</div>
-			 				<button className="connectBtn" onClick={handleRegister} type="submit">Register</button>
-						</div>
->>>>>>> b3066500343ace00be5cf0efc279558820e89645
 					</div>
 				</div>
 			</div>

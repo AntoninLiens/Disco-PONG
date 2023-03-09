@@ -1,4 +1,4 @@
-import { createContext, Dispatch, PropsWithChildren, SetStateAction, useState } from "react";
+import { createContext, Dispatch, PropsWithChildren, SetStateAction, useState, useEffect } from "react";
 import axios, { setAuthToken } from "../utils/axios"
 
 export function createAuth() {
@@ -14,7 +14,6 @@ export function createAuth() {
 		coins: 0
 	};
 
-	
 	type UpdateType = Dispatch<SetStateAction<typeof defaultUser>>;
 	const defaultUpdate: UpdateType = () => defaultUser;
 	
@@ -37,18 +36,9 @@ export function createAuth() {
 		leaderboard: typeof leaderboard;
 	}
 
-<<<<<<< HEAD
-	const authCtx = createContext<AuthContextType>({
-		test: "test",
-		setTest: () => {},
-		user: defaultUser,
-		error: "",
-		setUser: defaultUpdate,
-=======
 	const authCtx = createContext({
 		users: defaultUser,
 		setUsers: defaultUpdate,
->>>>>>> b3066500343ace00be5cf0efc279558820e89645
 		signup: signup,
 		signin: signin,
 		signout: signout,
@@ -58,12 +48,7 @@ export function createAuth() {
 	});
 
 	function AuthProvider(props: PropsWithChildren<{}>) {
-<<<<<<< HEAD
-		const [test, setTest] = useState("test");
-		const [user, setUser] = useState(defaultUser);
-=======
 		const [users, setUsers] = useState(defaultUser); // USERSSSSSSS PARANO
->>>>>>> b3066500343ace00be5cf0efc279558820e89645
 		const [error, setError] = useState("");
 
 		const signup =  async (name: string, password: string) => {
@@ -87,12 +72,7 @@ export function createAuth() {
 				setError(err.response.data.message);
 				return null
 			});
-<<<<<<< HEAD
-			setTest("test bis");
-			console.log(test);
-=======
 			
->>>>>>> b3066500343ace00be5cf0efc279558820e89645
 			if (!accessToken || !refreshToken)
 				return "null";
 
@@ -158,16 +138,8 @@ export function createAuth() {
 
 		return (
 			<authCtx.Provider value={{
-<<<<<<< HEAD
-				test,
-				setTest,
-				user,
-				error,
-				setUser,
-=======
 				users,
 				setUsers,
->>>>>>> b3066500343ace00be5cf0efc279558820e89645
 				signup,
 				signin,
 				signout,
