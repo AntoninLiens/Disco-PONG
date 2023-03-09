@@ -41,7 +41,6 @@ export function createAuth() {
 		signin: signin,
 		signout: signout,
 		profile: profile,
-		leaderboard: leaderboard,
 		error: ""
 	});
 
@@ -110,17 +109,6 @@ export function createAuth() {
 			return "null";
 		};
 
-		const leaderboard = async () => {
-			const userListTmp: never[] = await axios.get("user/leaderboard")
-			.then(res => { return (res.data) })
-			.catch(err => { return null })
-			
-			if (!userListTmp)
-				return 'null';
-			console.log("userList: ", userListTmp);
-			return ("success");
-		}
-
 		useEffect(() => {
 			const token = localStorage.getItem("token");
 			if (token)
@@ -142,7 +130,6 @@ export function createAuth() {
 				signin,
 				signout,
 				profile,
-				leaderboard,
 				error
 			}}
 			{...props} />
