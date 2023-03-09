@@ -14,9 +14,11 @@ export default function ConnectPage() {
 	const [registerConfirmPassword, setRegisterConfirmPassword] = useState("");
 	const [tabulation, setTabulation] = useState<boolean>(false);
 
-	const { users, error, signin, signup } = useContext(AuthContext);
+	const { users, errorLogin, errorRegister, signin, signup } = useContext(AuthContext);
 	
-	const hideOrDisplay = error ? "display" : "hide";
+	const hideOrDisplay = errorLogin ? "display" : "hide";
+	const hideOrDisplay2 = errorRegister ? "display" : "hide";
+
 	const [sliderType, setSliderType] = useState("loginSlider");
 	const [formBoxType, setFormBoxType] = useState("loginFormBox");
 	
@@ -88,7 +90,7 @@ export default function ConnectPage() {
 						<div className="loginBox">
 							<input onChange={updateLoginName} type="text" placeholder="Username" tabIndex={tabulation ? -1 : 0}></input>
 							<input onChange={updateLoginPassword} type="password" placeholder="Password" tabIndex={tabulation ? -1 : 0}></input>
-							<div className={`loginError ${hideOrDisplay}`} tabIndex={tabulation ? -1 : 0}>{ error }</div>
+							<div className={`loginError ${hideOrDisplay}`} tabIndex={tabulation ? -1 : 0}>{ errorLogin }</div>
 							<button className="connectBtn" onClick={handleLogin} type="submit" tabIndex={tabulation ? -1 : 0}>Login</button>
 						</div>
 
@@ -96,7 +98,7 @@ export default function ConnectPage() {
 							<input onChange={updateRegisterName} type="text" placeholder="Username" tabIndex={tabulation ? 0 : -1}></input>
 							<input onChange={updateRegisterPassword} type="password" placeholder="Password" tabIndex={tabulation ? 0 : -1}></input>
 							<input onChange={updateRegisterConfirmPassword} type="password" placeholder="Confirm password" tabIndex={tabulation ? 0 : -1}></input>
-							<div className={`registerError ${hideOrDisplay}`} tabIndex={tabulation ? 0 : -1}>{ error }</div>
+							<div className={`registerError ${hideOrDisplay2}`} tabIndex={tabulation ? 0 : -1}>{ errorRegister }</div>
 			 				<button className="connectBtn" onClick={handleRegister} type="submit" tabIndex={tabulation ? 0 : -1}>Register</button>
 						</div>
 					</div>

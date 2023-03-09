@@ -42,18 +42,28 @@ export function createAuth() {
 		signout: signout,
 		profile: profile,
 		leaderboard: leaderboard,
-		error: ""
+		errorLogin: "",
+		errorRegister: ""
 	});
 
 	function AuthProvider(props: PropsWithChildren<{}>) {
 		const [users, setUsers] = useState(defaultUser); // USERSSSSSSS PARANO
-		const [error, setError] = useState("");
+		const [errorLogin, setErrorLogin] = useState("");
+		const [errorRegister, setErrorRegister] = useState("");
 
 		const signup =  async (name: string, password: string) => {
 			const { accessToken, refreshToken } = await axios.post("auth/register", { name, password })
 			.then(res => { return (res.data) })
 			.catch(err => {
-				setError(err.response.data.message);
+				console.log(err.response.data.message);
+				if (err.response.data.message[0] === "User already exists")
+					setErrorRegister("User already exists");
+				else if (err.response.data.message[0] === "name should not be empty")
+					setErrorRegister("name should not be empty");
+				else if (err.response.data.message[1] === "password should not be empty")
+					setErrorRegister("password should not be empty");
+				else if (err.response.data.message[0] === "password must be longer than or equal to 7 characters")
+					setErrorRegister("password must be longer than or equal to 7 characters");
 				return null
 			});
 			
@@ -67,7 +77,7 @@ export function createAuth() {
 			const { accessToken, refreshToken } = await axios.post("auth/login", { name, password })
 			.then(res => { return (res.data) })
 			.catch(err => {
-				setError(err.response.data.message);
+				setErrorLogin(err.response.data.message);
 				return null
 			});
 			
@@ -143,7 +153,8 @@ export function createAuth() {
 				signout,
 				profile,
 				leaderboard,
-				error
+				errorLogin,
+				errorRegister
 			}}
 			{...props} />
 		);
