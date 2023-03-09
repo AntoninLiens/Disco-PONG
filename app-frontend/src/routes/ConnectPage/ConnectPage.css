@@ -51,7 +51,7 @@
 	background: linear-gradient(to right, blueviolet, teal);
 	position: absolute;
 	top: 20px;
-	transition: all 0.5s ease-in-out;
+	transition: all 0.3s ease-in-out;
 }
 
 .loginSlider {
@@ -68,7 +68,7 @@
 	padding: 20px 0;
 	display: flex;
 	position: relative;
-	transition: all 0.5s ease-in-out;
+	transition: all 0.3s ease-in-out;
 }
 
 .loginFormBox {

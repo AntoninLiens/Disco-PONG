@@ -23,18 +23,16 @@ export function createAuth() {
 	const profile = async (token: string) => "null";
 	const leaderboard = async () => "null";
 	
-	interface AuthContextType {
-		test: string;
-		setTest: Dispatch<SetStateAction<string>>;
-		user: typeof defaultUser;
-		error: string;
-		setUser: UpdateType;
-		signup: typeof signup;
-		signin: typeof signin;
-		signout: typeof signout;
-		profile: typeof profile;
-		leaderboard: typeof leaderboard;
-	}
+	// interface AuthContextType {
+	// 	users: typeof defaultUser;
+	// 	error: string;
+	// 	setUsers: UpdateType;
+	// 	signup: typeof signup;
+	// 	signin: typeof signin;
+	// 	signout: typeof signout;
+	// 	profile: typeof profile;
+	// 	leaderboard: typeof leaderboard;
+	// }
 
 	const authCtx = createContext({
 		users: defaultUser,
