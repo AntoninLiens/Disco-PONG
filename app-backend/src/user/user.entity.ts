@@ -1,6 +1,6 @@
 import { Exclude } from "class-transformer";
 import { Game } from "src/game/game.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 class Users {
@@ -33,10 +33,10 @@ class Users {
     @Column({ type: 'int', default: 0 })
     coins: number;
 
-    @ManyToOne(() => Game, game => game.winner)
+    @OneToMany(() => Game, game => game.winner)
     victories: Game[];
 
-    @ManyToOne(() => Game, game => game.looser)
+    @OneToMany(() => Game, game => game.looser)
     defeats: Game[];
 }
 export default Users;
