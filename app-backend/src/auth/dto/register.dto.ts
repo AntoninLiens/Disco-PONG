@@ -10,4 +10,8 @@ export default class RegisterDto {
     @IsNotEmpty()
     @MinLength(7)
     password: string;
+
+    @IsString()
+    @IsNotEmpty()
+    pfp: string;
 }
