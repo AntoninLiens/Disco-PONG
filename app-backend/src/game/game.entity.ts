@@ -1,5 +1,5 @@
 import Users from "src/user/user.entity";
-import { Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Game {
@@ -9,9 +9,9 @@ export class Game {
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     date: Date;
 
-    @OneToMany(() => Users, Users => Users.victories)
+    @ManyToOne(() => Users, Users => Users.victories)
     winner: Users;
 
-    @OneToMany(() => Users, Users => Users.victories)
+    @ManyToOne(() => Users, Users => Users.defeats)
     looser: Users;
 }

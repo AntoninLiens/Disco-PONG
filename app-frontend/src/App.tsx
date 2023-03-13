@@ -26,7 +26,7 @@ function App() {
 				<Routes>
 					<Route path="/" element={<ConnectPage/>} />
 					<Route path="/homePage/:id/history" element={<History/>} />
-					<Route path="/homePage/:id" element={<HomePage/>} />
+					<Route path={`/homePage/${users.name}`} element={<HomePage/>} />
 					<Route path="/homePage/:id/leaderboard" element={<Leaderbord/>} />
 					<Route path="/pong" element={<Pong/>} />
 					<Route path="/homePage/:id/profile" element={<Profile/>} />

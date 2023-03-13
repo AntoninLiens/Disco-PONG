@@ -20,7 +20,7 @@ export class UsersController {
 
     @Get('leaderboard')
     @UseGuards(JwtAuthGuard)
-    async leaderboard() {
-        return this.userService.getUserListLeaderboard();
+    async leaderboard(@Req () req: Request): Promise<Users[] | never> {
+        return this.userService.leaderboard();
     }
 }

@@ -32,7 +32,7 @@ export default function ConnectPage() {
 		const res = await signin(loginName, loginPassword);
 		console.log("res: ", users.name);
 		if (res !== "null")
-			navigate(`/homePage/${users.name}`);
+			navigate(`/homePage/${loginName}`);
 	};
 	
 	const updateLoginName = (event: any) => {
@@ -48,7 +48,7 @@ export default function ConnectPage() {
 		if (registerConfirmPassword === registerPassword) {
 			const res = await signup(registerName, registerPassword);
 			if (res !== "null")
-				navigate(`/homePage/${users.name}`);
+				navigate(`/homePage/${registerName}`);
 		}
 		else {
 			if (!errorRegister)
