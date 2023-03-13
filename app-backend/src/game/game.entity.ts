@@ -9,9 +9,9 @@ export class Game {
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     date: Date;
 
-    @ManyToOne(() => Users, Users => Users.victories)
+    @ManyToOne(() => Users, Users => Users.id)
     winner: Users;
 
-    @ManyToOne(() => Users, Users => Users.defeats)
+    @ManyToOne(() => Users, Users => Users.id)
     looser: Users;
 }

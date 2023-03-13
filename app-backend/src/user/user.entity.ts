@@ -1,6 +1,7 @@
 import { Exclude } from "class-transformer";
+import { Friends } from "src/friends/friends.entity";
 import { Game } from "src/game/game.entity";
-import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, JoinTable, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 class Users {
@@ -33,10 +34,7 @@ class Users {
     @Column({ type: 'int', default: 0 })
     coins: number;
 
-    @OneToMany(() => Game, game => game.winner)
-    victories: Game[];
-
-    @OneToMany(() => Game, game => game.looser)
-    defeats: Game[];
+    @Column({ type: 'varchar', default: 'offline' })
+    status: string;
 }
 export default Users;
