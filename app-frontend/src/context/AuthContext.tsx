@@ -21,38 +21,48 @@ export function createAuth() {
 	const signin = async (name: string, password: string) => "null";
 	const signout = async (name: string, password: string) => "null";
 	const profile = async (token: string) => "null";
-	const leaderboard = async () => "null";
 	
-	// interface AuthContextType {
-	// 	users: typeof defaultUser;
-	// 	error: string;
-	// 	setUsers: UpdateType;
-	// 	signup: typeof signup;
-	// 	signin: typeof signin;
-	// 	signout: typeof signout;
-	// 	profile: typeof profile;
-	// 	leaderboard: typeof leaderboard;
-	// }
+	type AuthContextType = {
+		users: typeof defaultUser;
+		setUsers: UpdateType;
+		signup: typeof signup;
+		signin: typeof signin;
+		signout: typeof signout;
+		profile: typeof profile;
+		errorLogin: string;
+		errorRegister: string;
+		setErrorRegister: Dispatch<SetStateAction<string>>;
+	}
 
-	const authCtx = createContext({
+	const authCtx = createContext<AuthContextType>({
 		users: defaultUser,
 		setUsers: defaultUpdate,
 		signup: signup,
 		signin: signin,
 		signout: signout,
 		profile: profile,
-		error: ""
+		errorLogin: "",
+		errorRegister: "",
+		setErrorRegister: () => {}
 	});
 
 	function AuthProvider(props: PropsWithChildren<{}>) {
 		const [users, setUsers] = useState(defaultUser); // USERSSSSSSS PARANO
-		const [error, setError] = useState("");
+		const [errorLogin, setErrorLogin] = useState("");
+		const [errorRegister, setErrorRegister] = useState("");
 
 		const signup =  async (name: string, password: string) => {
 			const { accessToken, refreshToken } = await axios.post("auth/register", { name, password })
 			.then(res => { return (res.data) })
 			.catch(err => {
-				setError(err.response.data.message);
+				if (err.response.data.message === "User already exists")
+					setErrorRegister("User already exists");
+				else if (err.response.data.message[0] === "name should not be empty")
+					setErrorRegister("name should not be empty");
+				else if (err.response.data.message[1] === "password should not be empty")
+					setErrorRegister("password should not be empty");
+				else if (err.response.data.message[0] === "password must be longer than or equal to 7 characters")
+					setErrorRegister("password must be longer than or equal to 7 characters");
 				return null
 			});
 			
@@ -66,7 +76,7 @@ export function createAuth() {
 			const { accessToken, refreshToken } = await axios.post("auth/login", { name, password })
 			.then(res => { return (res.data) })
 			.catch(err => {
-				setError(err.response.data.message);
+				setErrorLogin(err.response.data.message);
 				return null
 			});
 			
@@ -133,7 +143,9 @@ export function createAuth() {
 				signin,
 				signout,
 				profile,
-				error
+				errorLogin,
+				errorRegister,
+				setErrorRegister
 			}}
 			{...props} />
 		);
