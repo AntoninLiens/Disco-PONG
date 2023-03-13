@@ -21,29 +21,29 @@ export function createAuth() {
 	const signin = async (name: string, password: string) => "null";
 	const signout = async (name: string, password: string) => "null";
 	const profile = async (token: string) => "null";
-	const leaderboard = async () => "null";
 	
-	// interface AuthContextType {
-	// 	users: typeof defaultUser;
-	// 	error: string;
-	// 	setUsers: UpdateType;
-	// 	signup: typeof signup;
-	// 	signin: typeof signin;
-	// 	signout: typeof signout;
-	// 	profile: typeof profile;
-	// 	leaderboard: typeof leaderboard;
-	// }
+	type AuthContextType = {
+		users: typeof defaultUser;
+		setUsers: UpdateType;
+		signup: typeof signup;
+		signin: typeof signin;
+		signout: typeof signout;
+		profile: typeof profile;
+		errorLogin: string;
+		errorRegister: string;
+		setErrorRegister: Dispatch<SetStateAction<string>>;
+	}
 
-	const authCtx = createContext({
+	const authCtx = createContext<AuthContextType>({
 		users: defaultUser,
 		setUsers: defaultUpdate,
 		signup: signup,
 		signin: signin,
 		signout: signout,
 		profile: profile,
-		leaderboard: leaderboard,
 		errorLogin: "",
-		errorRegister: ""
+		errorRegister: "",
+		setErrorRegister: () => {}
 	});
 
 	function AuthProvider(props: PropsWithChildren<{}>) {
@@ -55,8 +55,7 @@ export function createAuth() {
 			const { accessToken, refreshToken } = await axios.post("auth/register", { name, password })
 			.then(res => { return (res.data) })
 			.catch(err => {
-				console.log(err.response.data.message);
-				if (err.response.data.message[0] === "User already exists")
+				if (err.response.data.message === "User already exists")
 					setErrorRegister("User already exists");
 				else if (err.response.data.message[0] === "name should not be empty")
 					setErrorRegister("name should not be empty");
@@ -120,17 +119,6 @@ export function createAuth() {
 			return "null";
 		};
 
-		const leaderboard = async () => {
-			const userListTmp: never[] = await axios.get("user/leaderboard")
-			.then(res => { return (res.data) })
-			.catch(err => { return null })
-			
-			if (!userListTmp)
-				return 'null';
-			console.log("userList: ", userListTmp);
-			return ("success");
-		}
-
 		useEffect(() => {
 			const token = localStorage.getItem("token");
 			if (token)
@@ -152,9 +140,9 @@ export function createAuth() {
 				signin,
 				signout,
 				profile,
-				leaderboard,
 				errorLogin,
-				errorRegister
+				errorRegister,
+				setErrorRegister
 			}}
 			{...props} />
 		);

@@ -14,7 +14,7 @@ export default function ConnectPage() {
 	const [registerConfirmPassword, setRegisterConfirmPassword] = useState("");
 	const [tabulation, setTabulation] = useState<boolean>(false);
 
-	const { users, errorLogin, errorRegister, signin, signup } = useContext(AuthContext);
+	const { users, errorLogin, errorRegister, setErrorRegister, signin, signup } = useContext(AuthContext);
 	
 	const hideOrDisplay = errorLogin ? "display" : "hide";
 	const hideOrDisplay2 = errorRegister ? "display" : "hide";
@@ -45,11 +45,16 @@ export default function ConnectPage() {
 	/*Register*/
 	
 	const handleRegister = async () => {
-		if (registerPassword === registerConfirmPassword) {
+		if (registerConfirmPassword === registerPassword) {
 			const res = await signup(registerName, registerPassword);
 			if (res !== "null")
 				navigate(`/homePage/${users.name}`);
 		}
+		else {
+			if (!errorRegister)
+				setErrorRegister("Passwords do not match");
+		}
+
 	};
 	
 	const updateRegisterName = (event: any) => {
@@ -72,6 +77,7 @@ export default function ConnectPage() {
 		setSliderType(sliderType);
 		setFormBoxType(formBoxType);
 	};
+
 	
 	// RENDER
 

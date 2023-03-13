@@ -36,21 +36,11 @@ const Leaderboard = () => {
 
 	// States
 
-	const { leaderboard } = useContext(AuthContext);
-
 	// const [ profileList, setProfileList ] = useState<User[]>();
 
 	const { id } = useParams();
 	
 	// Behavior
-
-	useEffect(() => {
-		const setLeaderbordList = async () => {
-			const res: string = await leaderboard();
-			console.log("res : ", res);
-		};
-		setLeaderbordList();
-		}, []);
 	
 	// Render
 
