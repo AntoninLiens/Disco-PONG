@@ -7,10 +7,10 @@ export class Setting {
     id: number;
 
     @Column({ type: 'char', default: 'W' })
-    moveUp: CharacterData;
+    moveUp: string;
 
     @Column({ type: 'char', default: 'S' })
-    moveDown: CharacterData;
+    moveDown: string;
 
     @Column({ type: 'boolean', default: true })
     showScore: boolean;

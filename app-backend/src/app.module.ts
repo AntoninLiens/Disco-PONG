@@ -4,6 +4,7 @@ import AuthModule from './auth/auth.module';
 import { DatabaseModule } from './database/database.module';
 import { FriendsModule } from './friends/friends.module';
 import GameModule from './game/game.module';
+import { SettingModule } from './setting/setting.module';
 import UsersModule from './user/user.module';
 
 @Module({
@@ -13,7 +14,8 @@ import UsersModule from './user/user.module';
     AuthModule,
     UsersModule,
     GameModule,
-    FriendsModule
+    FriendsModule,
+    SettingModule
   ]
 })
 export class AppModule {}
