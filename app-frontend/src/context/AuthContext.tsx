@@ -7,7 +7,7 @@ export function createAuth() {
 		name: "",
 		password: "",
 		refreshToken: "",
-		pfp: "",
+		pfp: "./images/bread.png",
 		score: 0,
 		level: 0,
 		xp: 0,
@@ -47,7 +47,7 @@ export function createAuth() {
 		const [error, setError] = useState("");
 
 		const signup =  async (name: string, password: string) => {
-			const { accessToken, refreshToken } = await axios.post("auth/register", { name, password })
+			const { accessToken, refreshToken } = await axios.post("auth/register", { name, password, pfp: "./images/bread.png" })
 			.then(res => { return (res.data) })
 			.catch(err => {
 				setError(err.response.data.message);

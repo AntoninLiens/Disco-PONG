@@ -20,17 +20,17 @@ export class GameService {
         return game;
     }
 
-    async victories(userId: number): Promise<Game[] | never> {
+    async victories(user: Users): Promise<Game[] | never> {
         return (await this.gameRepository.createQueryBuilder('game')
         .select()
-        .where("game.winner = :userId", { userId })
+        .where("game.winner = :userId", { userId: user.id })
         .getMany());
     }
 
-    async defeats(userId: number): Promise<Game[] | never> {
+    async defeats(user: Users): Promise<Game[] | never> {
         return (await this.gameRepository.createQueryBuilder('game')
         .select()
-        .where("game.looser = :userId", { userId })
+        .where("game.looser = :userId", { userId: user.id })
         .getMany());
     }
 }

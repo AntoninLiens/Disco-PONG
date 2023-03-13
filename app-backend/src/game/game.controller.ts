@@ -19,13 +19,13 @@ export class GameController {
 
     @Get('victories')
     @UseGuards(JwtAuthGuard)
-    async victories(@Req() req: Request, userId: number): Promise<Game[] | never> {
-        return this.gameService.victories(userId);
+    async victories(@Req() req: Request): Promise<Game[] | never> {
+        return this.gameService.victories(<Users>req.user);
     }
 
     @Get('defeats')
     @UseGuards(JwtAuthGuard)
     async defeats(@Req() req: Request, userId: number): Promise<Game[] | never> {
-        return this.gameService.defeats(userId);
+        return this.gameService.defeats(<Users>req.user);
     }
 }

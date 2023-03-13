@@ -2,6 +2,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import NavBar from "../NavBar/NavBar";
+import CheckBox from "./components/CheckBox";
 import "./Settings.css";
 
 export default function Settings() {
@@ -149,11 +150,11 @@ export default function Settings() {
 					<div className={`mainSettingsItems ${HUDToggle}`}>
 						<div className="showScore settingsPair">
 							<div className="settingsKey">Show score</div>
-							<input type="checkBox" checked={scoreChecked} onChange={() => handleCheckBox("score")} className="checkBox" />
+							<CheckBox label="" ischecked={scoreChecked} />
 						</div>
 						<div className="showProfiles settingsPair">
 							<div className="settingsKey">Show profiles</div>
-							<input type="checkBox" checked={profileChecked} onChange={() => handleCheckBox("profile")} className="checkBox" />
+							<CheckBox label="" ischecked={profileChecked} />
 						</div>
 					</div>
 				</div>
