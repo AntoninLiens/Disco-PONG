@@ -1,7 +1,9 @@
 import { Exclude } from "class-transformer";
+import { Friends } from "src/friends/friends.entity";
 import { Game } from "src/game/game.entity";
 import { Setting } from "src/setting/setting.entity";
 import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+
 
 @Entity()
 class Users {
@@ -42,5 +44,8 @@ class Users {
 
     @OneToOne(() => Setting, setting => setting.id)
     settings: Setting;
+
+    @Column({ type: 'varchar', default: 'offline' })
+    status: string;
 }
 export default Users;
