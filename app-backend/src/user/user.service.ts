@@ -5,6 +5,7 @@ import CreateUsersDto from "./dto/createUser.dto";
 import Users from "./user.entity";
 import * as bcrypt from "bcrypt";
 import { JwtService } from "@nestjs/jwt";
+import { Game } from "src/game/game.entity";
 
 @Injectable()
 export class UsersService {
@@ -48,7 +49,7 @@ export class UsersService {
 	async leaderboard(): Promise<Users[] | never> {
 		return (await this.userRepository.createQueryBuilder('user')
 		.select()
-		.orderBy('user.id', 'DESC')
+		.orderBy('user.score', 'DESC')
 		.getMany());
 	}
 }

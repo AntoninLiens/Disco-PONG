@@ -19,4 +19,18 @@ export class GameService {
         await this.gameRepository.save(game);
         return game;
     }
+
+    async victories(userId: number): Promise<Game[] | never> {
+        return (await this.gameRepository.createQueryBuilder('game')
+        .select()
+        .where("game.winner = :userId", { userId })
+        .getMany());
+    }
+
+    async defeats(userId: number): Promise<Game[] | never> {
+        return (await this.gameRepository.createQueryBuilder('game')
+        .select()
+        .where("game.looser = :userId", { userId })
+        .getMany());
+    }
 }
